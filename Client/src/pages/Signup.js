@@ -35,47 +35,47 @@ const Signup = () => {
 
   return(
       <div>
-        <div class="container">
+        <div className="container">
 
-              <ol class="breadcrumb">
+              <ol className="breadcrumb">
                   <li><a href="index.html">Home</a></li>
-                  <li class="active">Registration</li>
+                  <li className="active">Registration</li>
               </ol>
 
-          <div class="row">
+          <div className="row">
 
-                  <article class="col-xs-12 maincontent">
-                      <header class="page-header">
-                          <h1 class="page-title">Registration</h1>
+                  <article className="col-xs-12 maincontent">
+                      <header className="page-header">
+                          <h1 className="page-title">Registration</h1>
                       </header>
 
-                      <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                          <div class="panel panel-default">
-                              <div class="panel-body">
-                                  <h3 class="thin text-center">Register a new account</h3>
-                                  <p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="signin.html">Login</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
+                      <div className="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                          <div className="panel panel-default">
+                              <div className="panel-body">
+                                  <h3 className="thin text-center">Register a new account</h3>
+                                  <p className="text-center text-muted">Lorem ipsum dolor sit amet, <a href="signin.html">Login</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
                                   <hr/>
 
                                   <form onSubmit = {handleSubmit}>
-                                      <div class="top-margin">
+                                      <div className="top-margin">
                                           <label>First Name</label>
-                                          <input type="text" name="username" onChange={handleChange} class="form-control"/>
+                                          <input type="text" name="username" onChange={handleChange} className="form-control"/>
                                       </div>
-                                      <div class="top-margin">
+                                      <div className="top-margin">
                                           <label>Last Name</label>
                                           <input type="text" class="form-control"/>
                                       </div>
                                       <div class="top-margin">
                                           <label>Email Address <span class="text-danger">*</span></label>
-                                          <input type="text" name="email" onChange={handleChange} class="form-control"/>
+                                          <input type="text" name="email" onChange={handleChange} className="form-control"/>
                                       </div>
 
-                                      <div class="row top-margin">
-                                          <div class="col-sm-6">
-                                              <label>Password <span class="text-danger">*</span></label>
+                                      <div className="row top-margin">
+                                          <div className="col-sm-6">
+                                              <label>Password <span className="text-danger">*</span></label>
                                               <input type="text" onChange={handleChange} name="password" class="form-control"/>
                                           </div>
-                                          <div class="col-sm-6">
+                                          <div className="col-sm-6">
                                               <label>Confirm Password <span class="text-danger">*</span></label>
                                               <input type="text" class="form-control"/>
                                           </div>
@@ -83,15 +83,15 @@ const Signup = () => {
 
                                       <hr/>
 
-                                      <div class="row">
-                                          <div class="col-lg-8">
-                                              <label class="checkbox">
+                                      <div className="row">
+                                          <div className="col-lg-8">
+                                              <label className="checkbox">
                                                   <input type="checkbox"/>
                                                   I've read the <a href="page_terms.html">Terms and Conditions</a>
                                               </label>
                                           </div>
                                           <div class="col-lg-4 text-right">
-                                              <button class="btn btn-action" type="submit">Register</button>
+                                              <button className="btn btn-action" type="submit">Register</button>
                                           </div>
                                       </div>
                                   </form>

@@ -12,12 +12,17 @@ const protect = async (req,res,next) => {
   }
   try {
     const decoded = jwt.verify(token,"testsecret")
-    const user = await users.findById(decoded.id);
+    console.log("trying to find user"+decoded.id);
+    const user = await users.findOne({ _id:decoded.id });
     if (!user) {
+      console.log("we didnt find");
       return next(new errorResponse("no user found ",404))
     }
     req.user = user
+
+    next();
   } catch (e) {
+    console.log("loll");
      return next(new ErrorResponse("Not authorized to access this router", 401));
   }
 }

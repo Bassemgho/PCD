@@ -23,7 +23,7 @@ const protect = async (req,res,next) => {
     next();
   } catch (e) {
     console.log("loll");
-     return next(new ErrorResponse("Not authorized to access this router", 401));
+     return next(new errorResponse("Not authorized to access this router", 401));
   }
 }
 export default protect;

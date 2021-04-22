@@ -21,7 +21,7 @@ app.use('/',(req,res) => {
 })
 app.use(errorHandler)
                     //mongodb+srv://ii2c:ii2cENSI@cluster0.trqml.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-const CONNECTION_URL= 'mongodb+srv://ii2c:ii2cENSI@cluster0.trqml.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const CONNECTION_URL= 'mongodb+srv://pcd:pcd123456789@cluster0.ssoe3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 5000 ;
 mongoose.connect(CONNECTION_URL,{useNewUrlParser: true , userUnifiedTopology:true,audoIndex: true})
 .then(() => {app.listen(PORT,() => {console.log(`server  running on port : ${PORT}`);} )

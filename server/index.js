@@ -7,6 +7,7 @@ import errorHandler from './middlewares/error.js'
 import postrouter from './routes/posts.js'
 import userrouter from './routes/users.js'
 import homerouter from './routes/home.js'
+import appRouter from './routes/approutes/user.js'
 
 
 const app=express();
@@ -16,6 +17,7 @@ app.use(cors());
 app.use('/posts',postrouter);
 app.use('/user',userrouter);
 app.use('/home',homerouter);
+app.use('/app',appRouter);
 app.use('/',(req,res) => {
   return res.status(201).json({message:'hello there'})
 })

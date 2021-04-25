@@ -1,6 +1,10 @@
 import entreprise from '../models/entreprise.js'
 import errorResponse from '../utils/ErrorResponse.js'
 
+
+export const ajoutermagasin = async () => {
+
+}
 export const createentreprise = async (req,res,next) => {
   const {name,logo} = req.body;
   try {

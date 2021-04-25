@@ -1,6 +1,19 @@
 import appuser from '../../models/userApp.js'
 import errorResponse from '../../utils/ErrorResponse.js'
+// import carte
 
+export const viewcards = async (req,res,ne) => {
+ const id = req.user._id;
+
+ try {
+   const user = await appuser.find({_id:id}).populate('cartes').exec();
+   res.status(201).json({user});
+ } catch (e) {
+   next(e);
+
+ }
+ 
+}
 export const signup = async (req,res,next) => {
   const {username,password,email,phonenumber} = req.body;
   try {

@@ -27,11 +27,7 @@ const userApp = mongoose.Schema({
     ],
   },
   phonenumber:String,
-  cartes:{
-    type:[mongoose.Schema.Types.ObjectId],
-
-    default:[],
-  }
+  cartes:[{type:mongoose.Schema.Types.ObjectId,ref:'carteVirtuelle'}]
 
 
 })
@@ -53,18 +49,20 @@ userApp.methods.getsignedtoken = function () {
 userApp.methods.initializecards = async function () {
   const data = await entreprise.find({},'_id').exec();
   try {
-
+    let list= [];
     Object.values(data).map( async (item) => {
       const carte = await carteVirtuelle.create({id_entreprise:item,id_client:this._id});
-      this.cartes.push(carte._id)
-      // console.log(this.cartes);
-  })}
+      list.push(carte._id)
+      this.cartes.push(carte._id);
+      console.log(this.cartes);
+  })
+  this.cartes = list;
+  console.log(this.cartes);
+}
 catch (e) {
     console.log(e.message);
 
   }
-
-
 
 }
 const appuser = mongoose.model('Appuser',userApp);

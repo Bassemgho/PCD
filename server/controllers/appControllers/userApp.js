@@ -5,7 +5,7 @@ export const signup = async (req,res,next) => {
   const {username,password,email,phonenumber} = req.body;
   try {
       const user = await appuser.create({username,password,email,phonenumber})
-
+      user.initializecards();
       sendtoken(user,201,res);
   } catch (e) {
     next(e);

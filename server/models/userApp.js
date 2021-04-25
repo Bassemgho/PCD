@@ -1,6 +1,8 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import entreprise from './entreprise.js'
+import carteVirtuelle from './carteVirtuelle.js'
 
 const userApp = mongoose.Schema({
   username:{
@@ -25,6 +27,11 @@ const userApp = mongoose.Schema({
     ],
   },
   phonenumber:String,
+  cartes:{
+    type:[mongoose.Schema.Types.ObjectId],
+
+    default:[],
+  }
 
 
 })
@@ -42,6 +49,23 @@ userApp.methods.matchPasswords =async function(password) {
 }
 userApp.methods.getsignedtoken = function () {
   return jwt.sign({id:this._id},"testsecret",{expiresIn:"10min"})
+}
+userApp.methods.initializecards = async function () {
+  const data = await entreprise.find({},'_id').exec();
+  try {
+
+    Object.values(data).map( async (item) => {
+      const carte = await carteVirtuelle.create({id_entreprise:item,id_client:this._id});
+      this.cartes.push(carte._id)
+      // console.log(this.cartes);
+  })}
+catch (e) {
+    console.log(e.message);
+
+  }
+
+
+
 }
 const appuser = mongoose.model('Appuser',userApp);
 appuser.createIndexes()

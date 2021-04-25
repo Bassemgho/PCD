@@ -8,6 +8,7 @@ import postrouter from './routes/posts.js'
 import userrouter from './routes/users.js'
 import homerouter from './routes/home.js'
 import appRouter from './routes/approutes/user.js'
+import entrepriserouter from './routes/entreprise.js'
 
 
 const app=express();
@@ -18,6 +19,7 @@ app.use('/posts',postrouter);
 app.use('/user',userrouter);
 app.use('/home',homerouter);
 app.use('/app',appRouter);
+app.use('/entreprise',entrepriserouter);
 app.use('/',(req,res) => {
   return res.status(201).json({message:'hello there'})
 })

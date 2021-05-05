@@ -1,5 +1,8 @@
 import React , {Component,useState} from 'react';
 import * as api from '../api/index.js'
+import {Link} from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
     const Signin = () => {
       const [username,setUsername] = useState('')
       const [password,setPassword] = useState('')
@@ -24,46 +27,46 @@ import * as api from '../api/index.js'
       }
       return(
           <div>
+<Header/>
+            <div className="container">
 
-            <div class="container">
-
-                  <ol class="breadcrumb">
-                      <li><a href="index.html">Home</a></li>
-                      <li class="active">User access</li>
+                  <ol className="breadcrumb">
+                      <li><Link tp="/">Accueil</Link></li>
+                      <li className="active">Accès utilisateur</li>
                   </ol>
 
-              <div class="row">
+              <div className="row">
 
-                      <article class="col-xs-12 maincontent">
-                          <header class="page-header">
-                              <h1 class="page-title">Sign in</h1>
+                      <article className="col-xs-12 maincontent">
+                          <header className="page-header">
+                              <h1 className="page-title">S'identifier</h1>
                           </header>
 
-                          <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                              <div class="panel panel-default">
-                                  <div class="panel-body">
-                                      <h3 class="thin text-center">Sign in to your account</h3>
-                                      <p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="signup.html">Register</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
+                          <div className="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                              <div className="panel panel-default">
+                                  <div className="panel-body">
+                                      <h3 className="thin text-center">Connectez-vous à votre compte</h3>
+                                      <p className="text-center text-muted">Si vous n'avez pas un compte, <Link to="/signup">S'inscrire</Link> ici.</p>
                                       <hr/>
 
                                       <form onSubmit={handleSubmit}>
-                                          <div class="top-margin">
-                                              <label>Username/Email <span class="text-danger">*</span></label>
-                                              <input name="username" type="text" onChange={handleChange} class="form-control"/>
+                                          <div className="top-margin">
+                                              <label>Nom d'utilisateur <span className="text-danger">*</span></label>
+                                              <input name="username" type="text" onChange={handleChange} className="form-control"/>
                                           </div>
-                                          <div class="top-margin">
-                                              <label>Password <span class="text-danger">*</span></label>
-                                              <input  name="password" type="password" class="form-control" onChange={handleChange}/>
+                                          <div className="top-margin">
+                                              <label>Mot de passe <span className="text-danger">*</span></label>
+                                              <input  name="password" type="password" className="form-control" onChange={handleChange}/>
                                           </div>
 
                                           <hr/>
 
-                                          <div class="row">
-                                              <div class="col-lg-8">
-                                                  <b><a href="">Forgot password?</a></b>
+                                          <div className="row">
+                                              <div className="col-lg-8">
+                                                  <b><a href="">Mot de passe oublié?</a></b>
                                               </div>
-                                              <div class="col-lg-4 text-right">
-                                                  <button class="btn btn-action" type="submit">Sign in</button>
+                                              <div className="col-lg-4 text-right">
+                                                  <button className="btn btn-action" type="submit"><Link to="/Dashboard">S'identifier</Link></button>
                                               </div>
                                           </div>
                                       </form>
@@ -77,6 +80,7 @@ import * as api from '../api/index.js'
 
               </div>
             </div>
+            <Footer/>
           </div>
       )
     }

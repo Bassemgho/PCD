@@ -1,6 +1,6 @@
 import axios from 'axios'
-const urlSignin = "http://localhost:5000/user/signin"
-const urlSignup = "http://localhost:5000/user/signup"
+const urlSignin = "http://localhost:5000/app/signin"
+const urlSignup = "http://localhost:5000/app/signup"
 
 export const sendcreds = async (username,password) => {
   const creds = {username:username,password:password};

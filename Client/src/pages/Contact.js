@@ -1,52 +1,55 @@
 import React , {Component} from 'react';
+import Header from './Header';
+import Footer from './Footer';
 
 class Contact extends React.Component{
     render(){
         return(
             <div>
-	            <div class="container">
+				<Header/>
+	            <div className="container">
 
-		            <ol class="breadcrumb">
-			            <li><a href="index.html">Home</a></li>
-			            <li class="active">About</li>
+		            <ol className="breadcrumb">
+			            <li><a href="index.html">Accueil</a></li>
+			            <li className="active">Contact</li>
 		            </ol>
 
-		            <div class="row">
+		            <div className="row">
 			
-			            <article class="col-sm-9 maincontent">
-				            <header class="page-header">
-					            <h1 class="page-title">Contact us</h1>
+			            <article className="col-sm-9 maincontent">
+				            <header className="page-header">
+					            <h1 className="page-title">Contactez-nous</h1>
 				            </header>
 				
 				            <p>
-					        We’d love to hear from you. Interested in working together? Fill out the form below with some info about your project and I will get back to you as soon as I can. Please allow a couple days for me to respond.
+							Merci de nous envoyer vos remarques et toutes vos questions. Remplissez le formulaire ci-dessous et nous répondrions à vos questions dès que possible. Veuillez nous accorder qulques jours pour répondre.
 			            	</p>
 				            <br/>
 					        <form>
-						        <div class="row">
-							        <div class="col-sm-4">
-								        <input class="form-control" type="text" placeholder="Name"/>
+						        <div className="row">
+							        <div className="col-sm-4">
+								        <input className="form-control" type="text" placeholder="Nom"/>
 						        	</div>
-							        <div class="col-sm-4">
-								        <input class="form-control" type="text" placeholder="Email"/>
+							        <div className="col-sm-4">
+								        <input className="form-control" type="text" placeholder="Email"/>
 						        	</div>
-							        <div class="col-sm-4">
-								        <input class="form-control" type="text" placeholder="Phone"/>
+							        <div className="col-sm-4">
+								        <input className="form-control" type="text" placeholder="Téléphone"/>
 							        </div>
 						        </div>
 						        <br/>
-						        <div class="row">
-							        <div class="col-sm-12">
-								        <textarea placeholder="Type your message here..." class="form-control" rows="9"></textarea>
+						        <div className="row">
+							        <div className="col-sm-12">
+								        <textarea placeholder="Tapez votre message ici..." className="form-control" rows="9"></textarea>
 							        </div>
 						        </div>
 						        <br/>
-						        <div class="row">
-							        <div class="col-sm-6">
-								        <label class="checkbox"><input type="checkbox"/> Sign up for newsletter</label>
+						        <div className="row">
+							        <div className="col-sm-6">
+								        <label className="checkbox"><input type="checkbox"/> Sign up for newsletter</label>
 							        </div>
-							        <div class="col-sm-6 text-right">
-								        <input class="btn btn-action" type="submit" value="Send message"/>
+							        <div className="col-sm-6 text-right">
+								        <input className="btn btn-action" type="submit" value="Envoyer message"/>
 							        </div>
 						        </div>
 					        </form>
@@ -54,14 +57,14 @@ class Contact extends React.Component{
 			            </article>
 			
 		
-			            <aside class="col-sm-3 sidebar sidebar-right">
+			            <aside className="col-sm-3 sidebar sidebar-right">
 
-				            <div class="widget">
-					            <h4>Address</h4>
+				            <div className="widget">
+					            <h4>Addresse</h4>
 					            <address>
 						            2002 Holcombe Boulevard, Houston, TX 77030, USA
 					            </address>
-					            <h4>Phone:</h4>
+					            <h4>Téléphone:</h4>
 				            	<address>
 						            (713) 791-1414
 					            </address>
@@ -72,9 +75,10 @@ class Contact extends React.Component{
 		                </div>
 	            </div>	
 	
-	            <section class="container-full top-space">
+	            <section className="container-full top-space">
 		            <div id="map"></div>
 	            </section>
+				<Footer/>
             </div>
         )
     }

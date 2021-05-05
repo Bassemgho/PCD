@@ -1,34 +1,50 @@
-import logo from './logo.svg';
 import './App.css';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Left from './pages/Left';
-import Right from './pages/Right';
+import Partenaire from './pages/Partenaire';
+import Team from './pages/Team';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Dashboard from './pages/Dashboard';
+import Maps from './pages/Maps';
+import Profil from './pages/Profil';
+import Clients from './pages/Clients';
+import Paramcarte from './pages/Paramcarte';
+import Pointsvente from './pages/Pointsvente';
+import Categories from './pages/Categories';
+
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
+
+/*import Footer from './components/Footer';*/
+
+/*import Header from './components/Header';*/
 
 function App() {
   return (
     <div>
       <Router>
-        <Header/>
+        {/*<Header/>*/}
 
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/about' component={About} />
             <Route path='/contact' component={Contact} />
-            <Route path='/left' component={Left} />
-            <Route path='/right' component={Right} />
+            <Route path='/partenaire' component={Partenaire} />
+            <Route path='/team' component={Team} />
             <Route path='/signin' component={Signin} />
             <Route path='/signup' component={Signup} />
+            <Route path='/dashboard' component={Dashboard} />
+            <Route path='/maps' component={Maps} />
+            <Route path='/profil' component={Profil} />
+            <Route path='/clients' component={Clients} />
+            <Route path='/paramcarte' component={Paramcarte} />
+            <Route path='/pointsvente' component={Pointsvente} />
+            <Route path='/categories' component={Categories} />
 
           </Switch>        
 
-        <Footer/>
+     {/*   <Footer/> */}
 
       </Router>
     </div>

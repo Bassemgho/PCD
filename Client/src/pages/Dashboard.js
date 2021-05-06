@@ -9,7 +9,7 @@ import Icon from '@ant-design/icons';
 import {Link} from 'react-router-dom';
 const { Header, Footer, Sider, Content } = Layout;
 
-function Dashboard() {
+function Dashboard(props) {
   const [selectedPlayer, setSelectedPlayer] = useState('');
   const [visible, setVisible] = useState(false);
   const onSelect = name => {
@@ -21,12 +21,16 @@ function Dashboard() {
   }
 
   const onClose = () => setVisible(false);
+  if (!(props.authorized)) {
+    return (<div>not authorized</div>);
+  }
+  else 
   return (
     <div className="App">
       <Layout>
         <Header style={{ padding: 10 }}>
           <Avatar style={{ float: 'right' }} Icon="user" />
-          
+
           <Title style={{ color: 'white' }} level={3}><Link to='/'>UNIFID</Link></Title>
         </Header>
         <Layout>
@@ -47,7 +51,7 @@ function Dashboard() {
             <Menu.Item key='Profil'>
               <span><Link to='/profil'>Profil</Link></span>
             </Menu.Item>
-  
+
               <SubMenu
                 title={
                   <span>
@@ -66,14 +70,14 @@ function Dashboard() {
             </Menu.Item>
             </Menu>
           </Sider>
-          
+
           <Layout>
             <Content style={{ padding: '0 50px' }}>
               <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item><h1>Statistiques</h1></Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
-                
+
               </div>
             </Content>
             <CareerDetails player={selectedPlayer} visible={visible} onClose={onClose} />

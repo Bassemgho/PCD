@@ -6,8 +6,9 @@ import SubMenu from 'antd/lib/menu/SubMenu';
 import { Cricketer, ODICareer, Batting, Bowling, TestCareer } from './Cricketer';
 import CareerDetails from './CareerDetails';
 import Icon from '@ant-design/icons';
-import {Link} from 'react-router-dom';
+import {Link, Route, Redirect} from 'react-router-dom';
 import {AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -28,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
 
 const { Header, Footer, Sider, Content } = Layout;
 
-function Profil() {
-
+function Event(props) {
+  
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -63,6 +64,8 @@ function handleListKeyDown(event) {
   }, [open]);
 
 
+
+
   const [selectedPlayer, setSelectedPlayer] = useState('');
   const [visible, setVisible] = useState(false);
   const onSelect = name => {
@@ -72,53 +75,55 @@ function handleListKeyDown(event) {
   const ViewProfileButton = ({name}) => {
     return <Button type='dashed' style={{float:'right'}} onClick={()=>onSelect(name)}> View Full Profile  </Button>
   }
-
+  
   const onClose = () => setVisible(false);
+
   return (
     <div className="App">
       <Layout>
         <Header style={{ padding: 10 }}>
-          
+
+
         <div className={classes.root} style={{float:'right' , marginRight : 40 , marginTop : -10}}>
         
-        <div>
-          <Button
-            ref={anchorRef}
-            aria-controls={open ? 'menu-list-grow' : undefined}
-            aria-haspopup="true"
-            onClick={handleToggle}
-            style={{height : 35}}
-          >
-            <UserOutlined/>
-          </Button>
-          <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-              >
-                <Paper>
-                  <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                      <MenuItem onClick={handleClose}><h5><Link to ='/profil'>Profil</Link></h5></MenuItem>
-                      <MenuItem onClick={handleClose}><h5>Carte</h5></MenuItem>
-                      <MenuItem onClick={handleClose}><h5>Déconnexion</h5></MenuItem>
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
-        </div>
-        </div>
+      <div>
+        <Button
+          ref={anchorRef}
+          aria-controls={open ? 'menu-list-grow' : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}
+          style={{height : 35}}
+        >
+          <UserOutlined/>
+        </Button>
+        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                    <MenuItem onClick={handleClose}><h5><Link to ='/profil'>Profil</Link></h5></MenuItem>
+                    <MenuItem onClick={handleClose}><h5>Carte</h5></MenuItem>
+                    <MenuItem onClick={handleClose}><h5>Déconnexion</h5></MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </div>
+      </div>
+          
 
           <Title style={{ color: 'white' }} level={2}>UNIFID</Title>
-
         </Header>
         <Layout>
           <Sider>
             <Menu
-              defaultSelectedKeys={['Profil']}
+              defaultSelectedKeys={['Event']}
               mode="inline"
             >
               <Menu.Item key='Dashboard'>
@@ -154,31 +159,14 @@ function handleListKeyDown(event) {
             </Menu.Item>
             </Menu>
           </Sider>
+          
           <Layout>
             <Content style={{ padding: '0 50px' }}>
               <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item><h1>Profil</h1></Breadcrumb.Item>
+                <Breadcrumb.Item><h1>Evenements</h1></Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
-                 <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
-                    <h4>Modifier Profil</h4>
-                 </div>   
-                 <br/><br/>
-                 <label class="bmd-label-floating">Adresse Email</label>
-                  <input type="text" class="form-control"></input>
-                  <br/>
-                  <label class="bmd-label-floating">Nouveau mot de passe</label>
-                <input type="text" class="form-control"></input>  
-                <br/>
-                <label class="bmd-label-floating">Nouveau logo</label>
-                 <input type="file" class="form-control"></input>    
-                 <br/>
-                <label class="bmd-label-floating">Description</label>
-                 <input type="text" class="form-control"></input>
-                 <br/><br/>
-                 <br/>
-                     <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000'}}>Update Profile</button>  
-                      
+                
               </div>
             </Content>
             <CareerDetails player={selectedPlayer} visible={visible} onClose={onClose} />
@@ -190,4 +178,4 @@ function handleListKeyDown(event) {
   );
 }
 
-export default Profil;
+export default Event;

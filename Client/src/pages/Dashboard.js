@@ -7,7 +7,7 @@ import { Cricketer, ODICareer, Batting, Bowling, TestCareer } from './Cricketer'
 import CareerDetails from './CareerDetails';
 import Icon from '@ant-design/icons';
 import {Link, Route, Redirect} from 'react-router-dom';
-import {SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+import {AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
 
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -31,9 +31,9 @@ const { Header, Footer, Sider, Content } = Layout;
 
 function Dashboard(props) {
   
-  /*const logout = async (e) => {
+  const logout = async (e) => {
     props.setAuthorized(false);
-  }*/
+  }
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -114,7 +114,7 @@ function handleListKeyDown(event) {
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                     <MenuItem onClick={handleClose}><h5><Link to ='/profil'>Profil</Link></h5></MenuItem>
                     <MenuItem onClick={handleClose}><h5>Carte</h5></MenuItem>
-                    <MenuItem onClick={handleClose}><h5>Déconnexion</h5></MenuItem>
+                    <MenuItem onClick={logout}><h5><Route exact path="/dashboard">{props.authorized ? <Redirect to="/dashboard" /> :'' }</Route>Déconnexion</h5></MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -157,6 +157,8 @@ function handleListKeyDown(event) {
                 <Menu.ItemGroup key='AboutUS'>
                   <Menu.Item key='location1'> <Link to='/pointsvente'><ShopOutlined />Points de vente</Link></Menu.Item>
                   <Menu.Item key='location2'> <Link to='/categories'> <ShoppingOutlined />Catégories</Link></Menu.Item>
+                  <Menu.Item key='location3'> <Link to='/event'> <AppstoreAddOutlined />Evenements</Link></Menu.Item>
+
                 </Menu.ItemGroup>
               </SubMenu>
               <Menu.Item key='Maps'>

@@ -13,7 +13,7 @@ import Clients from './pages/Clients';
 import Paramcarte from './pages/Paramcarte';
 import Pointsvente from './pages/Pointsvente';
 import Categories from './pages/Categories';
-
+import Event from './pages/Event';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import {useState} from 'react';
 
@@ -45,6 +45,7 @@ function App() {
             <Route path='/paramcarte' component={Paramcarte} />
             <Route path='/pointsvente' component={Pointsvente} />
             <Route path='/categories' component={Categories} />
+            <Route path='/event' component={Event} />
 
           </Switch>        
 

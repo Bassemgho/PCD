@@ -1,11 +1,13 @@
 import React , {Component,useState} from 'react';
 import * as api from '../api/index.js'
-import {Link} from 'react-router-dom';
+import {Link,Route,Redirect} from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-    const Signin = () => {
+    const Signin = (props) => {
       const [username,setUsername] = useState('')
       const [password,setPassword] = useState('')
+      // const [authorized,setAuthorized] = useState(false);
+
       const handleChange = (e) => {
         if (e.target.name==="password") {
           setPassword(e.target.value)
@@ -20,9 +22,13 @@ import Footer from './Footer';
         try {
           const rep = await api.sendcreds(username,password);
           console.log(rep);
+          if (rep.data.success) {
+            props.setAuthorized(true);
+          }
 
         } catch (e) {
           console.log(e);
+          alert("Nom d'utilisateur ou mot de passe incorrect !");
         }
       }
       return(
@@ -66,7 +72,7 @@ import Footer from './Footer';
                                                   <b><a href="">Mot de passe oublié?</a></b>
                                               </div>
                                               <div className="col-lg-4 text-right">
-                                                  <button className="btn btn-action" type="submit"><Link to="/Dashboard">S'identifier</Link></button>
+                                                <button className="btn btn-action" type="submit"><Route exact path="/signin">{props.authorized ? <Redirect to="/dashboard" /> :'' }</Route>S'identifier</button>
                                               </div>
                                           </div>
                                       </form>

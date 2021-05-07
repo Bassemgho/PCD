@@ -13,9 +13,9 @@ import Clients from './pages/Clients';
 import Paramcarte from './pages/Paramcarte';
 import Pointsvente from './pages/Pointsvente';
 import Categories from './pages/Categories';
-
+import Event from './pages/Event';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
-import {useState} from 'react'
+import {useState} from 'react';
 
 /*import Footer from './components/Footer';*/
 
@@ -34,8 +34,10 @@ function App() {
             <Route path='/contact' component={Contact} />
             <Route path='/partenaire' component={Partenaire} />
             <Route path='/team' component={Team} />
+            {/*<Route path='/signin' component={Signin} />*/}
             <Route path='/signin' render={(props) => (<Signin {...props} authorized={authorized} setAuthorized={setAuthorized}  />)          } />
             <Route path='/signup' component={Signup} />
+            {/*<Route path='/dashboard' component={Dashboard} />*/}
             <Route path='/dashboard' render={(props) => (<Dashboard {...props} authorized={authorized} setAuthorized={setAuthorized} />) } />
             <Route path='/maps' component={Maps} />
             <Route path='/profil' component={Profil} />
@@ -43,8 +45,9 @@ function App() {
             <Route path='/paramcarte' component={Paramcarte} />
             <Route path='/pointsvente' component={Pointsvente} />
             <Route path='/categories' component={Categories} />
+            <Route path='/event' component={Event} />
 
-          </Switch>
+          </Switch>        
 
      {/*   <Footer/> */}
 

@@ -7,7 +7,7 @@ import { Cricketer, ODICareer, Batting, Bowling, TestCareer } from './Cricketer'
 import CareerDetails from './CareerDetails';
 import Icon from '@ant-design/icons';
 import {Link} from 'react-router-dom';
-import {SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+import {AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -143,6 +143,8 @@ function handleListKeyDown(event) {
                 <Menu.ItemGroup key='AboutUS'>
                   <Menu.Item key='location1'> <Link to='/pointsvente'><ShopOutlined />Points de vente</Link></Menu.Item>
                   <Menu.Item key='location2'> <Link to='/categories'> <ShoppingOutlined />Catégories</Link></Menu.Item>
+                  <Menu.Item key='location3'> <Link to='/event'> <AppstoreAddOutlined />Evenements</Link></Menu.Item>
+
                 </Menu.ItemGroup>
               </SubMenu>
               <Menu.Item key='Maps'>

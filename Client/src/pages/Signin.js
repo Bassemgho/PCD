@@ -5,11 +5,12 @@ import Header from './Header';
 import Footer from './Footer';
     const Signin = (props) => {
       const [username,setUsername] = useState('')
-      const [password,setPassword] = useState('');
+      const [password,setPassword] = useState('')
       // const [authorized,setAuthorized] = useState(false);
+
       const handleChange = (e) => {
         if (e.target.name==="password") {
-          setPassword(e.target.value);
+          setPassword(e.target.value)
         }
         if (e.target.name==="username") {
           setUsername(e.target.value)
@@ -27,6 +28,7 @@ import Footer from './Footer';
 
         } catch (e) {
           console.log(e);
+          alert("Nom d'utilisateur ou mot de passe incorrect !");
         }
       }
       return(
@@ -70,7 +72,7 @@ import Footer from './Footer';
                                                   <b><a href="">Mot de passe oublié?</a></b>
                                               </div>
                                               <div className="col-lg-4 text-right">
-                                                  <button className="btn btn-action" type="submit" name = "s'identifier"><Route exact path="/signin">{props.authorized ? <Redirect to="/dashboard" /> :'' }</Route></button>
+                                                <button className="btn btn-action" type="submit"><Route exact path="/signin">{props.authorized ? <Redirect to="/dashboard" /> :'' }</Route>S'identifier</button>
                                               </div>
                                           </div>
                                       </form>

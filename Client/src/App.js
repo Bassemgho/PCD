@@ -39,7 +39,7 @@ function App() {
             <Route path='/signin' render={(props) => (<Signin {...props} authorized={authorized} setAuthorized={setAuthorized}  />)          } />
             <Route path='/signup' component={Signup} />
             {/*<Route path='/dashboard' component={Dashboard} />*/}
-            <Route path='/dashboard' render={(props) =>{  (<Dashboard {...props} authorized={authorized} setAuthorized={setAuthorized} />) } } />
+            <Route path='/dashboard' render={(props) => (<Dashboard {...props} authorized={authorized} setAuthorized={setAuthorized} />) } />
             <Route path='/maps' component={Maps} />
             <Route path='/profil' component={Profil} />
             <Route path='/clients' component={Clients} />
@@ -48,7 +48,7 @@ function App() {
             <Route path='/categories' component={Categories} />
             <Route path='/event' component={Event} />
 
-          </Switch>
+          </Switch>        
 
      {/*   <Footer/> */}
 

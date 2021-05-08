@@ -159,7 +159,21 @@ function handleListKeyDown(event) {
                 <Breadcrumb.Item><h1>Points de vente</h1></Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
-                
+              <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
+                    <h4>Ajouter un nouveau point de vente</h4>
+                 </div>   
+                 <br/><br/>
+                 <label class="bmd-label-floating">Nom de la boutique <span className="text-danger">*</span></label>
+                  <input type="text" class="form-control"></input>
+                  <br/>
+                  <label class="bmd-label-floating">Adresse <span className="text-danger">*</span></label>
+                <input type="text" class="form-control"></input>  
+                <br/>
+                <label class="bmd-label-floating">Horaire <span className="text-danger">*</span></label>
+                 <input type="text" class="form-control"></input>    
+                 
+                     <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 130}}>Ajouter</button>  
+                      
               </div>
             </Content>
             <CareerDetails player={selectedPlayer} visible={visible} onClose={onClose} />

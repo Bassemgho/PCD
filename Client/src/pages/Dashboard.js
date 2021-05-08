@@ -31,7 +31,7 @@ const { Header, Footer, Sider, Content } = Layout;
 
 function Dashboard(props) {
   
-  const logout = async (e) => {
+  const logout = () => {
     props.setAuthorized(false);
   }
 
@@ -82,7 +82,7 @@ function handleListKeyDown(event) {
   
   const onClose = () => setVisible(false);
   if (!(props.authorized)) {
-    return (<div>not authorized</div>);
+    return (<Route exact path="/dashboard"><Redirect to="/signin" /></Route>);
   }
   else 
   return (
@@ -114,7 +114,7 @@ function handleListKeyDown(event) {
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                     <MenuItem onClick={handleClose}><h5><Link to ='/profil'>Profil</Link></h5></MenuItem>
                     <MenuItem onClick={handleClose}><h5>Carte</h5></MenuItem>
-                    <MenuItem onClick={logout}><h5><Route exact path="/dashboard">{props.authorized ? <Redirect to="/dashboard" /> :'' }</Route>Déconnexion</h5></MenuItem>
+                    <MenuItem onClick={logout}><h5>Déconnexion</h5></MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

@@ -33,7 +33,6 @@ function Dashboard(props) {
 
   const logout = () => {
     props.setAuthorized(false);
-
   }
 
   const classes = useStyles();

@@ -30,9 +30,10 @@ const useStyles = makeStyles((theme) => ({
 const { Header, Footer, Sider, Content } = Layout;
 
 function Dashboard(props) {
-  
+
   const logout = async (e) => {
     props.setAuthorized(false);
+
   }
 
   const classes = useStyles();
@@ -79,12 +80,12 @@ function handleListKeyDown(event) {
   const ViewProfileButton = ({name}) => {
     return <Button type='dashed' style={{float:'right'}} onClick={()=>onSelect(name)}> View Full Profile  </Button>
   }
-  
+
   const onClose = () => setVisible(false);
   if (!(props.authorized)) {
-    return (<div>not authorized</div>);
+    return (<Route exact path="/dashboard"> <Redirect to="/signin" /></Route>);
   }
-  else 
+  else
   return (
     <div className="App">
       <Layout>
@@ -92,7 +93,7 @@ function handleListKeyDown(event) {
 
 
         <div className={classes.root} style={{float:'right' , marginRight : 40 , marginTop : -10}}>
-        
+
       <div>
         <Button
           ref={anchorRef}
@@ -114,7 +115,7 @@ function handleListKeyDown(event) {
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                     <MenuItem onClick={handleClose}><h5><Link to ='/profil'>Profil</Link></h5></MenuItem>
                     <MenuItem onClick={handleClose}><h5>Carte</h5></MenuItem>
-                    <MenuItem onClick={logout}><h5><Route exact path="/dashboard">{props.authorized ? <Redirect to="/dashboard" /> :'' }</Route>Déconnexion</h5></MenuItem>
+                    <MenuItem onClick={logout}><h5>Déconnexion</h5></MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -123,7 +124,7 @@ function handleListKeyDown(event) {
         </Popper>
       </div>
       </div>
-          
+
 
           <Title style={{ color: 'white' }} level={2}>UNIFID</Title>
         </Header>
@@ -145,7 +146,7 @@ function handleListKeyDown(event) {
             <Menu.Item key='Profil'>
               <span><Link to='/profil'><UserOutlined />Profil</Link></span>
             </Menu.Item>
-  
+
               <SubMenu
                 title={
                   <span>
@@ -166,14 +167,14 @@ function handleListKeyDown(event) {
             </Menu.Item>
             </Menu>
           </Sider>
-          
+
           <Layout>
             <Content style={{ padding: '0 50px' }}>
               <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item><h1>Statistiques</h1></Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
-                
+
               </div>
             </Content>
             <CareerDetails player={selectedPlayer} visible={visible} onClose={onClose} />

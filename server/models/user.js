@@ -3,6 +3,10 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
 const userschema = mongoose.Schema({
+  id_entreprise:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'entreprise'
+  },
   username:{
     type:'String',
     required:[true,'please provide a username'],

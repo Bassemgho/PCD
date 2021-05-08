@@ -1,11 +1,13 @@
 import users from '../models/user.js'
+import entreprise from '../models/entreprise.js'
 import errorResponse from '../utils/ErrorResponse.js'
 export const  signup = async (req,res,next) => {
 
-  const {username,email,password} = req.body
+  const {logo , name ,username,email,password} = req.body
   try {
+    const ent = await entreprise.create({name,logo});
 
-    const user = await users.create({
+    const user = await users.create({id_entreprise:ent._id,
       username,
       email,
       password,

@@ -30,13 +30,8 @@ const useStyles = makeStyles((theme) => ({
 const { Header, Footer, Sider, Content } = Layout;
 
 function Dashboard(props) {
-<<<<<<< HEAD
 
-  const logout = async (e) => {
-=======
-  
   const logout = () => {
->>>>>>> 6b199e7bc31b6170399137b955e3d29f8b574d80
     props.setAuthorized(false);
 
   }
@@ -88,11 +83,7 @@ function handleListKeyDown(event) {
 
   const onClose = () => setVisible(false);
   if (!(props.authorized)) {
-<<<<<<< HEAD
-    return (<Route exact path="/dashboard"> <Redirect to="/signin" /></Route>);
-=======
     return (<Route exact path="/dashboard"><Redirect to="/signin" /></Route>);
->>>>>>> 6b199e7bc31b6170399137b955e3d29f8b574d80
   }
   else
   return (

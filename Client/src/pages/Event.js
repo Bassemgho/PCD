@@ -166,7 +166,22 @@ function handleListKeyDown(event) {
                 <Breadcrumb.Item><h1>Evenements</h1></Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
-                
+              <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
+                    <h4>Ajouter un événement</h4>
+                 </div>   
+                 <br/><br/>
+                 <label class="bmd-label-floating">Nom <span className="text-danger">*</span></label>
+                  <input type="text" class="form-control"></input>
+                  <br/>
+                  <label class="bmd-label-floating">Lieu <span className="text-danger">*</span></label>
+                <input type="text" class="form-control"></input>  
+                <br/>
+                <label class="bmd-label-floating">Date <span className="text-danger">*</span></label>
+                 <input type="text" class="form-control"></input>    
+                 <label class="bmd-label-floating">Heure <span className="text-danger">*</span></label>
+                 <input type="text" class="form-control"></input> 
+                     <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 130}}>Ajouter</button>  
+                      
               </div>
             </Content>
             <CareerDetails player={selectedPlayer} visible={visible} onClose={onClose} />

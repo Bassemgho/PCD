@@ -16,6 +16,7 @@ import Categories from './pages/Categories';
 import Event from './pages/Event';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import {useState} from 'react';
+import {Redirect} from 'react-router-dom';
 
 /*import Footer from './components/Footer';*/
 

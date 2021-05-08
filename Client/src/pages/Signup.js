@@ -68,6 +68,11 @@ const Signup = () => {
 
                                   <form onSubmit = {handleSubmit}>
                                       <div className="top-margin">
+                                          <label>Nom Entreprise</label>
+                                          <input type="text" name="name" onChange={handleChange} className="form-control"/>
+                                      </div>
+
+                                      <div className="top-margin">
                                           <label>Nom Utilisateur</label>
                                           <input type="text" name="username" onChange={handleChange} className="form-control"/>
                                       </div>

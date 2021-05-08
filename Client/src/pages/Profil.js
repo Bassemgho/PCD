@@ -177,7 +177,7 @@ function handleListKeyDown(event) {
                  <input type="text" class="form-control"></input>
                  <br/><br/>
                  <br/>
-                     <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000'}}>Update Profile</button>  
+                     <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000'}}>Envoyer</button>  
                       
               </div>
             </Content>

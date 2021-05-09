@@ -6,8 +6,8 @@ import SubMenu from 'antd/lib/menu/SubMenu';
 import { Cricketer, ODICareer, Batting, Bowling, TestCareer } from './Cricketer';
 import CareerDetails from './CareerDetails';
 import Icon from '@ant-design/icons';
-import {Link} from 'react-router-dom';
-import {AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+import {Link,Route,Redirect} from 'react-router-dom';
+import {SwapOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -160,8 +160,188 @@ function handleListKeyDown(event) {
               <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item><h1>Paramètres de la carte de fidelité</h1></Breadcrumb.Item>
               </Breadcrumb>
-              <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
+              <div style={{ background: '#fff', padding: 24, minHeight: 800 }}>
+                <br/>
+                <div style={{padding: 24, minHeight: 100 , width : 200}}>
+                 <label class="bmd-label-floating">Montant d'argent <span className="text-danger">*</span></label>
+                  <input type="text" class="form-control"></input>
+                  </div>
+                  <div style={{padding: 24, minHeight: 100 , width : 5, marginLeft : 168, marginTop : -108}}><br/><SwapOutlined /></div>
+                  <div style={{padding: 24, minHeight: 100 , width : 200, marginLeft : 200, marginTop : -100}}>
+                  <label>Nombre de points <span className="text-danger">*</span></label>
+                <input type="text" class="form-control" ></input>  
+                </div>
+                <br/>
+                <label class="bmd-label-floating">Offres et cadeaux <span className="text-danger">*</span></label>
+                <div className="radio">
+          
+            <input type="radio" value="cheque"/>
+            Bande d'achat
+            
+            <div style={{padding: 15, minHeight: 100 , width : 300, marginLeft : 20}}>
+            Valeur <input type="text" class="form-control" ></input>
+            
+            <table>
+              <tr>
+
+              
+            <td style={{width : 85 , height : 50}}>
+            Valable de :  
+            </td>
+            <td style={{width : 85 , height : 50}}>
+            <select name="month" size="1">
+              <option>Janvier</option>
+              <option>Février</option>
+              <option>Mars</option>
+              <option>Avril</option>
+              <option>Mai</option>
+              <option>Juin</option>
+              <option>Juillet</option>
+              <option>Août</option>
+              <option>Septembre</option>
+              <option>Octobre</option>
+              <option>Novembre</option>
+              <option>Décembre</option>
+              </select>
+              </td>
+              <td style={{width : 85 , height : 50}}>
+              <select name="year" size="1">
+              <option>2021</option>
+              <option>2022</option>
+              <option>2023</option>
+              <option>2024</option>
+              <option>2025</option>
+              </select>
+              </td>
+              </tr>
+            <tr>
+            <td style={{width : 85 , height : 50}}>
+            Jusqu'à : 
+            </td>
+            <td style={{width : 100 , height : 50}}>
+            <select name="month" size="1">
+              <option>Janvier</option>
+              <option>Février</option>
+              <option>Mars</option>
+              <option>Avril</option>
+              <option>Mai</option>
+              <option>Juin</option>
+              <option>Juillet</option>
+              <option>Août</option>
+              <option>Septembre</option>
+              <option>Octobre</option>
+              <option>Novembre</option>
+              <option>Décembre</option>
+              </select>
+              </td>
+              <td style={{width : 85 , height : 50}}>
+              <select name="year" size="1">
+              <option>2021</option>
+              <option>2022</option>
+              <option>2023</option>
+              <option>2024</option>
+              <option>2025</option>
+              </select>
+              </td>
+              </tr>
+              </table>
+            </div>
+          
+        </div>
+        
+        <div className="radio">
+         
+            <input type="radio" value="red"/>
+            Réduction
+            <div style={{padding: 15, minHeight: 100 , width : 300, marginLeft : 20}}>
+            <table>
+              <tr>
+              <td style={{width : 240 , height : 50}}>
+            Pourcentage (%) :
+            </td>
+            <td style={{width : 90 , height : 50}}>  
+            <select name="percent" size="1">
+              <option>10</option>
+              <option>20</option>
+              <option>30</option>
+              <option>40</option>
+              <option>50</option>
+              <option>60</option>
+              <option>70</option>
+              <option>80</option>
+              <option>90</option>
+              <option>100</option>
+              </select>
+              </td>
+              </tr>
+              <tr>
+              <td style={{width : 220 , height : 50}}>
+            Valable de : 
+            </td>
+            <td style={{width : 120 , height : 50}}>
+            <select name="month" size="1">
+              <option>Janvier</option>
+              <option>Février</option>
+              <option>Mars</option>
+              <option>Avril</option>
+              <option>Mai</option>
+              <option>Juin</option>
+              <option>Juillet</option>
+              <option>Août</option>
+              <option>Septembre</option>
+              <option>Octobre</option>
+              <option>Novembre</option>
+              <option>Décembre</option>
+              </select>
+              </td>
+              <td style={{width : 50 , height : 50}}>
+              <select name="year" size="1">
+              <option>2021</option>
+              <option>2022</option>
+              <option>2023</option>
+              <option>2024</option>
+              <option>2025</option>
+              </select>
+              </td>
+              </tr>
+              <tr>
+              <td style={{width : 220 , height : 50}}>
+            Jusqu'à : </td>
+            <td style={{width : 100 , height : 50}}>
+            <select name="month" size="1">
+              <option>Janvier</option>
+              <option>Février</option>
+              <option>Mars</option>
+              <option>Avril</option>
+              <option>Mai</option>
+              <option>Juin</option>
+              <option>Juillet</option>
+              <option>Août</option>
+              <option>Septembre</option>
+              <option>Octobre</option>
+              <option>Novembre</option>
+              <option>Décembre</option>
+              </select>
+              </td>
+              <td style={{width : 85 , height : 50}}>
+              <select name="year" size="1">
+              <option>2021</option>
+              <option>2022</option>
+              <option>2023</option>
+              <option>2024</option>
+              <option>2025</option>
+              </select>
+              </td>
+              </tr>
+              </table>
+            </div>
+          
+        </div>
+          
                 
+                 
+                     <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 10, marginRight: 100}}>Enregistrer</button>  
+                      
               </div>
             </Content>
             <CareerDetails player={selectedPlayer} visible={visible} onClose={onClose} />

@@ -8,8 +8,9 @@ import CareerDetails from './CareerDetails';
 import Icon from '@ant-design/icons';
 import {Link, Route, Redirect} from 'react-router-dom';
 import {AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
-
-
+import{Bar,Line,Pie} from 'react-chartjs-2';
+import Chart from './Chart';
+import Chart1 from './Chart1';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
@@ -31,6 +32,7 @@ const { Header, Footer, Sider, Content } = Layout;
 
 function Dashboard(props) {
 
+  
   const logout = () => {
     props.setAuthorized(false);
   }
@@ -79,12 +81,12 @@ function handleListKeyDown(event) {
   const ViewProfileButton = ({name}) => {
     return <Button type='dashed' style={{float:'right'}} onClick={()=>onSelect(name)}> View Full Profile  </Button>
   }
-
+  
   const onClose = () => setVisible(false);
   if (!(props.authorized)) {
     return (<Route exact path="/dashboard"><Redirect to="/signin" /></Route>);
   }
-  else
+  else 
   return (
     <div className="App">
       <Layout>
@@ -92,7 +94,7 @@ function handleListKeyDown(event) {
 
 
         <div className={classes.root} style={{float:'right' , marginRight : 40 , marginTop : -10}}>
-
+        
       <div>
         <Button
           ref={anchorRef}
@@ -123,7 +125,7 @@ function handleListKeyDown(event) {
         </Popper>
       </div>
       </div>
-
+          
 
           <Title style={{ color: 'white' }} level={2}>UNIFID</Title>
         </Header>
@@ -145,7 +147,7 @@ function handleListKeyDown(event) {
             <Menu.Item key='Profil'>
               <span><Link to='/profil'><UserOutlined />Profil</Link></span>
             </Menu.Item>
-
+  
               <SubMenu
                 title={
                   <span>
@@ -166,14 +168,33 @@ function handleListKeyDown(event) {
             </Menu.Item>
             </Menu>
           </Sider>
-
+          
           <Layout>
             <Content style={{ padding: '0 50px' }}>
               <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item><h1>Statistiques</h1></Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
+              <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
+                    <h4>Par Client</h4>
+                 </div> 
+                  <br/>
+      
+                  {/* */}
 
+                  <Chart1/>
+
+                  {/* */}
+                 <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
+                    <h4>Par Point de vente</h4>
+                 </div> 
+                 <br/>
+                 {/* */}
+
+                 <Chart/>
+                 
+
+                  {/* */}
               </div>
             </Content>
             <CareerDetails player={selectedPlayer} visible={visible} onClose={onClose} />

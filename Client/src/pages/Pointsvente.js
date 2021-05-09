@@ -170,9 +170,132 @@ function handleListKeyDown(event) {
                 <input type="text" class="form-control"></input>  
                 <br/>
                 <label class="bmd-label-floating">Horaire <span className="text-danger">*</span></label>
-                 <input type="text" class="form-control"></input>    
+                <table>
+              <tr>
+              <td style={{width : 85 , height : 50}}>
+              A partir de  :
+            </td>
+            <td style={{width : 40 , height : 50}}>  
+            <select name="debut" size="1">
+              <option>00</option>
+              <option>01</option>
+              <option>02</option>
+              <option>03</option>
+              <option>04</option>
+              <option>05</option>
+              <option>06</option>
+              <option>07</option>
+              <option>08</option>
+              <option>09</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+              <option>15</option>
+              <option>16</option>
+              <option>17</option>
+              <option>18</option>
+              <option>19</option>
+              <option>20</option>
+              <option>21</option>
+              <option>22</option>
+              <option>23</option>
+              </select>
+              </td>
+              <td>h</td>
+              <td>
+              <select name="debut" size="1">
+              <option>00</option>
+              <option>10</option>
+              <option>20</option>
+              <option>30</option>
+              <option>40</option>
+              <option>50</option>
+              </select>
+              </td>
+              <td>min</td>
+              </tr>
+              </table>
+              <table>
+              <tr>
+              <td style={{width : 85 , height : 50}}>
+              Jusqu'à :
+            </td>
+            <td style={{width : 40 , height : 50}}>  
+            <select name="debut" size="1">
+              <option>00</option>
+              <option>01</option>
+              <option>02</option>
+              <option>03</option>
+              <option>04</option>
+              <option>05</option>
+              <option>06</option>
+              <option>07</option>
+              <option>08</option>
+              <option>09</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+              <option>15</option>
+              <option>16</option>
+              <option>17</option>
+              <option>18</option>
+              <option>19</option>
+              <option>20</option>
+              <option>21</option>
+              <option>22</option>
+              <option>23</option>
+              </select>
+              </td>
+              <td>h</td>
+              <td>
+              <select name="debut" size="1">
+              <option>00</option>
+              <option>10</option>
+              <option>20</option>
+              <option>30</option>
+              <option>40</option>
+              <option>50</option>
+              </select>
+              </td>
+              <td>min</td>
+              </tr>
+              </table>  
+              <table>
+              <tr>
+              <td style={{width : 40 , height : 50}}>
+              De :
+            </td>
+            <td style={{width : 100 , height : 50}}>  
+            <select name="jour" size="1">
+              <option>Lundi</option>
+              <option>Mardi</option>
+              <option>Mercredi</option>
+              <option>Jeudi</option>
+              <option>Vendredi</option>
+              <option>Samedi</option>
+              <option>Dimanche</option>
+              </select>
+              </td>
+              <td style={{width : 40, height : 50}}>à:</td>
+              <td>
+              <select name="jour" size="1">
+              <option>Lundi</option>
+              <option>Mardi</option>
+              <option>Mercredi</option>
+              <option>Jeudi</option>
+              <option>Vendredi</option>
+              <option>Samedi</option>
+              <option>Dimanche</option>
+              </select>
+              </td>
+              </tr>
+              </table>     
                  
-                     <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 130}}>Ajouter</button>  
+                     <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 30, marginRight : 50}}>Ajouter</button>  
                       
               </div>
             </Content>

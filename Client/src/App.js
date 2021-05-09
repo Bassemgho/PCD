@@ -17,7 +17,6 @@ import Event from './pages/Event';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import {useState} from 'react';
 import {Redirect} from 'react-router-dom';
-
 /*import Footer from './components/Footer';*/
 
 /*import Header from './components/Header';*/
@@ -27,8 +26,8 @@ function App() {
   return (
     <div>
       <Router>
-        {/*<Header/>*/}
-
+       
+       
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/about' component={About} />
@@ -50,7 +49,7 @@ function App() {
 
           </Switch>        
 
-     {/*   <Footer/> */}
+
 
       </Router>
     </div>

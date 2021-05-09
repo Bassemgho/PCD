@@ -159,11 +159,14 @@ function handleListKeyDown(event) {
               <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item><h1>Profil</h1></Breadcrumb.Item>
               </Breadcrumb>
-              <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
+              <div style={{ background: '#fff', padding: 24, minHeight: 670 }}>
                  <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
                     <h4>Modifier Profil</h4>
                  </div>   
                  <br/><br/>
+                 <label class="bmd-label-floating">Nom d'utilisateur</label>
+                  <input type="text" class="form-control"></input>
+                  <br/>
                  <label class="bmd-label-floating">Adresse Email</label>
                   <input type="text" class="form-control"></input>
                   <br/>
@@ -177,7 +180,7 @@ function handleListKeyDown(event) {
                  <input type="text" class="form-control"></input>
                  <br/><br/>
                  <br/>
-                     <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000'}}>Envoyer</button>  
+                     <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000'}}>Enregistrer</button>  
                       
               </div>
             </Content>

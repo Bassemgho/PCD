@@ -162,7 +162,9 @@ function handleListKeyDown(event) {
                 <Breadcrumb.Item><h1>Catégories</h1></Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
-                <h4 style={{color: '#87bfd4'}}>Choisir vos catégories</h4>
+              <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
+                    <h4>Choisir vos catégories</h4>
+                 </div> 
                 <div className="container">
   <div className="row">
     <div className="col-sm-12">

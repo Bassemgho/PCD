@@ -5,6 +5,7 @@ import entreprise from './entreprise.js'
 import carteVirtuelle from './carteVirtuelle.js'
 
 const userApp = mongoose.Schema({
+  isEmplyee:Boolean,
   username:{
     type:'String',
     required:[true,'please provide a username'],

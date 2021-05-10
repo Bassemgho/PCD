@@ -6,11 +6,17 @@ class Chart1 extends Component{
         super(props);
         this.state = {
           chartData:{
-            labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin'],
+            labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
             datasets:[
               {
-                label:'Nombre de points cumulés',
+                label:'Moyenne de points cumulés',
                 data:[
+                  20,
+                  50,
+                  50,
+                  60,
+                  90,
+                  110,
                   20,
                   50,
                   50,
@@ -20,12 +26,12 @@ class Chart1 extends Component{
                 ],
                 backgroundColor:[
                   'rgba(255, 99, 132, 0.6)',
-                  'rgba(54, 162, 235, 0.6)',
+                  /*'rgba(54, 162, 235, 0.6)',
                   'rgba(255, 206, 86, 0.6)',
                   'rgba(75, 192, 192, 0.6)',
                   'rgba(153, 102, 255, 0.6)',
                   'rgba(255, 159, 64, 0.6)',
-                  'rgba(255, 99, 132, 0.6)'
+                  'rgba(255, 99, 132, 0.6)'*/
                 ]
               }
             ]

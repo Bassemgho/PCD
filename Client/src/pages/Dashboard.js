@@ -11,6 +11,7 @@ import {AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,Custom
 import{Bar,Line,Pie} from 'react-chartjs-2';
 import Chart from './Chart';
 import Chart1 from './Chart1';
+import Chart2 from './Chart2';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
@@ -172,26 +173,297 @@ function handleListKeyDown(event) {
           <Layout>
             <Content style={{ padding: '0 50px' }}>
               <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item><h1>Statistiques</h1></Breadcrumb.Item>
+                <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Statistiques</h1></Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
               <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
-                    <h4>Par Client</h4>
+                    <h4 style ={{fontWeight :'bold'}}>Par Clients</h4>
                  </div> 
                   <br/>
       
-                  {/* */}
+                  {/* */} 
+                    <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                      <tr>
+                        
+                        <td>
+                        <Chart1/>
+                        </td>
+                       
+                      </tr>
+                    </table>                 
 
-                  <Chart1/>
-
+                  <br/>
                   {/* */}
                  <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
-                    <h4>Par Point de vente</h4>
+                    <h4 style ={{fontWeight :'bold'}}>Par Point de vente</h4>
                  </div> 
                  <br/>
                  {/* */}
-
-                 <Chart/>
+                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                      <tr>
+                        <td style={{width : 300}}>
+                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                           Janvier 
+                          </div>
+                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart2/>
+                        </td>
+                      </tr>
+                    
+                  </table>
+                  <br/>
+                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                      <tr>
+                        <td style={{width : 300}}>
+                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                           Février
+                          </div>
+                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart2/>
+                        </td>
+                      </tr>
+                    
+                  </table>
+                  <br/>
+                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                      <tr>
+                        <td style={{width : 300}}>
+                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                           Mars 
+                          </div>
+                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart2/>
+                        </td>
+                      </tr>
+                    
+                  </table>
+                  <br/>
+                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                      <tr>
+                        <td style={{width : 300}}>
+                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                           Avril 
+                          </div>
+                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart2/>
+                        </td>
+                      </tr>
+                    
+                  </table>
+                  <br/>
+                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                      <tr>
+                        <td style={{width : 300}}>
+                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                           Mai 
+                          </div>
+                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart2/>
+                        </td>
+                      </tr>
+                    
+                  </table>
+                  <br/>
+                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                      <tr>
+                        <td style={{width : 300}}>
+                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                           Juin 
+                          </div>
+                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart2/>
+                        </td>
+                      </tr>
+                    
+                  </table>
+                  <br/>
+                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                      <tr>
+                        <td style={{width : 300}}>
+                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                           Juillet 
+                          </div>
+                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart2/>
+                        </td>
+                      </tr>
+                    
+                  </table>
+                  <br/>
+                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                      <tr>
+                        <td style={{width : 300}}>
+                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                           Août
+                          </div>
+                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart2/>
+                        </td>
+                      </tr>
+                    
+                  </table>
+                  <br/>
+                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                      <tr>
+                        <td style={{width : 300}}>
+                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                           Septembre 
+                          </div>
+                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart2/>
+                        </td>
+                      </tr>
+                    
+                  </table>
+                  <br/>
+                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                      <tr>
+                        <td style={{width : 300}}>
+                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                           Octobre 
+                          </div>
+                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart2/>
+                        </td>
+                      </tr>
+                    
+                  </table>
+                  <br/>
+                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                      <tr>
+                        <td style={{width : 300}}>
+                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                           Novembre
+                          </div>
+                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart2/>
+                        </td>
+                      </tr>
+                    
+                  </table>
+                  <br/>
+                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                      <tr>
+                        <td style={{width : 300}}>
+                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                           Décembre 
+                          </div>
+                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{width : 300}}>
+                        <Chart2/>
+                        </td>
+                      </tr>
+                    
+                  </table>
+                  
+                 
                  
 
                   {/* */}

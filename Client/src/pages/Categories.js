@@ -159,11 +159,11 @@ function handleListKeyDown(event) {
           <Layout>
             <Content style={{ padding: '0 50px' }}>
               <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item><h1>Catégories</h1></Breadcrumb.Item>
+                <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Catégories</h1></Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
               <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
-                    <h4>Choisir vos catégories</h4>
+                    <h4 style ={{fontWeight :'bold'}}>Choisir vos catégories</h4>
                  </div> 
                 <div className="container">
   <div className="row">

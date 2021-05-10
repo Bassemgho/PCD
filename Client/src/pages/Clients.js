@@ -156,7 +156,7 @@ function handleListKeyDown(event) {
           <Layout>
             <Content style={{ padding: '0 50px' }}>
               <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item><h1>Table des clients</h1></Breadcrumb.Item>
+                <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Table des clients</h1></Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
                 <Cricketer name='Virat Kohli' team='IND' avatarSrc='./vk.jpg'>

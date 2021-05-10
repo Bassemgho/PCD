@@ -158,7 +158,7 @@ function handleListKeyDown(event) {
           <Layout>
             <Content style={{ padding: '0 50px' }}>
               <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item><h1>Paramètres de la carte de fidelité</h1></Breadcrumb.Item>
+                <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Paramètres de la carte de fidelité</h1></Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 800 }}>
                 <br/>

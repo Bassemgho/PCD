@@ -157,11 +157,11 @@ function handleListKeyDown(event) {
           <Layout>
             <Content style={{ padding: '0 50px' }}>
               <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item><h1>Profil</h1></Breadcrumb.Item>
+                <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Profil</h1></Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 670 }}>
                  <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
-                    <h4>Modifier Profil</h4>
+                    <h4 style ={{fontWeight :'bold'}}>Modifier Profil</h4>
                  </div>   
                  <br/><br/>
                  <label class="bmd-label-floating">Nom d'utilisateur</label>

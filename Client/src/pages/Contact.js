@@ -1,6 +1,7 @@
 import React , {Component} from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import {Link} from 'react-router-dom';
 
 class Contact extends React.Component{
     render(){
@@ -10,7 +11,7 @@ class Contact extends React.Component{
 	            <div className="container">
 
 		            <ol className="breadcrumb">
-			            <li><a href="index.html">Accueil</a></li>
+			            <li><Link to='/'>Accueil</Link></li>
 			            <li className="active">Contact</li>
 		            </ol>
 

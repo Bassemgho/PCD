@@ -3,11 +3,8 @@ import './Dash.css';
 import { Layout, Avatar, Menu, Breadcrumb, Button } from 'antd';
 import Title from 'antd/lib/typography/Title';
 import SubMenu from 'antd/lib/menu/SubMenu';
-import { Cricketer, ODICareer, Batting, Bowling, TestCareer } from './Cricketer';
-import CareerDetails from './CareerDetails';
-import Icon from '@ant-design/icons';
 import {Link,Route,Redirect} from 'react-router-dom';
-import {SwapOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+import {ContactsOutlined,UserAddOutlined,SwapOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -127,6 +124,12 @@ function handleListKeyDown(event) {
             <Menu.Item key='paramcarte'>
                 <Link to ='/paramcarte'><SettingOutlined />Paramètres de la carte de fidelité</Link>
             </Menu.Item>
+            <Menu.Item key='gestioncaissier'>
+                <Link to ='/gestioncaissier'><UserAddOutlined />Gestion des caissiers</Link>
+            </Menu.Item>
+            <Menu.Item key='Caissier'>
+                <Link to ='/caissier'><ContactsOutlined />Liste des caissiers</Link>
+            </Menu.Item>
             <Menu.Item key='Clients'>
                 <Link to ='/clients'><TableOutlined />Table des clients</Link>
             </Menu.Item>
@@ -160,7 +163,7 @@ function handleListKeyDown(event) {
               <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Paramètres de la carte de fidelité</h1></Breadcrumb.Item>
               </Breadcrumb>
-              <div style={{ background: '#fff', padding: 24, minHeight: 800 }}>
+              <div style={{ background: '#fff', padding: 24, minHeight: 900}}>
                 <br/>
                 <div style={{padding: 24, minHeight: 100 , width : 200}}>
                  <label class="bmd-label-floating">Montant d'argent <span className="text-danger">*</span></label>
@@ -179,6 +182,7 @@ function handleListKeyDown(event) {
             Bande d'achat
             
             <div style={{padding: 15, minHeight: 100 , width : 300, marginLeft : 20}}>
+            Nombre de points nécessaires <input type="text" class="form-control" ></input>
             Valeur <input type="text" class="form-control" ></input>
             
             <table>
@@ -254,6 +258,7 @@ function handleListKeyDown(event) {
             <input type="radio" value="red"/>
             Réduction
             <div style={{padding: 15, minHeight: 100 , width : 300, marginLeft : 20}}>
+            Nombre de points nécessaires <input type="text" class="form-control" ></input>
             <table>
               <tr>
               <td style={{width : 240 , height : 50}}>
@@ -344,8 +349,7 @@ function handleListKeyDown(event) {
                       
               </div>
             </Content>
-            <CareerDetails player={selectedPlayer} visible={visible} onClose={onClose} />
-            <Footer style={{ textAlign: 'center' }}></Footer>
+            <Footer style={{ textAlign: 'center' }}><h5 style={{fontWeight :'bold'}}>UNIFID:</h5> <h6 style={{ color: '#5b8db6'}}>meilleur programme de fidélisation</h6></Footer>
           </Layout>
         </Layout>
       </Layout>

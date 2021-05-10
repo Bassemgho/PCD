@@ -3,8 +3,6 @@ import './Dash.css';
 import { Layout, Avatar, Menu, Breadcrumb, Button } from 'antd';
 import Title from 'antd/lib/typography/Title';
 import SubMenu from 'antd/lib/menu/SubMenu';
-import { Cricketer, ODICareer, Batting, Bowling, TestCareer } from './Cricketer';
-import CareerDetails from './CareerDetails';
 
 import {Link} from 'react-router-dom';
 import {ContactsOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
@@ -25,9 +23,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const { Header, Footer, Sider, Content } = Layout;
 
-function Clients() {
+function GestionCaissier() {
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -77,7 +76,6 @@ function handleListKeyDown(event) {
     <div className="App">
       <Layout>
         <Header style={{ padding: 10 }}>
-          
         <div className={classes.root} style={{float:'right' , marginRight : 40 , marginTop : -10}}>
         
         <div>
@@ -112,11 +110,12 @@ function handleListKeyDown(event) {
         </div>
 
           <Title style={{ color: 'white' }} level={2}>UNIFID</Title>
+
         </Header>
         <Layout>
           <Sider>
             <Menu
-              defaultSelectedKeys={['Clients']}
+              defaultSelectedKeys={['GestionCaissier']}
               mode="inline"
             >
               <Menu.Item key='Dashboard'>
@@ -158,33 +157,57 @@ function handleListKeyDown(event) {
             </Menu.Item>
             </Menu>
           </Sider>
-          
           <Layout>
             <Content style={{ padding: '0 50px' }}>
               <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Table des clients</h1></Breadcrumb.Item>
+                <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Gestion des caissiers</h1></Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
-                <Cricketer name='Virat Kohli' team='IND' avatarSrc='./vk.jpg'>
-                  <ODICareer matches='239' >
-                    <Batting runs='11,520' score='183' />
-                    <br></br>
-                    <Bowling wickets='4' bowlingAvg='166.25' />
-                  </ODICareer>
-                  <TestCareer matches=' 79' >
-                    <Batting runs='6,749' score='243' />
-                  </TestCareer>
-                  <ViewProfileButton name='Virat Kohli'/>
-                </Cricketer>
-                <Cricketer name='Jasprit Bumrah' team='IND' avatarSrc='./jb.jpg'>
-                  <TestCareer matches='12' >
-                    <Bowling wickets='62' bowlingAvg='20.63' />
-                  </TestCareer>
-                  <ViewProfileButton name='Jasprit Bumrah'/>
-                </Cricketer>
+              <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
+                    <h4 style ={{fontWeight :'bold'}}>Ajouter un caissier</h4>
+                 </div> 
+                 <br/><br/>
+                 <label class="bmd-label-floating">Nom Entreprise</label>
+                  <input type="text" class="form-control"></input>
+                  <br/>
+                 <label class="bmd-label-floating">Nom point de vente</label>
+                  <input type="text" class="form-control"></input>
+                  <br/>
+                  <label class="bmd-label-floating">Nom caissier</label>
+                <input type="text" class="form-control"></input>  
+                
+                 <br/><br/>
+                 <br/>
+                 <table style={{marginLeft:'auto',marginRight:'auto'}}>
+                     <tr>
+                     <button type="submit" class="btn btn-primary pull-rigt" style={{background: '#87bfd4', color: '#000000' , marginTop : -50}}>Ajouter</button>  
+                     </tr>
+                 </table>
+                     
+                 <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
+                    <h4 style ={{fontWeight :'bold'}}>Supprimer un caissier</h4>
+                 </div> 
+                 <br/><br/>
+                 <label class="bmd-label-floating">Nom Entreprise</label>
+                  <input type="text" class="form-control"></input>
+                  <br/>
+                 <label class="bmd-label-floating">Nom point de vente</label>
+                  <input type="text" class="form-control"></input>
+                  <br/>
+                  <label class="bmd-label-floating">Nom caissier</label>
+                <input type="text" class="form-control"></input>  
+                
+                 <br/><br/>
+                 <br/>
+                 <table style={{marginLeft:'auto',marginRight:'auto'}}>
+                     <tr>
+                     <button type="submit" class="btn btn-primary pull-rigt" style={{background: '#87bfd4', color: '#000000' , marginTop : -50}}>Supprimer</button>  
+                     </tr>
+                 </table>
+                
+
               </div>
             </Content>
-            <CareerDetails player={selectedPlayer} visible={visible} onClose={onClose} />
             <Footer style={{ textAlign: 'center' }}><h5 style={{fontWeight :'bold'}}>UNIFID:</h5> <h6 style={{ color: '#5b8db6'}}>meilleur programme de fidélisation</h6></Footer>
           </Layout>
         </Layout>
@@ -193,4 +216,4 @@ function handleListKeyDown(event) {
   );
 }
 
-export default Clients;
+export default GestionCaissier;

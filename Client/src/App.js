@@ -14,6 +14,9 @@ import Paramcarte from './pages/Paramcarte';
 import Pointsvente from './pages/Pointsvente';
 import Categories from './pages/Categories';
 import Event from './pages/Event';
+import GestionCaissier from './pages/GestionCaissier';
+import Caissier from './pages/Caissier';
+import Admin from './pages/Admin';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import {useState} from 'react';
 import {Redirect} from 'react-router-dom';
@@ -46,7 +49,9 @@ function App() {
             <Route path='/pointsvente' component={Pointsvente} />
             <Route path='/categories' component={Categories} />
             <Route path='/event' component={Event} />
-
+            <Route path='/gestioncaissier' component={GestionCaissier} />
+            <Route path='/caissier' component={Caissier} />
+            <Route path='/admin' component={Admin} />
           </Switch>        
 
 

@@ -1,6 +1,8 @@
 import React , {Component} from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import {Link} from 'react-router-dom';
+
 class Partenaire extends React.Component{
     render(){
         return(
@@ -9,7 +11,7 @@ class Partenaire extends React.Component{
 	            <div className="container">
 		
 		            <ol className="breadcrumb">
-			            <li><a href="index.html">Accueil</a></li>
+			            <li><Link to ='/'>Accueil</Link></li>
 			            <li className="active">Nos partenaires</li>
             		</ol>
 

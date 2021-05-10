@@ -48,7 +48,7 @@ const Signup = () => {
         <div className="container">
 
               <ol className="breadcrumb">
-                  <li><a href="index.html">Accueil</a></li>
+                  <li><Link to="/">Accueil</Link></li>
                   <li className="active">Inscription</li>
               </ol>
 
@@ -103,12 +103,7 @@ const Signup = () => {
                                       <hr/>
 
                                       <div className="row">
-                                          <div className="col-lg-8">
-                                              <label className="checkbox">
-                                                  <input type="checkbox"/>
-                                                  I've read the <a href="page_terms.html">Terms and Conditions</a>
-                                              </label>
-                                          </div>
+                                         
                                           <div className="col-lg-4 text-right">
                                               <button className="btn btn-action" type="submit">S'inscrire</button>
                                           </div>

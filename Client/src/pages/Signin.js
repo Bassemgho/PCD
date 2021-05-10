@@ -37,7 +37,7 @@ import Footer from './Footer';
             <div className="container">
 
                   <ol className="breadcrumb">
-                      <li><Link tp="/">Accueil</Link></li>
+                      <li><Link to="/">Accueil</Link></li>
                       <li className="active">Accès utilisateur</li>
                   </ol>
 
@@ -68,9 +68,7 @@ import Footer from './Footer';
                                           <hr/>
 
                                           <div className="row">
-                                              <div className="col-lg-8">
-                                                  <b><a href="">Mot de passe oublié?</a></b>
-                                              </div>
+                                              
                                               <div className="col-lg-4 text-right">
                                                 <button className="btn btn-action" type="submit"><Route exact path="/signin">{props.authorized ? <Redirect to="/dashboard" /> :'' }</Route>S'identifier</button>
                                               </div>

@@ -3,12 +3,10 @@ import './Dash.css';
 import { Layout, Avatar, Menu, Breadcrumb, Button } from 'antd';
 import Title from 'antd/lib/typography/Title';
 import SubMenu from 'antd/lib/menu/SubMenu';
-import { Cricketer, ODICareer, Batting, Bowling, TestCareer } from './Cricketer';
-import CareerDetails from './CareerDetails';
-import Icon from '@ant-design/icons';
+
 import {Link, Route, Redirect} from 'react-router-dom';
-import {AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
-import{Bar,Line,Pie} from 'react-chartjs-2';
+import {ContactsOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+
 import Chart from './Chart';
 import Chart1 from './Chart1';
 import Chart2 from './Chart2';
@@ -19,6 +17,7 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
+import { Collapse } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -142,6 +141,12 @@ function handleListKeyDown(event) {
             <Menu.Item key='paramcarte'>
                 <Link to ='/paramcarte'><SettingOutlined />Paramètres de la carte de fidelité</Link>
             </Menu.Item>
+            <Menu.Item key='gestioncaissier'>
+                <Link to ='/gestioncaissier'><UserAddOutlined />Gestion des caissiers</Link>
+            </Menu.Item>
+            <Menu.Item key='Caissier'>
+                <Link to ='/caissier'><ContactsOutlined />Liste des caissiers</Link>
+            </Menu.Item>
             <Menu.Item key='Clients'>
                 <Link to ='/clients'><TableOutlined />Table des clients</Link>
             </Menu.Item>
@@ -177,7 +182,7 @@ function handleListKeyDown(event) {
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
               <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
-                    <h4 style ={{fontWeight :'bold'}}>Par Clients</h4>
+                    <h4 style ={{fontWeight :'bold'}}>Points cumulés des clients</h4>
                  </div> 
                   <br/>
       
@@ -195,11 +200,11 @@ function handleListKeyDown(event) {
                   <br/>
                   {/* */}
                  <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
-                    <h4 style ={{fontWeight :'bold'}}>Par Point de vente</h4>
+                    <h4 style ={{fontWeight :'bold'}}>Rentabilité par Point de vente</h4>
                  </div> 
                  <br/>
                  {/* */}
-                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                  <table style={{marginRight :'auto', marginLeft :'auto' }}>
                       <tr>
                         <td style={{width : 300}}>
                           <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
@@ -208,12 +213,12 @@ function handleListKeyDown(event) {
                         
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart/>
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart2/>
                         </td>
@@ -230,12 +235,12 @@ function handleListKeyDown(event) {
                         
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart/>
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart2/>
                         </td>
@@ -252,12 +257,12 @@ function handleListKeyDown(event) {
                         
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart/>
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart2/>
                         </td>
@@ -274,12 +279,12 @@ function handleListKeyDown(event) {
                         
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart/>
                         </td>
-                      </tr>
-                      <tr>
+                      </tr >
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart2/>
                         </td>
@@ -296,12 +301,12 @@ function handleListKeyDown(event) {
                         
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart/>
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart2/>
                         </td>
@@ -318,12 +323,12 @@ function handleListKeyDown(event) {
                         
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart/>
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart2/>
                         </td>
@@ -340,12 +345,12 @@ function handleListKeyDown(event) {
                         
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart/>
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart2/>
                         </td>
@@ -362,12 +367,12 @@ function handleListKeyDown(event) {
                         
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart/>
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart2/>
                         </td>
@@ -384,12 +389,12 @@ function handleListKeyDown(event) {
                         
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart/>
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart2/>
                         </td>
@@ -406,12 +411,12 @@ function handleListKeyDown(event) {
                         
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart/>
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart2/>
                         </td>
@@ -428,12 +433,12 @@ function handleListKeyDown(event) {
                         
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart/>
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart2/>
                         </td>
@@ -450,12 +455,12 @@ function handleListKeyDown(event) {
                         
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart/>
                         </td>
                       </tr>
-                      <tr>
+                      <tr style={{border : 'solid'}}>
                         <td style={{width : 300}}>
                         <Chart2/>
                         </td>
@@ -469,8 +474,7 @@ function handleListKeyDown(event) {
                   {/* */}
               </div>
             </Content>
-            <CareerDetails player={selectedPlayer} visible={visible} onClose={onClose} />
-            <Footer style={{ textAlign: 'center' }}></Footer>
+            <Footer style={{ textAlign: 'center' }}><h5 style={{fontWeight :'bold'}}>UNIFID:</h5> <h6 style={{ color: '#5b8db6'}}>meilleur programme de fidélisation</h6></Footer>
           </Layout>
         </Layout>
       </Layout>

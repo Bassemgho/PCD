@@ -4,8 +4,7 @@ import { Layout, Avatar, Menu, Breadcrumb, Button } from 'antd';
 import Title from 'antd/lib/typography/Title';
 import SubMenu from 'antd/lib/menu/SubMenu';
 
-import {Link} from 'react-router-dom';
-import {ContactsOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+import {UserOutlined} from '@ant-design/icons';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -26,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 const { Header, Footer, Sider, Content } = Layout;
 
-function Profil() {
+function Admin() {
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -76,7 +75,6 @@ function handleListKeyDown(event) {
     <div className="App">
       <Layout>
         <Header style={{ padding: 10 }}>
-          
         <div className={classes.root} style={{float:'right' , marginRight : 40 , marginTop : -10}}>
         
         <div>
@@ -98,8 +96,6 @@ function handleListKeyDown(event) {
                 <Paper>
                   <ClickAwayListener onClickAway={handleClose}>
                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                      <MenuItem onClick={handleClose}><h5><Link to ='/profil'>Profil</Link></h5></MenuItem>
-                      <MenuItem onClick={handleClose}><h5>Carte</h5></MenuItem>
                       <MenuItem onClick={handleClose}><h5>Déconnexion</h5></MenuItem>
                     </MenuList>
                   </ClickAwayListener>
@@ -114,78 +110,91 @@ function handleListKeyDown(event) {
 
         </Header>
         <Layout>
-          <Sider>
-            <Menu
-              defaultSelectedKeys={['Profil']}
-              mode="inline"
-            >
-              <Menu.Item key='Dashboard'>
-                <Link to ='/dashboard'><BarChartOutlined />Statistiques</Link>
-            </Menu.Item>
-            <Menu.Item key='paramcarte'>
-                <Link to ='/paramcarte'><SettingOutlined />Paramètres de la carte de fidelité</Link>
-            </Menu.Item>
-            <Menu.Item key='gestioncaissier'>
-                <Link to ='/gestioncaissier'><UserAddOutlined />Gestion des caissiers</Link>
-            </Menu.Item>
-            <Menu.Item key='Caissier'>
-                <Link to ='/caissier'><ContactsOutlined />Liste des caissiers</Link>
-            </Menu.Item>
-            <Menu.Item key='Clients'>
-                <Link to ='/clients'><TableOutlined />Table des clients</Link>
-            </Menu.Item>
-            <Menu.Item key='Profil'>
-              <span><Link to='/profil'><UserOutlined />Profil</Link></span>
-            </Menu.Item>
-  
-              <SubMenu
-                title={
-                  <span>
-                    {/*<Icon type="mail" />*/}
-                    <span><CustomerServiceOutlined />Nos services</span>
-                  </span>
-                }
-              >
-                <Menu.ItemGroup key='AboutUS'>
-                  <Menu.Item key='location1'> <Link to='/pointsvente'><ShopOutlined />Points de vente</Link></Menu.Item>
-                  <Menu.Item key='location2'> <Link to='/categories'> <ShoppingOutlined />Catégories</Link></Menu.Item>
-                  <Menu.Item key='location3'> <Link to='/event'> <AppstoreAddOutlined />Evenements</Link></Menu.Item>
-
-                </Menu.ItemGroup>
-              </SubMenu>
-              <Menu.Item key='Maps'>
-              <span><Link to='/maps'><GlobalOutlined />Maps</Link></span>
-            </Menu.Item>
-            </Menu>
-          </Sider>
+          
           <Layout>
             <Content style={{ padding: '0 50px' }}>
               <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Profil</h1></Breadcrumb.Item>
+                <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Session admin</h1></Breadcrumb.Item>
               </Breadcrumb>
-              <div style={{ background: '#fff', padding: 24, minHeight: 670 }}>
+              <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
+              
+
+        <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
+                    <h4 style ={{fontWeight :'bold'}}>Gestion des entreprises</h4>
+                 </div> 
+                 <br/><br/>
+                 <table>
+                     <tr>
+                     <h5 style ={{fontWeight :'bold', background :'#2a9438', padding: 10}}>Liste des entreprises</h5>
+                     </tr>
+                 </table>
+                 <br/>
+                 <table>
+                     <tr>
+                     <h5 style ={{fontWeight :'bold', background :'#b36887', padding: 10}}>Supprimer une entreprise</h5>
+                     </tr>
+                 </table>
+                 <br/>
+                 <label class="bmd-label-floating">Nom Entreprise</label>
+                  <input type="text" class="form-control"></input>
+                  
+                 <br/><br/>
+                 <br/>
+                 <table style={{marginLeft:'auto',marginRight:'auto'}}>
+                     <tr>
+                     <button type="submit" class="btn btn-primary pull-rigt" style={{background: '#b36887', color: '#000000' , marginTop : -50}}>Supprimer</button>  
+                     </tr>
+                 </table>
                  <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
-                    <h4 style ={{fontWeight :'bold'}}>Modifier Profil</h4>
-                 </div>   
+                    <h4 style ={{fontWeight :'bold'}}>Gestion des clients</h4>
+                 </div> 
                  <br/><br/>
-                 <label class="bmd-label-floating">Nom d'utilisateur</label>
+                 <table>
+                     <tr>
+                     <h5 style ={{fontWeight :'bold', background :'#2a9438', padding: 10}}>Liste des clients</h5>
+                     </tr>
+                 </table>
+                 <br/>
+                 <table>
+                     <tr>
+                     <h5 style ={{fontWeight :'bold', background :'#b36887', padding: 10}}>Supprimer un client</h5>
+                     </tr>
+                 </table>
+                 <br/>
+                 <label class="bmd-label-floating">Nom Client</label>
+                  <input type="text" class="form-control"></input>
+                  
+                 <br/><br/>
+                 <br/>
+                 <table style={{marginLeft:'auto',marginRight:'auto'}}>
+                     <tr>
+                     <button type="submit" class="btn btn-primary pull-rigt" style={{background: '#b36887', color: '#000000' , marginTop : -50}}>Supprimer</button>  
+                     </tr>
+                 </table>
+                     
+                 <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
+                    <h4 style ={{fontWeight :'bold'}}>Gestion des commentaires</h4>
+                 </div> 
+                 <br/><br/>
+                 <table>
+                     <tr>
+                     <h5 style ={{fontWeight :'bold', background :'#b36887', padding: 10}}>Supprimer un commentaire</h5>
+                     </tr>
+                 </table>
+                 <br/>
+                 <label class="bmd-label-floating">Nom Client</label>
                   <input type="text" class="form-control"></input>
                   <br/>
-                 <label class="bmd-label-floating">Adresse Email</label>
+                 <label class="bmd-label-floating">Date Commentaire</label>
                   <input type="text" class="form-control"></input>
-                  <br/>
-                  <label class="bmd-label-floating">Nouveau mot de passe</label>
-                <input type="text" class="form-control"></input>  
-                <br/>
-                <label class="bmd-label-floating">Nouveau logo</label>
-                 <input type="file" class="form-control"></input>    
-                 <br/>
-                <label class="bmd-label-floating">Description</label>
-                 <input type="text" class="form-control"></input>
+                  
                  <br/><br/>
                  <br/>
-                     <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000'}}>Enregistrer</button>  
-                      
+                 <table style={{marginLeft:'auto',marginRight:'auto'}}>
+                     <tr>
+                     <button type="submit" class="btn btn-primary pull-rigt" style={{background: '#b36887', color: '#000000' , marginTop : -50}}>Supprimer</button>  
+                     </tr>
+                 </table>
               </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}><h5 style={{fontWeight :'bold'}}>UNIFID:</h5> <h6 style={{ color: '#5b8db6'}}>meilleur programme de fidélisation</h6></Footer>
@@ -196,4 +205,4 @@ function handleListKeyDown(event) {
   );
 }
 
-export default Profil;
+export default Admin;

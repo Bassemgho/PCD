@@ -7,7 +7,7 @@ import { Cricketer, ODICareer, Batting, Bowling, TestCareer } from './Cricketer'
 import CareerDetails from './CareerDetails';
 
 import {Link} from 'react-router-dom';
-import {ContactsOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+import {ContactsOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 const { Header, Footer, Sider, Content } = Layout;
 
-function Clients() {
+function Caissier() {
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -116,7 +116,7 @@ function handleListKeyDown(event) {
         <Layout>
           <Sider>
             <Menu
-              defaultSelectedKeys={['Clients']}
+              defaultSelectedKeys={['Caissier']}
               mode="inline"
             >
               <Menu.Item key='Dashboard'>
@@ -126,7 +126,7 @@ function handleListKeyDown(event) {
                 <Link to ='/paramcarte'><SettingOutlined />Paramètres de la carte de fidelité</Link>
             </Menu.Item>
             <Menu.Item key='gestioncaissier'>
-                <Link to ='/gestioncaissier'><UserAddOutlined />Gestion des caissiers</Link>
+                <Link to ='/gestioncaissier'><SettingOutlined />Gestion des caissiers</Link>
             </Menu.Item>
             <Menu.Item key='Caissier'>
                 <Link to ='/caissier'><ContactsOutlined />Liste des caissiers</Link>
@@ -193,4 +193,4 @@ function handleListKeyDown(event) {
   );
 }
 
-export default Clients;
+export default Caissier;

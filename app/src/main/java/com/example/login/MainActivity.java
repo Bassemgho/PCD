@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
+
         fb.setTranslationY(300);
         google.setTranslationY(300);
         instagram.setTranslationY(300);

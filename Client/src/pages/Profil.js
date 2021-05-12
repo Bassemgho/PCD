@@ -4,7 +4,7 @@ import { Layout, Avatar, Menu, Breadcrumb, Button } from 'antd';
 import Title from 'antd/lib/typography/Title';
 import SubMenu from 'antd/lib/menu/SubMenu';
 
-import {Link} from 'react-router-dom';
+import {Link,Route,Redirect} from 'react-router-dom';
 import {ContactsOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -26,7 +26,11 @@ const useStyles = makeStyles((theme) => ({
 
 const { Header, Footer, Sider, Content } = Layout;
 
-function Profil() {
+function Profil(props) {
+
+  const logout = () => {
+    props.setAuthorized(false);
+  }
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -72,6 +76,10 @@ function handleListKeyDown(event) {
   }
 
   const onClose = () => setVisible(false);
+  if (!(props.authorized)) {
+    return (<Route exact path="/profil"><Redirect to="/signin" /></Route>);
+  }
+  else 
   return (
     <div className="App">
       <Layout>
@@ -100,7 +108,7 @@ function handleListKeyDown(event) {
                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                       <MenuItem onClick={handleClose}><h5><Link to ='/profil'>Profil</Link></h5></MenuItem>
                       <MenuItem onClick={handleClose}><h5>Carte</h5></MenuItem>
-                      <MenuItem onClick={handleClose}><h5>Déconnexion</h5></MenuItem>
+                      <MenuItem onClick={logout}><h5>Déconnexion</h5></MenuItem>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>

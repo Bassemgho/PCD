@@ -15,10 +15,9 @@ class Footer extends React.Component{
                                 <div className="col-md-3 widget">
                                     <h3 className="widget-title">Contact</h3>
                                     <div className="widget-body">
-                                        <p>+234 23 9873237<br/>
+                                        <p><br/>
                                             <a href="mailto:#">pcdfid@gmail.com</a><br/>
                                             <br/>
-                                            234 Hidden Pond Road, Ashland City, TN 37015
                                         </p>	
                                     </div>
                                 </div>

@@ -5,6 +5,6 @@ import {createentreprise} from '../controllers/entreprise.js'
 import {getentreprise} from '../controllers/appControllers/getentreprise.js'
 const router = express.Router();
 router.route('/create').post(createentreprise);
-router.route('/display').get(protect,getentreprise);
+router.route('/display').get(getentreprise);
 
 export default router;

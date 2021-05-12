@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 
 const caissierSch = mongoose.Schema({
   id_entreprise:{
-    type:String,
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"entreprise",
     required:[true,'problem getting your entreprise id'],
 
   },
@@ -12,6 +13,10 @@ const caissierSch = mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:'Appuser'
   },
+  id_ptvente:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"ptvente",
+  }
 })
 
 

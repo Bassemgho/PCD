@@ -3,13 +3,17 @@ import * as api from '../api/index.js'
 import {Link} from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-import FileBase64 from './react-file-base64';
+import FileBase from 'react-file-base64';
 
 const Signup = () => {
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
   const [email,setEmail] = useState('');
-  //const [logo,setLogo] = useState('');
+  const [logo,setLogo] = useState('');
+  const [name,setName] = useState('');
+
+
+
 
 
   const handleChange = (e) => {
@@ -22,15 +26,14 @@ const Signup = () => {
     if (e.target.name === "email") {
       setEmail(e.target.value)
     }
-    /*
-    if (e.target.name === "logo") {
-      setLogo(e.target.value)
-    }*/
+    if (e.target.name==="name") {
+      setName(e.target.value)
+    }
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.signup(username,password,email)
+      const res = await api.signup(username,password,email,name,logo);
       console.log("done");
     } catch (e) {
       console.log(e.error);
@@ -75,7 +78,7 @@ const Signup = () => {
                                       <div className="top-margin">
                                           <label>Nom Utilisateur</label>
                                           <input type="text" name="username" onChange={handleChange} className="form-control"/>
-                                      </div>
+                                          </div>
                                   
                                       <div className="top-margin">
                                           <label>Adresse Email<span className="text-danger">*</span></label>
@@ -95,8 +98,9 @@ const Signup = () => {
                                       <div className="top-margin">
                                           <label>Ajouter votre logo<span className="text-danger">*</span></label>
                                           {/*
-                                          <FileBase64 type="file" multiple={true} onDone={({base64})=> setPostData({ ...postData, selectedFile: base64})} />*/}
-                                          <input type="file" name="file" onChange={handleChange} />
+                                          <FileBase64 type="file" multiple={true} onDone={({base64})=> setPostData({ ...postData, selectedFile: base64})} />
+                                          <input type="file" name="file" onChange={handleChange} />*/}
+                                          <FileBase type="file" multiple={false} onDone={({ base64 }) => setLogo(base64)} />
                                         
                                       </div>
 

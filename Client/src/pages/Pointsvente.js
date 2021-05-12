@@ -4,8 +4,8 @@ import { Layout, Avatar, Menu, Breadcrumb, Button } from 'antd';
 import Title from 'antd/lib/typography/Title';
 import SubMenu from 'antd/lib/menu/SubMenu';
 
-import {Link} from 'react-router-dom';
-import {ContactsOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+import {Link,Route,Redirect} from 'react-router-dom';
+import {WarningOutlined,ContactsOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -14,6 +14,12 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
+
+import Map from './Map';
+
+
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -26,7 +32,13 @@ const useStyles = makeStyles((theme) => ({
 
 const { Header, Footer, Sider, Content } = Layout;
 
-function Pointsvente() {
+function Pointsvente(props) {
+
+  const logout = () => {
+    props.setAuthorized(false);
+  }
+  
+
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -72,6 +84,10 @@ function handleListKeyDown(event) {
   }
 
   const onClose = () => setVisible(false);
+  if (!(props.authorized)) {
+    return (<Route exact path="/pointsvente"><Redirect to="/signin" /></Route>);
+  }
+  else 
   return (
     <div className="App">
       <Layout>
@@ -99,7 +115,7 @@ function handleListKeyDown(event) {
                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                       <MenuItem onClick={handleClose}><h5><Link to ='/profil'>Profil</Link></h5></MenuItem>
                       <MenuItem onClick={handleClose}><h5>Carte</h5></MenuItem>
-                      <MenuItem onClick={handleClose}><h5>Déconnexion</h5></MenuItem>
+                      <MenuItem onClick={logout}><h5>Déconnexion</h5></MenuItem>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>
@@ -171,7 +187,13 @@ function handleListKeyDown(event) {
                  <label class="bmd-label-floating">Nom de la boutique <span className="text-danger">*</span></label>
                   <input type="text" class="form-control"></input>
                   <br/>
-                  <label class="bmd-label-floating">Adresse <span className="text-danger">*</span></label>
+                  <p  style={{color : 'red'}}><WarningOutlined style={{fontSize : 20}}/> Veuillez saisir les coordonnées exactes de votre point de vente.
+                    Vous pouvez trouver les valeurs de la latitude et de la longitude
+                    à l'aide de la carte ci-dessous.
+                  </p>
+                <label class="bmd-label-floating">Latitude <span className="text-danger">*</span></label>
+                <input type="text" class="form-control"></input>
+                <label class="bmd-label-floating">Longitude <span className="text-danger">*</span></label>
                 <input type="text" class="form-control"></input>  
                 <br/>
                 <label class="bmd-label-floating">Horaire <span className="text-danger">*</span></label>
@@ -299,7 +321,11 @@ function handleListKeyDown(event) {
               </td>
               </tr>
               </table>     
-                 
+                 {/*      maaap      */}
+                <br/>
+       <Map />
+                
+                 {/*      maaap      */}
                      <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 30, marginRight : 50}}>Ajouter</button>  
                       
               </div>

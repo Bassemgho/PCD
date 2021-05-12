@@ -24,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
 }));
-//
+
+
 const { Header, Footer, Sider, Content } = Layout;
 
 function Maps() {
@@ -52,8 +53,6 @@ function handleListKeyDown(event) {
   }
 
   // return focus to the button when we transitioned from !open -> open
-
-
   const prevOpen = React.useRef(open);
   React.useEffect(() => {
     if (prevOpen.current === true && open === false) {
@@ -80,7 +79,7 @@ function handleListKeyDown(event) {
       <Layout>
         <Header style={{ padding: 10 }}>
         <div className={classes.root} style={{float:'right' , marginRight : 40 , marginTop : -10}}>
-
+        
         <div>
           <Button
             ref={anchorRef}
@@ -139,7 +138,7 @@ function handleListKeyDown(event) {
             <Menu.Item key='Profil'>
               <span><Link to='/profil'><UserOutlined />Profil</Link></span>
             </Menu.Item>
-
+  
               <SubMenu
                 title={
                   <span>
@@ -166,7 +165,7 @@ function handleListKeyDown(event) {
                 <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Maps</h1></Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 580 , width: 100, height : 100}}>
-
+             
               </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}><h5 style={{fontWeight :'bold'}}>UNIFID:</h5> <h6 style={{ color: '#5b8db6'}}>meilleur programme de fidélisation</h6></Footer>

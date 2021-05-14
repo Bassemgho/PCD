@@ -8,7 +8,8 @@ const ptventeSch = mongoose.Schema({
   },
   nom:String,
   horaire:String,
-  address:String
+  lat:String,
+  lang:String,
 })
 
 const ptvente = mongoose.model("ptvente",ptventeSch);

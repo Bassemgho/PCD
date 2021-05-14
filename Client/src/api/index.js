@@ -14,9 +14,6 @@ export const signup = async (username,password,email,name,logo) => {
 }
 
 //sawsen
-/*
 export const getentreprise = async () => {
     return await axios.get(url);
-  
 };
-*/

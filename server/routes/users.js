@@ -5,10 +5,14 @@ import {signup,signin} from '../controllers/auth.js'
 import protect from '../middlewares/protect.js'
 import {addptvente} from '../controllers/ptvente.js'
 import {addCaissier} from '../controllers/caissier.js'
+import {addbonparam} from '../controllers/bonparam.js'
+
 
 const router = express.Router();
 router.post('/signin',signin);
 router.post('/signup',signup);
 router.route('/addptsventes').post(protect,addptvente);
 router.route('/addcaissier').post(protect,addCaissier);
+router.route("/addbonparam").post(protect,addbonparam);
+
 export default router

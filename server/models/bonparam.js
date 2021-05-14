@@ -10,5 +10,7 @@ const bonparmsch = mongoose.Schema({
   valeurbon:Number,
 })
 
-const bonparms = mongoose.model("bonparams",bonparmsch);
-export default bonparms;
+const bonparams = mongoose.model("bonparams",bonparmsch);
+bonparams.createIndexes();
+
+export default bonparams;

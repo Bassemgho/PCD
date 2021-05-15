@@ -13,12 +13,15 @@ const achatsch = mongoose.Schema({
     type:'Number',
     required:[true,"please provide a valid amount of money"]
   },
-  date:Date,
+  date:{
+    type:Date,
+    default:Date.now
+  },
   id_ptvente:{
     type:mongoose.Schema.Types.ObjectId,
     ref:"ptvente",
   },
-  ptsadmises:Number,
+
 })
 
 const achat = mongoose.model("achat",achatsch)

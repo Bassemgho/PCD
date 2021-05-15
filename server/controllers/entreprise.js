@@ -14,3 +14,23 @@ export const createentreprise = async (req,res,next) => {
     console.log("smthing whron");
   }
 }
+
+
+
+/*
+export const ajoutermagasin = async () => {
+
+}
+export const createentreprise = async (req,res) => {
+  const {name,logo} = req.body;
+  const ent = new entreprise ({name,logo})
+  try {
+    await ent.save();
+    return res.status(201).json({message:"done"});
+  } catch (e) {
+    console.log("smthing whron");
+  }
+}*/
+
+//sawsen
+

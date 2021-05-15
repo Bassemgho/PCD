@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const entreprise_schema = mongoose.Schema({
   name:String,

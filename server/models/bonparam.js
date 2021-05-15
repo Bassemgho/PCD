@@ -6,7 +6,7 @@ const bonparmsch = mongoose.Schema({
     ref:"entreprise",
   },
   pts:Number,
-  delais:Number,
+  delai:Number,
   valeurbon:Number,
 })
 

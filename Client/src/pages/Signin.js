@@ -23,6 +23,7 @@ import Footer from './Footer';
           const rep = await api.sendcreds(username,password);
           console.log(rep);
           if (rep.data.success) {
+            props.setToken(rep.data.token);
             props.setAuthorized(true);
           }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import './Dash.css';
 import { Layout, Avatar, Menu, Breadcrumb, Button } from 'antd';
 import Title from 'antd/lib/typography/Title';
@@ -17,8 +17,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Map from './Map';
 
+import * as api from '../api/index.js';
 
-
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +33,141 @@ const useStyles = makeStyles((theme) => ({
 
 const { Header, Footer, Sider, Content } = Layout;
 
-function Pointsvente(props) {
+//function Pointsvente(props) {
+//sawsen
+
+const Pointsvente = (props) => {
+
+  const id = {headers : { Authorization : `Bearer ${props.token}`}};
+  const urlaff = "http://localhost:5000/user"
+
+  const state = {
+		nom: '',
+		address: '',
+    lat: '',
+    lang: '',
+    heuredebut: '',
+    mindebut: '',
+    heurefin: '',
+    minfin: '',
+    jourdebut: '',
+    jourfin: '',
+		posts: []
+	  };
+    const componentDidMount = () => {
+      this.getBlogPost();
+      };
+      const getBlogPost = () => {
+        const rep = api.getptvente(props.token) ;
+          axios.get(`${urlaff}`/`${id}`)
+          .then((response) => {
+            const data = response.data;
+            this.setState({ posts: data });
+            console.log('Data has been received!!');
+            console.log('State: ', this.state);
+            })
+            .catch(() => {
+            alert('Error retrieving data!!!');
+            });
+          }
+          const displayBlogPost = (posts) => {
+    
+            if (!posts.length) return null;
+          
+          
+            return posts.map((post, index) => (
+              <div key={index} >
+                <p>{post.nom}</p>
+                <p>{post.address}</p>
+                <p>{post.lat}</p>
+                <p>{post.lang}</p>
+                <p>{post.heuredebut}</p>
+                <p>{post.mindebut}</p>
+                <p>{post.heurefin}</p>
+                <p>{post.minfin}</p>
+                <p>{post.jourdebut}</p>
+                <p>{post.jourfin}</p>
+              </div>
+            ));
+            };
+
+/*
+  const useEffect=(async()=> {
+    const rep = await api.getptvente(props.token);
+    console.log(rep);
+  },[])
+*/
+  const ls= [];
+  for ( let i=0;i<24;i++){
+    ls.push(i);
+  }
+  const lss= [];
+  for ( let j=0;j<60;j++){
+    lss.push(j);
+  }
+  
+
+  const [nom,setNom] = useState('');
+  //const [horaire,setHoraire] = useState('');
+  const [address,setAddress] = useState('');
+  const [lat,setLat] = useState('');
+  const [lang,setLang] = useState('');
+  const [heuredebut,setHeuredebut] = useState('0');
+  const [mindebut,setMindebut] = useState('0');
+  const [heurefin,setHeurefin] = useState('0');
+  const [minfin,setMinfin] = useState('0');
+  const [jourdebut,setJourdebut] = useState('Lundi');
+  const [jourfin,setJourfin] = useState('Lundi');
+
+  const handleChange = (e) => {
+    if (e.target.name==="nom") {
+      setNom(e.target.value)
+    }
+    /*if (e.target.name==="horaire") {
+      setHoraire(e.target.value)
+    }*/
+    if (e.target.name==="address") {
+      setAddress(e.target.value)
+    }
+    if (e.target.name==="lat") {
+      setLat(e.target.value)
+    }
+    if (e.target.name==="lang") {
+      setLang(e.target.value)
+    }
+    if (e.target.name==="heuredebut") {
+      setHeuredebut(e.target.value)
+    }
+    if (e.target.name==="mindebut") {
+      setMindebut(e.target.value)
+    }
+    if (e.target.name==="heurefin") {
+      setHeurefin(e.target.value)
+    }
+    if (e.target.name==="minfin") {
+      setMinfin(e.target.value)
+    }
+    if (e.target.name==="jourdebut") {
+      setJourdebut(e.target.value)
+    }
+    if (e.target.name==="jourfin") {
+      setJourfin(e.target.value)
+    }
+
+  }
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+    try {
+      const rep = await api.addptvente(nom, address, lat, lang, heuredebut, mindebut, heurefin, minfin, jourdebut, jourfin, props.token);
+      console.log("pt vente ajoutée");
+    } catch (e) {
+      console.log(e.error);
+    }finally {
+
+    }
+  }
+  //sawsen
 
   const logout = () => {
     props.setAuthorized(false);
@@ -179,67 +314,44 @@ function handleListKeyDown(event) {
               <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Points de vente</h1></Breadcrumb.Item>
               </Breadcrumb>
-              <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
+              <div style={{ background: '#fff', padding: 24, height : 2500}}>
               <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
                     <h4 style ={{fontWeight :'bold'}}>Ajouter un nouveau point de vente</h4>
                  </div>   
                  <br/><br/>
+                 <form onSubmit = {handleSubmit}>
                  <label class="bmd-label-floating">Nom de la boutique <span className="text-danger">*</span></label>
-                  <input type="text" class="form-control"></input>
+                  <input type="text" name="nom" onChange={handleChange} class="form-control"></input>
                   <br/>
-                  <p  style={{color : 'red'}}><WarningOutlined style={{fontSize : 20}}/> Veuillez saisir les coordonnées exactes de votre point de vente.
-                    Vous pouvez trouver les valeurs de la latitude et de la longitude
-                    à l'aide de la carte ci-dessous.
-                  </p>
-                <label class="bmd-label-floating">Latitude <span className="text-danger">*</span></label>
-                <input type="text" class="form-control"></input>
-                <label class="bmd-label-floating">Longitude <span className="text-danger">*</span></label>
-                <input type="text" class="form-control"></input>  
-                <br/>
+                  <label class="bmd-label-floating">addresse <span className="text-danger">*</span></label>
+                  <input type="text" name="address" onChange={handleChange} class="form-control" placeholder="EX : Rue, Ville, Pays"></input>
+                  <br/>
+                  {/*<label class="bmd-label-floating">horaire <span className="text-danger">*</span></label>
+                  <input type="text" name="horaire" onChange={handleChange} class="form-control" ></input>
+              <br/>*/}
+                  
                 <label class="bmd-label-floating">Horaire <span className="text-danger">*</span></label>
                 <table>
               <tr>
               <td style={{width : 85 , height : 50}}>
               A partir de  :
             </td>
-            <td style={{width : 40 , height : 50}}>  
-            <select name="debut" size="1">
-              <option>00</option>
-              <option>01</option>
-              <option>02</option>
-              <option>03</option>
-              <option>04</option>
-              <option>05</option>
-              <option>06</option>
-              <option>07</option>
-              <option>08</option>
-              <option>09</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
-              <option>13</option>
-              <option>14</option>
-              <option>15</option>
-              <option>16</option>
-              <option>17</option>
-              <option>18</option>
-              <option>19</option>
-              <option>20</option>
-              <option>21</option>
-              <option>22</option>
-              <option>23</option>
-              </select>
+            <td style={{width : 40 , height : 50}}> 
+            <select name="heuredebut" onChange={handleChange} size="1">
+              {ls.map((i) => (
+                <option value={i}>{i}</option>
+              ))}
+            </select>
+            
               </td>
               <td>h</td>
               <td>
-              <select name="debut" size="1">
-              <option>00</option>
-              <option>10</option>
-              <option>20</option>
-              <option>30</option>
-              <option>40</option>
-              <option>50</option>
-              </select>
+              <select name="mindebut" onChange={handleChange} size="1">
+              {lss.map((j) => (
+                <option value={j}>{j}</option>
+              ))}
+            </select>
+                
               </td>
               <td>min</td>
               </tr>
@@ -250,43 +362,19 @@ function handleListKeyDown(event) {
               Jusqu'à :
             </td>
             <td style={{width : 40 , height : 50}}>  
-            <select name="debut" size="1">
-              <option>00</option>
-              <option>01</option>
-              <option>02</option>
-              <option>03</option>
-              <option>04</option>
-              <option>05</option>
-              <option>06</option>
-              <option>07</option>
-              <option>08</option>
-              <option>09</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
-              <option>13</option>
-              <option>14</option>
-              <option>15</option>
-              <option>16</option>
-              <option>17</option>
-              <option>18</option>
-              <option>19</option>
-              <option>20</option>
-              <option>21</option>
-              <option>22</option>
-              <option>23</option>
-              </select>
+            <select name="heurefin" onChange={handleChange} size="1">
+              {ls.map((i) => (
+                <option value={i}>{i}</option>
+              ))}
+            </select>
               </td>
               <td>h</td>
               <td>
-              <select name="debut" size="1">
-              <option>00</option>
-              <option>10</option>
-              <option>20</option>
-              <option>30</option>
-              <option>40</option>
-              <option>50</option>
-              </select>
+              <select name="minfin" onChange={handleChange} size="1">
+              {lss.map((j) => (
+                <option value={j}>{j}</option>
+              ))}
+            </select>
               </td>
               <td>min</td>
               </tr>
@@ -297,37 +385,54 @@ function handleListKeyDown(event) {
               De :
             </td>
             <td style={{width : 100 , height : 50}}>  
-            <select name="jour" size="1">
-              <option>Lundi</option>
-              <option>Mardi</option>
-              <option>Mercredi</option>
-              <option>Jeudi</option>
-              <option>Vendredi</option>
-              <option>Samedi</option>
-              <option>Dimanche</option>
+            <select name="jourdebut" onChange={handleChange} size="1">
+              <option value="lundi">Lundi</option>
+              <option value="mardi">Mardi</option>
+              <option value="mercredi">Mercredi</option>
+              <option value="jeudi">Jeudi</option>
+              <option value="vendredi">Vendredi</option>
+              <option value="samedi">Samedi</option>
+              <option value="dimanche">Dimanche</option>
               </select>
               </td>
               <td style={{width : 40, height : 50}}>à:</td>
               <td>
-              <select name="jour" size="1">
-              <option>Lundi</option>
-              <option>Mardi</option>
-              <option>Mercredi</option>
-              <option>Jeudi</option>
-              <option>Vendredi</option>
-              <option>Samedi</option>
-              <option>Dimanche</option>
+              <select name="jourfin" onChange={handleChange} size="1">
+              <option value="lundi">Lundi</option>
+              <option value="mardi">Mardi</option>
+              <option value="mercredi">Mercredi</option>
+              <option value="jeudi">Jeudi</option>
+              <option value="vendredi">Vendredi</option>
+              <option value="samedi">Samedi</option>
+              <option value="dimanche">Dimanche</option>
               </select>
               </td>
               </tr>
-              </table>     
+              </table>   
+              <br/>
+              <p  style={{color : 'red'}}><WarningOutlined style={{fontSize : 20}}/> Veuillez saisir les coordonnées exactes de votre point de vente.
+                    Vous pouvez trouver les valeurs de la latitude et de la longitude
+                    à l'aide de la carte ci-dessous.
+                  </p>
+                <label class="bmd-label-floating">Latitude <span className="text-danger">*</span></label>
+                <input type="text" class="form-control" name="lat" onChange={handleChange}></input>
+                <br/>
+                <label class="bmd-label-floating">Longitude <span className="text-danger">*</span></label>
+                <input type="text" class="form-control" name="lang" onChange={handleChange}></input>  
+                <br/>  
                  {/*      maaap      */}
                 <br/>
        <Map />
                 
                  {/*      maaap      */}
-                     <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 30, marginRight : 50}}>Ajouter</button>  
-                      
+                     <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 30, marginRight : 'auto', marginLeft : 'auto'}}>Ajouter</button>  
+                     </form>  
+
+                     <div style={{textAlign : 'center'}}>
+          {displayBlogPost(state.posts)}
+        </div>
+                  
+                  
               </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}><h5 style={{fontWeight :'bold'}}>UNIFID:</h5> <h6 style={{ color: '#5b8db6'}}>meilleur programme de fidélisation</h6></Footer>

@@ -2,8 +2,8 @@ import bonparams from '../models/bonparam.js';
 import errorResponse from '../utils/ErrorResponse.js'
 
 export const addbonparam = async (req,res,next) => {
-  const {pts,delai,valeurbon} = req.body
-  const user = req.user
+  const {pts,delai,valeurbon} = req.body;
+  const user = req.user;
   if (!pts|| !delai || !valeurbon) {
     return next(new errorResponse("please fill the fields  ",400));
     }

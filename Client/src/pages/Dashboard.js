@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import './Dash.css';
 import { Layout, Avatar, Menu, Breadcrumb, Button } from 'antd';
 import Title from 'antd/lib/typography/Title';
@@ -32,9 +32,14 @@ const { Header, Footer, Sider, Content } = Layout;
 
 function Dashboard(props) {
 
-  
+  useEffect(() => {
+    const auth = localStorage.getItem("authorized")
+    props.setAuthorized(auth)
+    console.log(auth);
+  },[])
   const logout = () => {
     props.setAuthorized(false);
+    localStorage.setItem("authorized",false)
   }
 
   const classes = useStyles();
@@ -59,6 +64,9 @@ function handleListKeyDown(event) {
     }
   }
 
+  useEffect(() => {
+  props.setAuthorized(localStorage.getItem("authorized"))
+  },[])
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);
   React.useEffect(() => {
@@ -76,17 +84,17 @@ function handleListKeyDown(event) {
   const [visible, setVisible] = useState(false);
   const onSelect = name => {
     setSelectedPlayer(name);
-    setVisible(true);
+    setVisible(true)
   }
   const ViewProfileButton = ({name}) => {
     return <Button type='dashed' style={{float:'right'}} onClick={()=>onSelect(name)}> View Full Profile  </Button>
   }
-  
+
   const onClose = () => setVisible(false);
   if (!(props.authorized)) {
     return (<Route exact path="/dashboard"><Redirect to="/signin" /></Route>);
   }
-  else 
+  else
   return (
     <div className="App">
       <Layout>
@@ -94,7 +102,7 @@ function handleListKeyDown(event) {
 
 
         <div className={classes.root} style={{float:'right' , marginRight : 40 , marginTop : -10}}>
-        
+
       <div>
         <Button
           ref={anchorRef}
@@ -125,7 +133,7 @@ function handleListKeyDown(event) {
         </Popper>
       </div>
       </div>
-          
+
 
           <Title style={{ color: 'white' }} level={2}>UNIFID</Title>
         </Header>
@@ -153,7 +161,7 @@ function handleListKeyDown(event) {
             <Menu.Item key='Profil'>
               <span><Link to='/profil'><UserOutlined />Profil</Link></span>
             </Menu.Item>
-  
+
               <SubMenu
                 title={
                   <span>
@@ -174,7 +182,7 @@ function handleListKeyDown(event) {
             </Menu.Item>
             </Menu>
           </Sider>
-          
+
           <Layout>
             <Content style={{ padding: '0 50px' }}>
               <Breadcrumb style={{ margin: '16px 0' }}>
@@ -183,34 +191,34 @@ function handleListKeyDown(event) {
               <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
               <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
                     <h4 style ={{fontWeight :'bold'}}>Points cumulés des clients</h4>
-                 </div> 
+                 </div>
                   <br/>
-      
-                  {/* */} 
+
+                  {/* */}
                     <table style={{marginRight :'auto', marginLeft :'auto'}}>
                       <tr>
-                        
+
                         <td>
                         <Chart1/>
                         </td>
-                       
+
                       </tr>
-                    </table>                 
+                    </table>
 
                   <br/>
                   {/* */}
                  <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
                     <h4 style ={{fontWeight :'bold'}}>Rentabilité par Point de vente</h4>
-                 </div> 
+                 </div>
                  <br/>
                  {/* */}
                   <table style={{marginRight :'auto', marginLeft :'auto' }}>
                       <tr>
                         <td style={{width : 300}}>
                           <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Janvier 
+                           Janvier
                           </div>
-                        
+
                         </td>
                       </tr>
                       <tr style={{border : 'solid'}}>
@@ -223,7 +231,7 @@ function handleListKeyDown(event) {
                         <Chart2/>
                         </td>
                       </tr>
-                    
+
                   </table>
                   <br/>
                   <table style={{marginRight :'auto', marginLeft :'auto'}}>
@@ -232,7 +240,7 @@ function handleListKeyDown(event) {
                           <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
                            Février
                           </div>
-                        
+
                         </td>
                       </tr>
                       <tr style={{border : 'solid'}}>
@@ -245,16 +253,16 @@ function handleListKeyDown(event) {
                         <Chart2/>
                         </td>
                       </tr>
-                    
+
                   </table>
                   <br/>
                   <table style={{marginRight :'auto', marginLeft :'auto'}}>
                       <tr>
                         <td style={{width : 300}}>
                           <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Mars 
+                           Mars
                           </div>
-                        
+
                         </td>
                       </tr>
                       <tr style={{border : 'solid'}}>
@@ -267,16 +275,16 @@ function handleListKeyDown(event) {
                         <Chart2/>
                         </td>
                       </tr>
-                    
+
                   </table>
                   <br/>
                   <table style={{marginRight :'auto', marginLeft :'auto'}}>
                       <tr>
                         <td style={{width : 300}}>
                           <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Avril 
+                           Avril
                           </div>
-                        
+
                         </td>
                       </tr>
                       <tr style={{border : 'solid'}}>
@@ -289,16 +297,16 @@ function handleListKeyDown(event) {
                         <Chart2/>
                         </td>
                       </tr>
-                    
+
                   </table>
                   <br/>
                   <table style={{marginRight :'auto', marginLeft :'auto'}}>
                       <tr>
                         <td style={{width : 300}}>
                           <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Mai 
+                           Mai
                           </div>
-                        
+
                         </td>
                       </tr>
                       <tr style={{border : 'solid'}}>
@@ -311,16 +319,16 @@ function handleListKeyDown(event) {
                         <Chart2/>
                         </td>
                       </tr>
-                    
+
                   </table>
                   <br/>
                   <table style={{marginRight :'auto', marginLeft :'auto'}}>
                       <tr>
                         <td style={{width : 300}}>
                           <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Juin 
+                           Juin
                           </div>
-                        
+
                         </td>
                       </tr>
                       <tr style={{border : 'solid'}}>
@@ -333,16 +341,16 @@ function handleListKeyDown(event) {
                         <Chart2/>
                         </td>
                       </tr>
-                    
+
                   </table>
                   <br/>
                   <table style={{marginRight :'auto', marginLeft :'auto'}}>
                       <tr>
                         <td style={{width : 300}}>
                           <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Juillet 
+                           Juillet
                           </div>
-                        
+
                         </td>
                       </tr>
                       <tr style={{border : 'solid'}}>
@@ -355,7 +363,7 @@ function handleListKeyDown(event) {
                         <Chart2/>
                         </td>
                       </tr>
-                    
+
                   </table>
                   <br/>
                   <table style={{marginRight :'auto', marginLeft :'auto'}}>
@@ -364,7 +372,7 @@ function handleListKeyDown(event) {
                           <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
                            Août
                           </div>
-                        
+
                         </td>
                       </tr>
                       <tr style={{border : 'solid'}}>
@@ -377,16 +385,16 @@ function handleListKeyDown(event) {
                         <Chart2/>
                         </td>
                       </tr>
-                    
+
                   </table>
                   <br/>
                   <table style={{marginRight :'auto', marginLeft :'auto'}}>
                       <tr>
                         <td style={{width : 300}}>
                           <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Septembre 
+                           Septembre
                           </div>
-                        
+
                         </td>
                       </tr>
                       <tr style={{border : 'solid'}}>
@@ -399,16 +407,16 @@ function handleListKeyDown(event) {
                         <Chart2/>
                         </td>
                       </tr>
-                    
+
                   </table>
                   <br/>
                   <table style={{marginRight :'auto', marginLeft :'auto'}}>
                       <tr>
                         <td style={{width : 300}}>
                           <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Octobre 
+                           Octobre
                           </div>
-                        
+
                         </td>
                       </tr>
                       <tr style={{border : 'solid'}}>
@@ -421,7 +429,7 @@ function handleListKeyDown(event) {
                         <Chart2/>
                         </td>
                       </tr>
-                    
+
                   </table>
                   <br/>
                   <table style={{marginRight :'auto', marginLeft :'auto'}}>
@@ -430,7 +438,7 @@ function handleListKeyDown(event) {
                           <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
                            Novembre
                           </div>
-                        
+
                         </td>
                       </tr>
                       <tr style={{border : 'solid'}}>
@@ -443,16 +451,16 @@ function handleListKeyDown(event) {
                         <Chart2/>
                         </td>
                       </tr>
-                    
+
                   </table>
                   <br/>
                   <table style={{marginRight :'auto', marginLeft :'auto'}}>
                       <tr>
                         <td style={{width : 300}}>
                           <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Décembre 
+                           Décembre
                           </div>
-                        
+
                         </td>
                       </tr>
                       <tr style={{border : 'solid'}}>
@@ -465,11 +473,11 @@ function handleListKeyDown(event) {
                         <Chart2/>
                         </td>
                       </tr>
-                    
+
                   </table>
-                  
-                 
-                 
+
+
+
 
                   {/* */}
               </div>

@@ -28,7 +28,13 @@ const useStyles = makeStyles((theme) => ({
 
 const { Header, Footer, Sider, Content } = Layout;
 
-function Maps() {
+function Maps(props) {
+
+
+	
+   
+    
+
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -165,6 +171,7 @@ function handleListKeyDown(event) {
                 <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Maps</h1></Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 580 , width: 100, height : 100}}>
+
              
               </div>
             </Content>

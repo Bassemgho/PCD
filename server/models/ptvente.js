@@ -7,9 +7,17 @@ const ptventeSch = mongoose.Schema({
 
   },
   nom:String,
-  horaire:String,
+  address:String,
+  //horaire:String,
   lat:String,
   lang:String,
+  heuredebut:String,
+  mindebut:String,
+  heurefin:String,
+  minfin:String,
+  jourdebut:String,
+  jourfin:String
+
 })
 
 const ptvente = mongoose.model("ptvente",ptventeSch);

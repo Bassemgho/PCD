@@ -13,6 +13,8 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
+import * as api from '../api/index.js';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -25,8 +27,73 @@ const useStyles = makeStyles((theme) => ({
 
 const { Header, Footer, Sider, Content } = Layout;
 
-function Paramcarte(props) {
+const Paramcarte = (props) => {
+
+  const ls= [];
+  for ( let i=5;i<100;i=i+5){
+    ls.push(i);
+  }
+  const lss= [];
+  for ( let j=1;j<25;j++){
+    lss.push(j);
+  }
+
+  const [pts,setPts] = useState('');
+  const [delai,setDelai] = useState('');
+  const [valeurbon,setValeurbon] = useState('');
+
+  const [ptsred,setPtsred] = useState('');
+  const [delaired,setDelaired] = useState('');
+  const [percent,setPercent] = useState('');
+
+  const handleChange = (e) => {
+    if (e.target.name==="pts") {
+      setPts(e.target.value)
+    }
+    if (e.target.name==="delai") {
+      setDelai(e.target.value)
+    }
+    if (e.target.name==="valbon") {
+      setValeurbon(e.target.value)
+    }
+    if (e.target.name==="ptsred") {
+      setPtsred(e.target.value)
+    }
+    if (e.target.name==="delaired") {
+      setDelaired(e.target.value)
+    }
+    if (e.target.name==="percent") {
+      setPercent(e.target.value)
+    }
+
+  }
   
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+    try {
+      const rep = await api.addbonparam(pts,delai,valeurbon, props.token);
+      console.log("parametres de bon ajoutés");
+    } catch (e) {
+      console.log(e.error);
+    }finally {
+
+    }
+  }
+  const handleSubmit1 = async (e) => {
+
+    e.preventDefault();
+    try {
+      const rep = await api.addredparam(ptsred,delaired,percent, props.token);
+      console.log("parametres de reduction ajoutés");
+    } catch (e) {
+      console.log(e.error);
+    }finally {
+
+    }
+  }
+
+
   const logout = () => {
     props.setAuthorized(false);
   }
@@ -171,7 +238,7 @@ function handleListKeyDown(event) {
               <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Paramètres de la carte de fidelité</h1></Breadcrumb.Item>
               </Breadcrumb>
-              <div style={{ background: '#fff', padding: 24, minHeight: 900}}>
+              <div style={{ background: '#fff', padding: 24, minHeight: 1050}}>
                 <br/>
                 <div style={{padding: 24, minHeight: 100 , width : 200}}>
                  <label class="bmd-label-floating">Montant d'argent <span className="text-danger">*</span></label>
@@ -180,19 +247,39 @@ function handleListKeyDown(event) {
                   <div style={{padding: 24, minHeight: 100 , width : 5, marginLeft : 168, marginTop : -108}}><br/><SwapOutlined /></div>
                   <div style={{padding: 24, minHeight: 100 , width : 200, marginLeft : 200, marginTop : -100}}>
                   <label>Nombre de points <span className="text-danger">*</span></label>
-                <input type="text" class="form-control" ></input>  
-                </div>
+                <input type="text" class="form-control" ></input>
                 <br/>
+                <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 10, marginRight: 243}}>Enregistrer</button>   
+                </div>
+                <br/><br/><br/>
+                <hr></hr>
                 <label class="bmd-label-floating">Offres et cadeaux <span className="text-danger">*</span></label>
+                <hr></hr>
                 <div className="radio">
           
-            <input type="radio" value="cheque"/>
-            Bande d'achat
+            <h4 style={{color:'red',fontWeight :'bold'}}>Bon d'achat</h4>
+            
             
             <div style={{padding: 15, minHeight: 100 , width : 300, marginLeft : 20}}>
-            Nombre de points nécessaires <input type="text" class="form-control" ></input>
-            Valeur <input type="text" class="form-control" ></input>
+            <form onSubmit = {handleSubmit}>
+            Nombre de points nécessaires <input type="text" name="pts" onChange={handleChange} class="form-control" ></input>
+            Valeur <input type="text" name="valbon" onChange={handleChange} class="form-control" ></input>
+            <table>
+              <tr>
+              <td style={{width : 240 , height : 50}}>
+            Validité (en mois):
+            </td>
+            <td style={{width : 90 , height : 50}}> 
+            <select name="delai" onChange={handleChange} size="1">
+              {lss.map((j) => (
+                <option value={j}>{j}</option>
+              ))}
+            </select> 
             
+              </td>
+            </tr>
+            </table>
+            {/*
             <table>
               <tr>
 
@@ -257,36 +344,37 @@ function handleListKeyDown(event) {
               </td>
               </tr>
               </table>
+            */}
+              <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 10, marginRight: 140}}>Ajouter bon d'achat</button>
+              </form>
             </div>
           
+          
+
         </div>
         
         <div className="radio">
-         
-            <input type="radio" value="red"/>
-            Réduction
+        <br/><br/><br/>
+        <h4 style={{color:'red',fontWeight :'bold'}}> Réduction</h4>
+           
             <div style={{padding: 15, minHeight: 100 , width : 300, marginLeft : 20}}>
-            Nombre de points nécessaires <input type="text" class="form-control" ></input>
+              <form onSubmit = {handleSubmit1}>
+            Nombre de points nécessaires <input type="text" name="ptsred" onChange={handleChange} class="form-control" ></input>
             <table>
               <tr>
               <td style={{width : 240 , height : 50}}>
-            Pourcentage (%) :
+            Pourcentage :
             </td>
-            <td style={{width : 90 , height : 50}}>  
-            <select name="percent" size="1">
-              <option>10</option>
-              <option>20</option>
-              <option>30</option>
-              <option>40</option>
-              <option>50</option>
-              <option>60</option>
-              <option>70</option>
-              <option>80</option>
-              <option>90</option>
-              <option>100</option>
-              </select>
+            <td style={{width : 90 , height : 50}}> 
+            <select name="percent" onChange={handleChange} size="1">
+              {ls.map((i) => (
+                <option value={i}>{i} %</option>
+              ))}
+            </select> 
+            
               </td>
-              </tr>
+            </tr>
+              {/*
               <tr>
               <td style={{width : 220 , height : 50}}>
             Valable de : 
@@ -346,14 +434,32 @@ function handleListKeyDown(event) {
               </select>
               </td>
               </tr>
+              */}
               </table>
+              <table>
+              <tr>
+              <td style={{width : 240 , height : 50}}>
+            Validité (en mois):
+            </td>
+            <td style={{width : 90 , height : 50}}> 
+            <select name="delaired" onChange={handleChange} size="1">
+              {lss.map((j) => (
+                <option value={j}>{j}</option>
+              ))}
+            </select> 
+            
+              </td>
+            </tr>
+            </table>
+              <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 10, marginRight: 100}}>Ajouter offre de réduction</button>
+              </form>
             </div>
           
         </div>
           
                 
                  
-                     <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 10, marginRight: 100}}>Enregistrer</button>  
+                      
                       
               </div>
             </Content>

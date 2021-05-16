@@ -44,9 +44,21 @@ class Partenaire extends React.Component{
 	
 		return posts.map((post, index) => (
 		  <div key={index} >
-			<h3 style ={{fontFamily : 'Monaco'}}>{post.name}</h3>
-			<p>
-			<img src={post.logo}  width="300" /></p>
+			  <table style={{marginLeft :'auto', marginRight :'auto'}}>
+				  <tr>
+					  <td>
+					  	<h3 style ={{fontFamily : 'Monaco'}}>{post.name}</h3>
+					  </td>
+				</tr>
+				<tr>
+					  <td>
+					  	<p>
+						<img src={post.logo}  width="300" /></p>
+					  </td>
+				  </tr>
+			  </table>
+			
+			
 			<b style={{color: 'red'}}>* * * * *</b>
 		  </div>
 		));

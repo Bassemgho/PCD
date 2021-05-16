@@ -5,9 +5,9 @@ const redparamsh = mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:"entreprise",
   },
-  pts:Number,
-  delais:Number,
-  pourcentagered:Number,
+  ptsred:Number,
+  delaired:Number,
+  percent:Number,
 })
 
 const redparam = mongoose.model("reductionparam",redparamsh);

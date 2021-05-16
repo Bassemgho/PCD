@@ -23,13 +23,19 @@ import Footer from './Footer';
           const rep = await api.sendcreds(username,password);
           console.log(rep);
           if (rep.data.success) {
+            props.setToken(rep.data.token);
             props.setAuthorized(true);
+            localStorage.setItem('authorized',true)
+            localStorage.setItem(rep.data.token);
           }
 
         } catch (e) {
           console.log(e);
           alert("Nom d'utilisateur ou mot de passe incorrect !");
         }
+      }
+      if (localStorage.getItem('authorized')==='true') {
+        return (<Route exact path="/signin"><Redirect to="/dashboard" /></Route>);
       }
       return(
           <div>
@@ -68,7 +74,7 @@ import Footer from './Footer';
                                           <hr/>
 
                                           <div className="row">
-                                              
+
                                               <div className="col-lg-4 text-right">
                                                 <button className="btn btn-action" type="submit"><Route exact path="/signin">{props.authorized ? <Redirect to="/dashboard" /> :'' }</Route>S'identifier</button>
                                               </div>

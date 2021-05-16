@@ -26,6 +26,7 @@ import {Redirect} from 'react-router-dom';
 
 function App() {
   const [authorized,setAuthorized] = useState(false)
+  const [token,setToken] = useState("");
   return (
     <div>
       <Router>
@@ -38,27 +39,27 @@ function App() {
             <Route path='/partenaire' component={Partenaire} />
             <Route path='/team' component={Team} />
             {/*<Route path='/signin' component={Signin} />*/}
-            <Route path='/signin' render={(props) => (<Signin {...props} authorized={authorized} setAuthorized={setAuthorized}  />)          } />
+            <Route path='/signin' render={(props) => (<Signin {...props} authorized={authorized} setAuthorized={setAuthorized} token={token} setToken={setToken}  />)          } />
             <Route path='/signup' component={Signup} />
             {/*<Route path='/dashboard' component={Dashboard} />*/}
-            <Route path='/dashboard' render={(props) => (<Dashboard {...props} authorized={authorized} setAuthorized={setAuthorized} />) } />
-            <Route path='/maps' component={Maps} />
+            <Route path='/dashboard' render={(props) => (<Dashboard {...props} authorized={authorized} setAuthorized={setAuthorized} token={token} />) } />
+            <Route path='/maps' render={(props) => (<Maps {...props} authorized={authorized} setAuthorized={setAuthorized} token={token} />) } />
             {/*<Route path='/profil' component={Profil} />*/}
-            <Route path='/profil' render={(props) => (<Profil {...props} authorized={authorized} setAuthorized={setAuthorized} />) } />
+            <Route path='/profil' render={(props) => (<Profil {...props} authorized={authorized} setAuthorized={setAuthorized} token={token} />) } />
             {/*<Route path='/clients' component={Clients} />*/}
-            <Route path='/clients' render={(props) => (<Clients {...props} authorized={authorized} setAuthorized={setAuthorized} />) } />
+            <Route path='/clients' render={(props) => (<Clients {...props} authorized={authorized} setAuthorized={setAuthorized} token={token} />) } />
             {/*<Route path='/paramcarte' component={Paramcarte} />*/}
-            <Route path='/paramcarte' render={(props) => (<Paramcarte {...props} authorized={authorized} setAuthorized={setAuthorized} />) } />
+            <Route path='/paramcarte' render={(props) => (<Paramcarte {...props} authorized={authorized} setAuthorized={setAuthorized} token={token}/>) } />
             {/*<Route path='/pointsvente' component={Pointsvente} />*/}
-            <Route path='/pointsvente' render={(props) => (<Pointsvente {...props} authorized={authorized} setAuthorized={setAuthorized} />) } />
+            <Route path='/pointsvente' render={(props) => (<Pointsvente {...props} authorized={authorized} setAuthorized={setAuthorized} token={token} />) } />
             {/*<Route path='/categories' component={Categories} />*/}
-            <Route path='/categories' render={(props) => (<Categories {...props} authorized={authorized} setAuthorized={setAuthorized} />) } />
+            <Route path='/categories' render={(props) => (<Categories {...props} authorized={authorized} setAuthorized={setAuthorized} token={token} />) } />
             {/*<Route path='/event' component={Event} />*/}
-            <Route path='/event' render={(props) => (<Event {...props} authorized={authorized} setAuthorized={setAuthorized} />) } />
+            <Route path='/event' render={(props) => (<Event {...props} authorized={authorized} setAuthorized={setAuthorized} token={token}/>) } />
             {/*<Route path='/gestioncaissier' component={GestionCaissier} />*/}
-            <Route path='/gestioncaissier' render={(props) => (<GestionCaissier {...props} authorized={authorized} setAuthorized={setAuthorized} />) } />
+            <Route path='/gestioncaissier' render={(props) => (<GestionCaissier {...props} authorized={authorized} setAuthorized={setAuthorized} token={token} />) } />
             {/*<Route path='/caissier' component={Caissier} />*/}
-            <Route path='/caissier' render={(props) => (<Caissier {...props} authorized={authorized} setAuthorized={setAuthorized} />) } />
+            <Route path='/caissier' render={(props) => (<Caissier {...props} authorized={authorized} setAuthorized={setAuthorized} token={token} />) } />
             <Route path='/admin' component={Admin} />
           </Switch>        
 

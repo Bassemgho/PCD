@@ -48,7 +48,7 @@ function Map() {
 
   return (
     <div>
-      <h1>Bears <span role="img" aria-label="tent">⛺️</span></h1>
+      {/*<h1>Bears <span role="img" aria-label="tent">⛺️</span></h1>*/}
       <GoogleMap
        mapContainerStyle={mapContainerStyle} 
       zoom={8} 

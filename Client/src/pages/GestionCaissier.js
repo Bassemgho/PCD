@@ -175,6 +175,7 @@ function handleListKeyDown(event) {
                     <h4 style ={{fontWeight :'bold'}}>Ajouter un caissier</h4>
                  </div> 
                  <br/><br/>
+                 <form>
                  <label class="bmd-label-floating">Nom Entreprise</label>
                   <input type="text" class="form-control"></input>
                   <br/>
@@ -191,11 +192,13 @@ function handleListKeyDown(event) {
                      <button type="submit" class="btn btn-primary pull-rigt" style={{background: '#87bfd4', color: '#000000' , marginTop : -50}}>Ajouter</button>  
                      </tr>
                  </table>
+                 </form>
                      
                  <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
                     <h4 style ={{fontWeight :'bold'}}>Supprimer un caissier</h4>
                  </div> 
                  <br/><br/>
+                 <form>
                  <label class="bmd-label-floating">Nom Entreprise</label>
                   <input type="text" class="form-control"></input>
                   <br/>
@@ -213,7 +216,7 @@ function handleListKeyDown(event) {
                      </tr>
                  </table>
                 
-
+                 </form>
               </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}><h5 style={{fontWeight :'bold'}}>UNIFID:</h5> <h6 style={{ color: '#5b8db6'}}>meilleur programme de fidélisation</h6></Footer>

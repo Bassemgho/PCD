@@ -79,7 +79,7 @@ const Signup = () => {
                                           <label>Nom Utilisateur</label>
                                           <input type="text" name="username" onChange={handleChange} className="form-control"/>
                                           </div>
-                                  
+
                                       <div className="top-margin">
                                           <label>Adresse Email<span className="text-danger">*</span></label>
                                           <input type="text" name="email" onChange={handleChange} className="form-control"/>
@@ -101,13 +101,13 @@ const Signup = () => {
                                           <FileBase64 type="file" multiple={true} onDone={({base64})=> setPostData({ ...postData, selectedFile: base64})} />
                                           <input type="file" name="file" onChange={handleChange} />*/}
                                           <FileBase type="file" multiple={false} onDone={({ base64 }) => setLogo(base64)} />
-                                        
+
                                       </div>
 
                                       <hr/>
 
                                       <div className="row">
-                                         
+
                                           <div className="col-lg-4 text-right">
                                               <button className="btn btn-action" type="submit">S'inscrire</button>
                                           </div>

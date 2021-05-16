@@ -9,6 +9,7 @@ import {addbonparam} from '../controllers/bonparam.js'
 import {addredparam} from '../controllers/redparam.js'
 import {getptvente} from '../controllers/getptvente.js'
 import {addevent} from '../controllers/event.js'
+import {getshop} from '../controllers/shop.js'
 
 const router = express.Router();
 router.post('/signin',signin);
@@ -19,6 +20,7 @@ router.route('/addcaissier').post(protect,addCaissier);
 router.route('/addbonparam').post(protect,addbonparam);
 router.route('/addredparam').post(protect,addredparam);
 router.route('/addevent').post(protect,addevent);
+router.route('/shop/get').get(protect,getshop)
 
 //saw
 

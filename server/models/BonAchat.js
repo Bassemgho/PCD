@@ -10,12 +10,9 @@ const bonsch = mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:"entreprise",
   },
-  dateachat:Date,
   dateexpiration:Date,
 
-
-
-})
+},{timestamps:true})
 
 const bon = mongoose.model("bon",bonsch);
 export default bon;

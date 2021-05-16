@@ -1,14 +1,14 @@
 import mongoose from 'mongoose';
 
-const carteparamsch = mongoose.Schema({
+const shopparam = mongoose.Schema({
   id_entreprise:{
     type:mongoose.Schema.Types.ObjectId,
     ref:"entreprise",
   },
-  equiv_mont_pts:String,
+
   bonparams:[{
     type:mongoose.Schema.Types.ObjectId,
-    ref:"bonparam",
+    ref:"bonparams",
   }],
   reductionparams:[{
     type:mongoose.Schema.Types.ObjectId,
@@ -16,5 +16,9 @@ const carteparamsch = mongoose.Schema({
   }],
 
 })
-const carteparams = mongoose.model("carteparams",carteparamsch);
-export default carteparams;
+shopparam.methods.newbon = function (id) {
+  this.bonparams.push(id);
+}
+const shop = mongoose.model("shop",shopparam);
+shop.createIndexes()
+export default shop;

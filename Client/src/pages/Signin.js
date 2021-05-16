@@ -26,12 +26,16 @@ import Footer from './Footer';
             props.setToken(rep.data.token);
             props.setAuthorized(true);
             localStorage.setItem('authorized',true)
-            localStorage.setItem(rep.data.token);
+            localStorage.setItem("token",rep.data.token);
+            localStorage.setItem("expirationdate",rep.data.expirationdate)
+          }
+          else {
+            alert("Nom d'utilisateur ou mot de passe incorrect !");
           }
 
         } catch (e) {
           console.log(e);
-          alert("Nom d'utilisateur ou mot de passe incorrect !");
+          // alert("Nom d'utilisateur ou mot de passe incorrect !");
         }
       }
       if (localStorage.getItem('authorized')==='true') {

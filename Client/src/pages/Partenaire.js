@@ -6,6 +6,8 @@ import Header from './Header';
 import Footer from './Footer';
 
 import {Link} from 'react-router-dom';
+import { Card} from 'antd';
+import Title from 'antd/lib/typography/Title';
 
 
 
@@ -44,22 +46,22 @@ class Partenaire extends React.Component{
 	
 		return posts.map((post, index) => (
 		  <div key={index} >
-			  <table style={{marginLeft :'auto', marginRight :'auto'}}>
-				  <tr>
-					  <td>
-					  	<h3 style ={{fontFamily : 'Monaco'}}>{post.name}</h3>
-					  </td>
-				</tr>
+			<table style={{marginLeft :'auto', marginRight :'auto'}}>
 				<tr>
-					  <td>
-					  	<p>
-						<img src={post.logo}  width="300" /></p>
-					  </td>
-				  </tr>
-			  </table>
-			
-			
-			<b style={{color: 'red'}}>* * * * *</b>
+				  <td>
+					<Card bordered style={{ width: 300, height: 200, float: 'left', margin: 10 }}>
+			  			<br/>
+				  		<p style={{textAlign:'center'}}>
+							<img src={post.logo}  width="100" height="100" />
+						</p>
+						<Card.Grid style={{ width: '100%' }}>
+							<Title level={4} style={{textAlign :'center'}} > {post.name}</Title>
+						</Card.Grid>
+			  		</Card>
+				  </td>
+			  </tr>				
+		 	 </table>
+			 	 <hr></hr>
 		  </div>
 		));
 	  };
@@ -76,9 +78,9 @@ class Partenaire extends React.Component{
 			</ol>
 			<br/>
 			<br/><br/>
-			<div style={{textAlign : 'center'}}>
-          {this.displayBlogPost(this.state.posts)}
-        </div>
+			<div>
+          		{this.displayBlogPost(this.state.posts)}
+       		</div>
 			
 			<Footer/>	
 		</div>

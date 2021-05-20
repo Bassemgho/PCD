@@ -5,7 +5,7 @@ import Title from 'antd/lib/typography/Title';
 import SubMenu from 'antd/lib/menu/SubMenu';
 
 import {Link,Route,Redirect} from 'react-router-dom';
-import {WarningOutlined,ContactsOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+import {GiftOutlined,WarningOutlined,ContactsOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -20,6 +20,9 @@ import Map from './Map';
 import * as api from '../api/index.js';
 
 import axios from 'axios';
+
+import Ptvente from '../components/Ptvente';
+import Affichage from '../components/Affichage';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,8 +41,11 @@ const { Header, Footer, Sider, Content } = Layout;
 
 const Pointsvente = (props) => {
 
+
+  
   const id = {headers : { Authorization : `Bearer ${props.token}`}};
-  const urlaff = "http://localhost:5000/user"
+  
+  /*const urlaff = "http://localhost:5000/user"
 
   const stateinit = {
 		nom: '',
@@ -90,7 +96,32 @@ const Pointsvente = (props) => {
               </div>
             ));
             };
+*/
+/*
+const [get,setGet] = useState([]);
 
+ useEffect (async () => {
+
+  const token = localStorage.getItem("token");
+  try {
+    const {data} = await api.getptvente(token);
+    console.log(data);
+    setGet(data);
+  } catch (e) {
+    console.log(e.error);
+  }
+},[])
+
+
+const delete1 = (index)=> {
+  let listee = get;
+ // console.log(listee);
+  listee.splice(index,1);
+  //console.log(listee);
+  setGet(listee);
+  console.log(get);
+   
+}*/
 /*
   const useEffect=(async()=> {
     const rep = await api.getptvente(props.token);
@@ -275,12 +306,16 @@ function handleListKeyDown(event) {
             <Menu.Item key='paramcarte'>
                 <Link to ='/paramcarte'><SettingOutlined />Paramètres de la carte de fidelité</Link>
             </Menu.Item>
+            <Menu.Item key='bons'>
+                <Link to ='/bons'><GiftOutlined />Liste des bons d'achats</Link>
+            </Menu.Item>
+            <Menu.Item key='reduction'>
+                <Link to ='/reduction'><GiftOutlined />Liste des réductions</Link>
+            </Menu.Item>
             <Menu.Item key='gestioncaissier'>
                 <Link to ='/gestioncaissier'><UserAddOutlined />Gestion des caissiers</Link>
             </Menu.Item>
-            <Menu.Item key='Caissier'>
-                <Link to ='/caissier'><ContactsOutlined />Liste des caissiers</Link>
-            </Menu.Item>
+            
             <Menu.Item key='Clients'>
                 <Link to ='/clients'><TableOutlined />Table des clients</Link>
             </Menu.Item>
@@ -298,14 +333,12 @@ function handleListKeyDown(event) {
               >
                 <Menu.ItemGroup key='AboutUS'>
                   <Menu.Item key='location1'> <Link to='/pointsvente'><ShopOutlined />Points de vente</Link></Menu.Item>
-                  <Menu.Item key='location2'> <Link to='/categories'> <ShoppingOutlined />Catégories</Link></Menu.Item>
+                  
                   <Menu.Item key='location3'> <Link to='/event'> <AppstoreAddOutlined />Evenements</Link></Menu.Item>
 
                 </Menu.ItemGroup>
               </SubMenu>
-              <Menu.Item key='Maps'>
-              <span><Link to='/maps'><GlobalOutlined />Maps</Link></span>
-            </Menu.Item>
+             
             </Menu>
           </Sider>
 
@@ -314,7 +347,7 @@ function handleListKeyDown(event) {
               <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Points de vente</h1></Breadcrumb.Item>
               </Breadcrumb>
-              <div style={{ background: '#fff', padding: 24, height : 2500}}>
+              <div style={{ background: '#fff', padding: 24, height : 5000}}>
               <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
                     <h4 style ={{fontWeight :'bold'}}>Ajouter un nouveau point de vente</h4>
                  </div>
@@ -427,12 +460,17 @@ function handleListKeyDown(event) {
                  {/*      maaap      */}
                      <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 30, marginRight : 'auto', marginLeft : 'auto'}}>Ajouter</button>
                      </form>
-
-                     <div style={{textAlign : 'center'}}>
-          {displayBlogPost(state.get)}
-        </div>
-
-
+                
+                      <div style={{marginTop: 120}}>
+                      
+                          <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
+                              <h4 style ={{fontWeight :'bold'}}>Liste des points de vente</h4>
+                          </div>
+                          <br/>
+                            <Affichage />
+                      </div>
+                    
+                 
               </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}><h5 style={{fontWeight :'bold'}}>UNIFID:</h5> <h6 style={{ color: '#5b8db6'}}>meilleur programme de fidélisation</h6></Footer>

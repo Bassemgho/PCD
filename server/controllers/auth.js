@@ -51,3 +51,39 @@ const sendtoken = (user,code,res) => {
     token:token
   })
 }
+
+// paramcarte
+// ça marche pas bel shyh
+// à revoir 
+
+export const addparam = async (req,res,next) => {
+  const user = req.user;
+  const id_entreprise = user.id_entreprise;
+  const {newmontant,newequiv_mont_pts} = req.body;
+  try {
+    const up = await entreprise.find({id_entreprise });
+
+    if (!up) {
+      return next(new errorResponse("entreprise n'existe pas",404));
+    }else {
+      
+      entreprise.updateOne({montant : user.id_entreprise.montant},{montant: newmontant},function (err,res) {
+        if (err) {
+          console.log("error"+err);
+        }else {
+          console.log("result"+res);
+        }
+      })
+      entreprise.updateOne({equiv_mont_pts: user.id_entreprise.equiv_mont_pts },{equiv_mont_pts : newequiv_mont_pts},function (err,res) {
+        if (err) {
+          console.log("error"+err);
+        }else {
+          console.log("result"+res);
+        }
+      })
+     
+    }
+  } catch (error) {
+    next(error);
+  }
+}

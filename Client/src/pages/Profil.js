@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import './Dash.css';
 import { Layout, Avatar, Menu, Breadcrumb, Button } from 'antd';
 import Title from 'antd/lib/typography/Title';
 import SubMenu from 'antd/lib/menu/SubMenu';
 
 import {Link,Route,Redirect} from 'react-router-dom';
-import {ContactsOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+import {GiftOutlined,ContactsOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -14,6 +14,10 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
+
+import * as api from '../api/index.js';
+import {useSelector } from 'react-redux';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -26,8 +30,42 @@ const useStyles = makeStyles((theme) => ({
 
 const { Header, Footer, Sider, Content } = Layout;
 
-function Profil(props) {
+const Profil = (props) => {
 
+  //
+  /*
+  const [newusername,setNewusername] = useState('');
+  const [newemail, setNewemail] = useState ('');
+  const [newpassword, setNewpassword] = useState ('');
+
+  const handleChange = (e) => {
+    if (e.target.name==="username") {
+      setNewusername(e.target.value)
+    }
+    if (e.target.name==="email") {
+      setNewemail(e.target.value)
+    }
+    if (e.target.name==="password") {
+      setNewpassword(e.target.value)
+    }
+  }
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+    try {
+      const rep = await api.updateEntreprise(newusername, newemail, newpassword, props.token);
+      console.log("updated");
+    } catch (e) {
+      console.log(e.error);
+    }finally {
+
+    }
+  }
+*/
+
+
+  //
   const logout = () => {
     props.setAuthorized(false);
   }
@@ -133,12 +171,16 @@ function handleListKeyDown(event) {
             <Menu.Item key='paramcarte'>
                 <Link to ='/paramcarte'><SettingOutlined />Paramètres de la carte de fidelité</Link>
             </Menu.Item>
+            <Menu.Item key='bons'>
+                <Link to ='/bons'><GiftOutlined />Liste des bons d'achats</Link>
+            </Menu.Item>
+            <Menu.Item key='reduction'>
+                <Link to ='/reduction'><GiftOutlined />Liste des réductions</Link>
+            </Menu.Item>
             <Menu.Item key='gestioncaissier'>
                 <Link to ='/gestioncaissier'><UserAddOutlined />Gestion des caissiers</Link>
             </Menu.Item>
-            <Menu.Item key='Caissier'>
-                <Link to ='/caissier'><ContactsOutlined />Liste des caissiers</Link>
-            </Menu.Item>
+            
             <Menu.Item key='Clients'>
                 <Link to ='/clients'><TableOutlined />Table des clients</Link>
             </Menu.Item>
@@ -156,14 +198,12 @@ function handleListKeyDown(event) {
               >
                 <Menu.ItemGroup key='AboutUS'>
                   <Menu.Item key='location1'> <Link to='/pointsvente'><ShopOutlined />Points de vente</Link></Menu.Item>
-                  <Menu.Item key='location2'> <Link to='/categories'> <ShoppingOutlined />Catégories</Link></Menu.Item>
+                  
                   <Menu.Item key='location3'> <Link to='/event'> <AppstoreAddOutlined />Evenements</Link></Menu.Item>
 
                 </Menu.ItemGroup>
               </SubMenu>
-              <Menu.Item key='Maps'>
-              <span><Link to='/maps'><GlobalOutlined />Maps</Link></span>
-            </Menu.Item>
+              
             </Menu>
           </Sider>
           <Layout>
@@ -176,24 +216,23 @@ function handleListKeyDown(event) {
                     <h4 style ={{fontWeight :'bold'}}>Modifier Profil</h4>
                  </div>   
                  <br/><br/>
+                 <form >
                  <label class="bmd-label-floating">Nom d'utilisateur</label>
-                  <input type="text" class="form-control"></input>
+                  <input type="text" name="username" class="form-control"></input>
                   <br/>
                  <label class="bmd-label-floating">Adresse Email</label>
-                  <input type="text" class="form-control"></input>
+                  <input type="text" name="email" class="form-control"></input>
                   <br/>
                   <label class="bmd-label-floating">Nouveau mot de passe</label>
-                <input type="text" class="form-control"></input>  
+                <input type="text" name="password" class="form-control"></input>  
                 <br/>
                 <label class="bmd-label-floating">Nouveau logo</label>
                  <input type="file" class="form-control"></input>    
-                 <br/>
-                <label class="bmd-label-floating">Description</label>
-                 <input type="text" class="form-control"></input>
+                 
                  <br/><br/>
                  <br/>
                      <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000'}}>Enregistrer</button>  
-                      
+                      </form>
               </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}><h5 style={{fontWeight :'bold'}}>UNIFID:</h5> <h6 style={{ color: '#5b8db6'}}>meilleur programme de fidélisation</h6></Footer>

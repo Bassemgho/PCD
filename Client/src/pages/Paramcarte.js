@@ -4,7 +4,9 @@ import { Layout, Avatar, Menu, Breadcrumb, Button } from 'antd';
 import Title from 'antd/lib/typography/Title';
 import SubMenu from 'antd/lib/menu/SubMenu';
 import {Link,Route,Redirect} from 'react-router-dom';
-import {ContactsOutlined,UserAddOutlined,SwapOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+import {GiftOutlined,ContactsOutlined,UserAddOutlined,SwapOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+
+import { Card} from 'antd';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -46,6 +48,9 @@ const Paramcarte = (props) => {
   const [delaired,setDelaired] = useState('');
   const [percent,setPercent] = useState('');
 
+ //const [newmontant,setNewmontant] = useState ('');
+  //const [newequiv_mont_pts,setNewequiv_mont_pts] = useState ('');
+
   const handleChange = (e) => {
     if (e.target.name==="pts") {
       setPts(e.target.value)
@@ -65,6 +70,12 @@ const Paramcarte = (props) => {
     if (e.target.name==="percent") {
       setPercent(e.target.value)
     }
+    /*if (e.target.name==="montant") {
+      setNewmontant(e.target.value)
+    }
+    if (e.target.name==="points") {
+      setNewequiv_mont_pts(e.target.value)
+    }*/
 
   }
   
@@ -92,7 +103,20 @@ const Paramcarte = (props) => {
 
     }
   }
+  /*
+  const handleSubmit2 = async (e) => {
 
+    e.preventDefault();
+    try {
+      const rep = await api.addparam(newmontant, newequiv_mont_pts , props.token);
+      console.log("parametres carte ajoutés");
+    } catch (e) {
+      console.log(e.error);
+    }finally {
+
+    }
+  }
+*/
 
   const logout = () => {
     props.setAuthorized(false);
@@ -199,12 +223,16 @@ function handleListKeyDown(event) {
             <Menu.Item key='paramcarte'>
                 <Link to ='/paramcarte'><SettingOutlined />Paramètres de la carte de fidelité</Link>
             </Menu.Item>
+            <Menu.Item key='bons'>
+                <Link to ='/bons'><GiftOutlined />Liste des bons d'achats</Link>
+            </Menu.Item>
+            <Menu.Item key='reduction'>
+                <Link to ='/reduction'><GiftOutlined />Liste des réductions</Link>
+            </Menu.Item>
             <Menu.Item key='gestioncaissier'>
                 <Link to ='/gestioncaissier'><UserAddOutlined />Gestion des caissiers</Link>
             </Menu.Item>
-            <Menu.Item key='Caissier'>
-                <Link to ='/caissier'><ContactsOutlined />Liste des caissiers</Link>
-            </Menu.Item>
+            
             <Menu.Item key='Clients'>
                 <Link to ='/clients'><TableOutlined />Table des clients</Link>
             </Menu.Item>
@@ -222,14 +250,12 @@ function handleListKeyDown(event) {
               >
                 <Menu.ItemGroup key='AboutUS'>
                   <Menu.Item key='location1'> <Link to='/pointsvente'><ShopOutlined />Points de vente</Link></Menu.Item>
-                  <Menu.Item key='location2'> <Link to='/categories'> <ShoppingOutlined />Catégories</Link></Menu.Item>
+                  
                   <Menu.Item key='location3'> <Link to='/event'> <AppstoreAddOutlined />Evenements</Link></Menu.Item>
 
                 </Menu.ItemGroup>
               </SubMenu>
-              <Menu.Item key='Maps'>
-              <span><Link to='/maps'><GlobalOutlined />Maps</Link></span>
-            </Menu.Item>
+              
             </Menu>
           </Sider>
           
@@ -239,28 +265,35 @@ function handleListKeyDown(event) {
                 <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Paramètres de la carte de fidelité</h1></Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ background: '#fff', padding: 24, minHeight: 1050}}>
+         
+                 <hr></hr>
+                <label class="bmd-label-floating">Paramètres de fidelisation</label>
+                <hr></hr>
                 <br/>
+                <form>
                 <div style={{padding: 24, minHeight: 100 , width : 200}}>
                  <label class="bmd-label-floating">Montant d'argent <span className="text-danger">*</span></label>
-                  <input type="text" class="form-control"></input>
+                  <input type="text" name="montant"  class="form-control"></input>
                   </div>
                   <div style={{padding: 24, minHeight: 100 , width : 5, marginLeft : 168, marginTop : -108}}><br/><SwapOutlined /></div>
                   <div style={{padding: 24, minHeight: 100 , width : 200, marginLeft : 200, marginTop : -100}}>
                   <label>Nombre de points <span className="text-danger">*</span></label>
-                <input type="text" class="form-control" ></input>
+                <input type="text" name="points"  class="form-control" ></input>
                 <br/>
                 <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 10, marginRight: 243}}>Enregistrer</button>   
                 </div>
+                </form>
                 <br/><br/><br/>
                 <hr></hr>
-                <label class="bmd-label-floating">Offres et cadeaux <span className="text-danger">*</span></label>
+                <label class="bmd-label-floating">Offres et cadeaux </label>
                 <hr></hr>
-                <div className="radio">
+                <div>
+                <Card bordered style={{ width: 350,height:370, float: 'left', margin: 10 }}>
           
-            <h4 style={{color:'red',fontWeight :'bold'}}>Bon d'achat</h4>
+            <h4 style={{color:'red',fontWeight :'bold',textAlign:'center'}}>Bon d'achat</h4>
+            <hr></hr>
             
-            
-            <div style={{padding: 15, minHeight: 100 , width : 300, marginLeft : 20}}>
+            <div style={{padding: 15, minHeight: 100 , width : 300}}>
             <form onSubmit = {handleSubmit}>
             Nombre de points nécessaires <input type="text" name="pts" onChange={handleChange} class="form-control" ></input>
             Valeur <input type="text" name="valbon" onChange={handleChange} class="form-control" ></input>
@@ -279,85 +312,20 @@ function handleListKeyDown(event) {
               </td>
             </tr>
             </table>
-            {/*
-            <table>
-              <tr>
-
-              
-            <td style={{width : 85 , height : 50}}>
-            Valable de :  
-            </td>
-            <td style={{width : 85 , height : 50}}>
-            <select name="month" size="1">
-              <option>Janvier</option>
-              <option>Février</option>
-              <option>Mars</option>
-              <option>Avril</option>
-              <option>Mai</option>
-              <option>Juin</option>
-              <option>Juillet</option>
-              <option>Août</option>
-              <option>Septembre</option>
-              <option>Octobre</option>
-              <option>Novembre</option>
-              <option>Décembre</option>
-              </select>
-              </td>
-              <td style={{width : 85 , height : 50}}>
-              <select name="year" size="1">
-              <option>2021</option>
-              <option>2022</option>
-              <option>2023</option>
-              <option>2024</option>
-              <option>2025</option>
-              </select>
-              </td>
-              </tr>
-            <tr>
-            <td style={{width : 85 , height : 50}}>
-            Jusqu'à : 
-            </td>
-            <td style={{width : 100 , height : 50}}>
-            <select name="month" size="1">
-              <option>Janvier</option>
-              <option>Février</option>
-              <option>Mars</option>
-              <option>Avril</option>
-              <option>Mai</option>
-              <option>Juin</option>
-              <option>Juillet</option>
-              <option>Août</option>
-              <option>Septembre</option>
-              <option>Octobre</option>
-              <option>Novembre</option>
-              <option>Décembre</option>
-              </select>
-              </td>
-              <td style={{width : 85 , height : 50}}>
-              <select name="year" size="1">
-              <option>2021</option>
-              <option>2022</option>
-              <option>2023</option>
-              <option>2024</option>
-              <option>2025</option>
-              </select>
-              </td>
-              </tr>
-              </table>
-            */}
-              <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 10, marginRight: 140}}>Ajouter bon d'achat</button>
+            <Card.Grid style={{ width: '100%' }}>
+                <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginRight: 10}}>Ajouter bon d'achat</button>
+            </Card.Grid>
               </form>
+              
             </div>
-          
-          
-
+            </Card>
         </div>
         
-        <div className="radio">
-        <br/><br/><br/>
-        <h4 style={{color:'red',fontWeight :'bold'}}> Réduction</h4>
-           
-            <div style={{padding: 15, minHeight: 100 , width : 300, marginLeft : 20}}>
+        <div>
+        <Card bordered style={{ width: 350,height:370, float: 'left', margin: 10 }}>
+        <h4 style={{color:'red',fontWeight :'bold',textAlign:'center'}}> Réduction</h4>
+        <hr></hr>
+            <div style={{padding: 15, minHeight: 100 , width : 300}}>
               <form onSubmit = {handleSubmit1}>
             Nombre de points nécessaires <input type="text" name="ptsred" onChange={handleChange} class="form-control" ></input>
             <table>
@@ -374,67 +342,7 @@ function handleListKeyDown(event) {
             
               </td>
             </tr>
-              {/*
-              <tr>
-              <td style={{width : 220 , height : 50}}>
-            Valable de : 
-            </td>
-            <td style={{width : 120 , height : 50}}>
-            <select name="month" size="1">
-              <option>Janvier</option>
-              <option>Février</option>
-              <option>Mars</option>
-              <option>Avril</option>
-              <option>Mai</option>
-              <option>Juin</option>
-              <option>Juillet</option>
-              <option>Août</option>
-              <option>Septembre</option>
-              <option>Octobre</option>
-              <option>Novembre</option>
-              <option>Décembre</option>
-              </select>
-              </td>
-              <td style={{width : 50 , height : 50}}>
-              <select name="year" size="1">
-              <option>2021</option>
-              <option>2022</option>
-              <option>2023</option>
-              <option>2024</option>
-              <option>2025</option>
-              </select>
-              </td>
-              </tr>
-              <tr>
-              <td style={{width : 220 , height : 50}}>
-            Jusqu'à : </td>
-            <td style={{width : 100 , height : 50}}>
-            <select name="month" size="1">
-              <option>Janvier</option>
-              <option>Février</option>
-              <option>Mars</option>
-              <option>Avril</option>
-              <option>Mai</option>
-              <option>Juin</option>
-              <option>Juillet</option>
-              <option>Août</option>
-              <option>Septembre</option>
-              <option>Octobre</option>
-              <option>Novembre</option>
-              <option>Décembre</option>
-              </select>
-              </td>
-              <td style={{width : 85 , height : 50}}>
-              <select name="year" size="1">
-              <option>2021</option>
-              <option>2022</option>
-              <option>2023</option>
-              <option>2024</option>
-              <option>2025</option>
-              </select>
-              </td>
-              </tr>
-              */}
+              
               </table>
               <table>
               <tr>
@@ -451,16 +359,16 @@ function handleListKeyDown(event) {
               </td>
             </tr>
             </table>
-              <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 10, marginRight: 100}}>Ajouter offre de réduction</button>
+            <Card.Grid style={{ width: '100%' ,textAlign:'center'}}>
+              <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginRight: -9}}>Ajouter offre de réduction</button>
+            </Card.Grid>
               </form>
             </div>
-          
+            </Card>
+            
         </div>
-          
-                
-                 
-                      
-                      
+       
+        
               </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}><h5 style={{fontWeight :'bold'}}>UNIFID:</h5> <h6 style={{ color: '#5b8db6'}}>meilleur programme de fidélisation</h6></Footer>

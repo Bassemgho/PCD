@@ -5,9 +5,9 @@ const bonparmsch = mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:"entreprise",
   },
-  pts:Number,
-  delai:Number,
-  valeurbon:Number,
+  pts:String,
+  delai:String,
+  valeurbon:String,
 })
 bonparmsch.pre('save',async function (next) {
   let sh = await shop.findOne({id_entreprise:this.id_entreprise})

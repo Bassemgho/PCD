@@ -7,7 +7,7 @@ export const getshop = async (req,res,next) => {
   const user = req.user;
   try {
 
-    const data = await shop.findOne({id_entreprise:user.id_entreprise}).populate("bonparams").populate("reductionparams").exec();
+    const data = await shop.find({}).populate("id_entreprise").populate("bonparams").populate("reductionparams").exec();
     return res.status(201).json({success:true,data})
   } catch (e) {
     next(e)

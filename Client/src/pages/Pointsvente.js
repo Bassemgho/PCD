@@ -76,6 +76,8 @@ const Pointsvente = (props) => {
 
 
             return posts.map((post, index) => (
+              return(
+
               <div key={index} >
                 <p>{post.nom}</p>
                 <p>{post.address}</p>
@@ -88,6 +90,7 @@ const Pointsvente = (props) => {
                 <p>{post.jourdebut}</p>
                 <p>{post.jourfin}</p>
               </div>
+            )
             ));
             };
 

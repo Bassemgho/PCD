@@ -20,7 +20,7 @@ router.route('/addcaissier').post(protect,addCaissier);
 router.route('/addbonparam').post(protect,addbonparam);
 router.route('/addredparam').post(protect,addredparam);
 router.route('/addevent').post(protect,addevent);
-router.route('/shop/get').get(protect,getshop)
+// router.route('/shop/get').get(protect,getshop)
 
 //saw
 

@@ -5,6 +5,7 @@ const redparamsh = mongoose.Schema({
   id_entreprise:{
     type:mongoose.Schema.Types.ObjectId,
     ref:"entreprise",
+    select:false
   },
   ptsred:Number,
   delaired:Number,

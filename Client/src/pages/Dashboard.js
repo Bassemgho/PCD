@@ -5,7 +5,7 @@ import Title from 'antd/lib/typography/Title';
 import SubMenu from 'antd/lib/menu/SubMenu';
 
 import {Link, Route, Redirect} from 'react-router-dom';
-import {ContactsOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+import {ContactsOutlined,GiftOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
 
 import Chart from './Chart';
 import Chart1 from './Chart1';
@@ -149,12 +149,16 @@ function handleListKeyDown(event) {
             <Menu.Item key='paramcarte'>
                 <Link to ='/paramcarte'><SettingOutlined />Paramètres de la carte de fidelité</Link>
             </Menu.Item>
+            <Menu.Item key='bons'>
+                <Link to ='/bons'><GiftOutlined />Liste des bons d'achats</Link>
+            </Menu.Item>
+            <Menu.Item key='reduction'>
+                <Link to ='/reduction'><GiftOutlined />Liste des réductions</Link>
+            </Menu.Item>
             <Menu.Item key='gestioncaissier'>
                 <Link to ='/gestioncaissier'><UserAddOutlined />Gestion des caissiers</Link>
             </Menu.Item>
-            <Menu.Item key='Caissier'>
-                <Link to ='/caissier'><ContactsOutlined />Liste des caissiers</Link>
-            </Menu.Item>
+          
             <Menu.Item key='Clients'>
                 <Link to ='/clients'><TableOutlined />Table des clients</Link>
             </Menu.Item>
@@ -172,14 +176,12 @@ function handleListKeyDown(event) {
               >
                 <Menu.ItemGroup key='AboutUS'>
                   <Menu.Item key='location1'> <Link to='/pointsvente'><ShopOutlined />Points de vente</Link></Menu.Item>
-                  <Menu.Item key='location2'> <Link to='/categories'> <ShoppingOutlined />Catégories</Link></Menu.Item>
+                 
                   <Menu.Item key='location3'> <Link to='/event'> <AppstoreAddOutlined />Evenements</Link></Menu.Item>
 
                 </Menu.ItemGroup>
               </SubMenu>
-              <Menu.Item key='Maps'>
-              <span><Link to='/maps'><GlobalOutlined />Maps</Link></span>
-            </Menu.Item>
+              
             </Menu>
           </Sider>
 

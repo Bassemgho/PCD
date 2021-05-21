@@ -10,6 +10,7 @@ import homerouter from './routes/home.js'
 import appRouter from './routes/approutes/user.js'
 import entrepriserouter from './routes/entreprise.js'
 
+import paramrouter from './routes/params.js'
 
 const app=express();
 app.use(bodyParser.json({limit:"30mb",extended:true}));
@@ -20,6 +21,9 @@ app.use('/user',userrouter);
 app.use('/home',homerouter);
 app.use('/app',appRouter);
 app.use('/entreprise',entrepriserouter);
+
+app.use('/params',paramrouter);
+
 app.use('/',(req,res) => {
   return res.status(201).json({message:'hello there'})
 })

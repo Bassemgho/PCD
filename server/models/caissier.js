@@ -8,6 +8,8 @@ const caissierSch = mongoose.Schema({
 
   },
   name:String,
+  nomentreprise:String,
+  nomptvente:String,
   id_user:{
     type:mongoose.Schema.Types.ObjectId,
     ref:'Appuser'

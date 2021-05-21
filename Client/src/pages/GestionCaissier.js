@@ -5,7 +5,7 @@ import Title from 'antd/lib/typography/Title';
 import SubMenu from 'antd/lib/menu/SubMenu';
 
 import {Link, Route,Redirect} from 'react-router-dom';
-import {ContactsOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+import {GiftOutlined,ContactsOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -14,6 +14,12 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
+
+import * as api from '../api/index.js';
+
+import Affcaissier from '../components/Affcaissier';
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -26,11 +32,42 @@ const useStyles = makeStyles((theme) => ({
 
 const { Header, Footer, Sider, Content } = Layout;
 
-function GestionCaissier(props) {
+const GestionCaissier = (props) => {
 
   const logout = () => {
     props.setAuthorized(false);
   }
+
+  const [nom,setNom] = useState('');
+  const [nomentreprise,setNomentreprise] = useState('');
+  const [nomptvente,setNomptvente] = useState ('');
+
+  const handleChange = (e) => {
+    if (e.target.name==="name") {
+      setNom(e.target.value)
+    }
+    if (e.target.name==="nomentreprise") {
+      setNomentreprise(e.target.value)
+    }
+    if (e.target.name==="nomptvente") {
+      setNomptvente(e.target.value)
+    }
+  }
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+    try {
+      const rep = await api.addcaissier(nom, nomentreprise, nomptvente, props.token);
+      console.log("caissier ajouté");
+    } catch (e) {
+      console.log(e.error);
+    }finally {
+
+    }
+  }
+
+
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -132,12 +169,16 @@ function handleListKeyDown(event) {
             <Menu.Item key='paramcarte'>
                 <Link to ='/paramcarte'><SettingOutlined />Paramètres de la carte de fidelité</Link>
             </Menu.Item>
+            <Menu.Item key='bons'>
+                <Link to ='/bons'><GiftOutlined />Liste des bons d'achats</Link>
+            </Menu.Item>
+            <Menu.Item key='reduction'>
+                <Link to ='/reduction'><GiftOutlined />Liste des réductions</Link>
+            </Menu.Item>
             <Menu.Item key='gestioncaissier'>
                 <Link to ='/gestioncaissier'><UserAddOutlined />Gestion des caissiers</Link>
             </Menu.Item>
-            <Menu.Item key='Caissier'>
-                <Link to ='/caissier'><ContactsOutlined />Liste des caissiers</Link>
-            </Menu.Item>
+            
             <Menu.Item key='Clients'>
                 <Link to ='/clients'><TableOutlined />Table des clients</Link>
             </Menu.Item>
@@ -155,14 +196,12 @@ function handleListKeyDown(event) {
               >
                 <Menu.ItemGroup key='AboutUS'>
                   <Menu.Item key='location1'> <Link to='/pointsvente'><ShopOutlined />Points de vente</Link></Menu.Item>
-                  <Menu.Item key='location2'> <Link to='/categories'> <ShoppingOutlined />Catégories</Link></Menu.Item>
+                  
                   <Menu.Item key='location3'> <Link to='/event'> <AppstoreAddOutlined />Evenements</Link></Menu.Item>
 
                 </Menu.ItemGroup>
               </SubMenu>
-              <Menu.Item key='Maps'>
-              <span><Link to='/maps'><GlobalOutlined />Maps</Link></span>
-            </Menu.Item>
+              
             </Menu>
           </Sider>
           <Layout>
@@ -170,20 +209,20 @@ function handleListKeyDown(event) {
               <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Gestion des caissiers</h1></Breadcrumb.Item>
               </Breadcrumb>
-              <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
+              <div style={{ background: '#fff', padding: 24, minHeight: 1000 }}>
               <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
                     <h4 style ={{fontWeight :'bold'}}>Ajouter un caissier</h4>
                  </div> 
                  <br/><br/>
-                 <form>
+                 <form onSubmit = {handleSubmit}>
                  <label class="bmd-label-floating">Nom Entreprise</label>
-                  <input type="text" class="form-control"></input>
+                  <input type="text" name="nomentreprise" onChange={handleChange} class="form-control"></input>
                   <br/>
                  <label class="bmd-label-floating">Nom point de vente</label>
-                  <input type="text" class="form-control"></input>
+                  <input type="text" name="nomptvente" onChange={handleChange} class="form-control"></input>
                   <br/>
                   <label class="bmd-label-floating">Nom caissier</label>
-                <input type="text" class="form-control"></input>  
+                <input type="text" name="name" onChange={handleChange} class="form-control"></input>  
                 
                  <br/><br/>
                  <br/>
@@ -194,11 +233,12 @@ function handleListKeyDown(event) {
                  </table>
                  </form>
                      
-                 <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
+                 {/*<div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
                     <h4 style ={{fontWeight :'bold'}}>Supprimer un caissier</h4>
-                 </div> 
+                 </div> */}
                  <br/><br/>
-                 <form>
+
+                 {/*<form>
                  <label class="bmd-label-floating">Nom Entreprise</label>
                   <input type="text" class="form-control"></input>
                   <br/>
@@ -216,7 +256,15 @@ function handleListKeyDown(event) {
                      </tr>
                  </table>
                 
-                 </form>
+                 </form>*/}
+                  <div style={{marginTop: 40}}>
+                      
+                      <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
+                          <h4 style ={{fontWeight :'bold'}}>Liste des caissiers</h4>
+                      </div>
+                      <br/>
+                        <Affcaissier />
+                  </div>
               </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}><h5 style={{fontWeight :'bold'}}>UNIFID:</h5> <h6 style={{ color: '#5b8db6'}}>meilleur programme de fidélisation</h6></Footer>

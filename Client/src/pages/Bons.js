@@ -3,11 +3,10 @@ import './Dash.css';
 import { Layout, Avatar, Menu, Breadcrumb, Button } from 'antd';
 import Title from 'antd/lib/typography/Title';
 import SubMenu from 'antd/lib/menu/SubMenu';
-import { Cricketer, ODICareer, Batting, Bowling, TestCareer } from './Cricketer';
-import CareerDetails from './CareerDetails';
-
 import {Link,Route,Redirect} from 'react-router-dom';
-import {ContactsOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+import {GiftOutlined,ContactsOutlined,UserAddOutlined,SwapOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+
+import { Card} from 'antd';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -16,6 +15,10 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
+import * as api from '../api/index.js';
+import Bonget from '../components/Bonget';
+import Affbon from '../components/Affbon';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -25,9 +28,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const { Header, Footer, Sider, Content } = Layout;
 
-function Caissier(props) {
+const Bons = (props) => {
+
 
   const logout = () => {
     props.setAuthorized(false);
@@ -66,6 +71,7 @@ function handleListKeyDown(event) {
   }, [open]);
 
 
+
   const [selectedPlayer, setSelectedPlayer] = useState('');
   const [visible, setVisible] = useState(false);
   const onSelect = name => {
@@ -78,7 +84,7 @@ function handleListKeyDown(event) {
 
   const onClose = () => setVisible(false);
   if (!(props.authorized)) {
-    return (<Route exact path="/caissier"><Redirect to="/signin" /></Route>);
+    return (<Route exact path="/bons"><Redirect to="/signin" /></Route>);
   }
   else 
   return (
@@ -118,13 +124,13 @@ function handleListKeyDown(event) {
           </Popper>
         </div>
         </div>
-
+          
           <Title style={{ color: 'white' }} level={2}>UNIFID</Title>
         </Header>
         <Layout>
           <Sider>
             <Menu
-              defaultSelectedKeys={['Caissier']}
+              defaultSelectedKeys={['Bons']}
               mode="inline"
             >
               <Menu.Item key='Dashboard'>
@@ -133,12 +139,16 @@ function handleListKeyDown(event) {
             <Menu.Item key='paramcarte'>
                 <Link to ='/paramcarte'><SettingOutlined />Paramètres de la carte de fidelité</Link>
             </Menu.Item>
+            <Menu.Item key='bons'>
+                <Link to ='/bons'><GiftOutlined />Liste des bons d'achats</Link>
+            </Menu.Item>
+            <Menu.Item key='reduction'>
+                <Link to ='/reduction'><GiftOutlined />Liste des réductions</Link>
+            </Menu.Item>
             <Menu.Item key='gestioncaissier'>
-                <Link to ='/gestioncaissier'><SettingOutlined />Gestion des caissiers</Link>
+                <Link to ='/gestioncaissier'><UserAddOutlined />Gestion des caissiers</Link>
             </Menu.Item>
-            <Menu.Item key='Caissier'>
-                <Link to ='/caissier'><ContactsOutlined />Liste des caissiers</Link>
-            </Menu.Item>
+            
             <Menu.Item key='Clients'>
                 <Link to ='/clients'><TableOutlined />Table des clients</Link>
             </Menu.Item>
@@ -156,43 +166,31 @@ function handleListKeyDown(event) {
               >
                 <Menu.ItemGroup key='AboutUS'>
                   <Menu.Item key='location1'> <Link to='/pointsvente'><ShopOutlined />Points de vente</Link></Menu.Item>
-                  <Menu.Item key='location2'> <Link to='/categories'> <ShoppingOutlined />Catégories</Link></Menu.Item>
+                  
                   <Menu.Item key='location3'> <Link to='/event'> <AppstoreAddOutlined />Evenements</Link></Menu.Item>
 
                 </Menu.ItemGroup>
               </SubMenu>
-              <Menu.Item key='Maps'>
-              <span><Link to='/maps'><GlobalOutlined />Maps</Link></span>
-            </Menu.Item>
+              
             </Menu>
           </Sider>
           
           <Layout>
             <Content style={{ padding: '0 50px' }}>
               <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Table des clients</h1></Breadcrumb.Item>
+                <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Liste des bons d'achats</h1></Breadcrumb.Item>
               </Breadcrumb>
-              <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
-                <Cricketer name='Virat Kohli' team='IND' avatarSrc='./vk.jpg'>
-                  <ODICareer matches='239' >
-                    <Batting runs='11,520' score='183' />
-                    <br></br>
-                    <Bowling wickets='4' bowlingAvg='166.25' />
-                  </ODICareer>
-                  <TestCareer matches=' 79' >
-                    <Batting runs='6,749' score='243' />
-                  </TestCareer>
-                  <ViewProfileButton name='Virat Kohli'/>
-                </Cricketer>
-                <Cricketer name='Jasprit Bumrah' team='IND' avatarSrc='./jb.jpg'>
-                  <TestCareer matches='12' >
-                    <Bowling wickets='62' bowlingAvg='20.63' />
-                  </TestCareer>
-                  <ViewProfileButton name='Jasprit Bumrah'/>
-                </Cricketer>
+              <div style={{ background: '#fff', padding: 24, minHeight: 1050}}>
+              <br/>
+              <div>
+              <Affbon />
+              </div>
+                            
+               
+       
+        
               </div>
             </Content>
-            <CareerDetails player={selectedPlayer} visible={visible} onClose={onClose} />
             <Footer style={{ textAlign: 'center' }}><h5 style={{fontWeight :'bold'}}>UNIFID:</h5> <h6 style={{ color: '#5b8db6'}}>meilleur programme de fidélisation</h6></Footer>
           </Layout>
         </Layout>
@@ -201,4 +199,4 @@ function handleListKeyDown(event) {
   );
 }
 
-export default Caissier;
+export default Bons;

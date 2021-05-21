@@ -3,7 +3,14 @@ import shop from './shop.js'
 const entreprise_schema = mongoose.Schema({
   name:String,
   logo:String,
-  equiv_mont_pts:String,
+  montant:{
+    type:String,
+    default:"0"
+  },
+  equiv_mont_pts:{
+    type:String,
+    default:"0"
+  }
 
 })
 entreprise_schema.pre('save',async function(next){
@@ -13,3 +20,5 @@ entreprise_schema.pre('save',async function(next){
 })
 const entreprise = mongoose.model('entreprise',entreprise_schema);
 export default entreprise;
+
+//zedt fiha montant

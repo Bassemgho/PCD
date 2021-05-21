@@ -1,37 +1,45 @@
-import React, { Fragment } from 'react';
-import { Card, Avatar } from 'antd';
-import Meta from 'antd/lib/card/Meta';
+import React from 'react';
+import { Card} from 'antd';
 import Title from 'antd/lib/typography/Title';
-export const Cricketer = ({ name, team, avatarSrc, children }) =>
-	<Card bordered style={{ width: 300, float: 'left', margin: 10 }}>
-		<Meta
-			avatar={<Avatar src={avatarSrc} />}
-			title={name}
-		/>
-		<hr></hr>
-		Team : {team}
-		<br></br>
-		{children}
-	</Card>
-export const ODICareer = ({ matches, children }) =>
-	<Card.Grid style={{ width: '100%' }}>
-		<Title level={4}> ODI Matches : {matches}</Title>
-		{children}
-	</Card.Grid>
-export const TestCareer = ({ matches, children }) =>
-	<Card.Grid style={{ width: '100%' }}>
-		<Title level={4}>Test Matches : {matches}</Title>
-		{children}
-	</Card.Grid>
-export const Batting = ({ runs, score }) =>
-	<Fragment>
-		Runs : {runs}
-		<br></br>
-		Top score : {score}
-	</Fragment>
-export const Bowling = ({ wickets, bowlingAvg }) =>
-	<Fragment>
-		Wicktes : {wickets}
-		<br></br>
-		Bowling Average : {bowlingAvg}
-	</Fragment>
+export const Cricketer = (props) =>{
+
+	
+	return(
+		<Card bordered style={{ width: 300, float: 'left', margin: 10 }}>
+				<br/>
+				<p style={{textAlign :'center'}}>Nom du client:</p>
+
+			<Title level={4} style={{textAlign :'center'}} > {props.username}</Title>
+			<hr></hr>
+			
+			<table>
+				<tr>
+					<td style={{width : 80}}>
+						<p style={{textAlign : 'center'}}>Téléphone : </p>
+					</td>	
+					<td>
+						<p style={{textAlign : 'center' ,fontWeight :'bold'}}> {props.phonenumber}</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p style={{textAlign : 'center'}}>Email : </p>
+					</td>
+					<td style={{width : 100}}>
+						<p style={{textAlign : 'center', fontWeight :'bold'}}> {props.email}</p>
+					</td>
+				</tr>
+				
+			</table>
+			
+				<hr></hr>
+			<Card.Grid style={{ width: '100%' }}>
+				<p style={{textAlign :'center'}}>Nombre de points :</p>
+					<Title level={4} style={{textAlign :'center'}}> {props.solde}</Title>
+			</Card.Grid>
+			
+		</Card>
+	)
+	
+}
+

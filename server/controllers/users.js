@@ -1,6 +1,8 @@
 import users from '../models/user.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
+import errorResponse from '../utils/ErrorResponse.js'
+
 
 export const signin = async (req,res) => {
   const {username,password} = req.body
@@ -39,5 +41,48 @@ export const signin = async (req,res) => {
 
     } finally {
 
+    }
+  }
+////////// lezem nzid nchoufha khater haka yarj3ou lkol vide ken manekteb chay
+
+  export const updateEntreprise = async (req,res,next) => {
+    const user = req.user;
+    const id_entreprise = user.id_entreprise;
+    const {newusername,newemail,newpassword} = req.body;
+    try {
+      const up = await users.find({id_entreprise });
+
+      
+
+      if (!up) {
+        return next(new errorResponse("entreprise n'existe pas",404));
+      }else {
+        //if username == null 
+        //users.updateOne(username)
+        users.updateOne({username:user.username},{username : newusername},function (err,res) {
+          if (err) {
+            console.log("error"+err);
+          }else {
+            console.log("result"+res);
+          }
+        })
+        users.updateOne({email:user.email},{email : newemail},function (err,res) {
+          if (err) {
+            console.log("error"+err);
+          }else {
+            console.log("result"+res);
+          }
+        })
+        users.updateOne({password:user.password},{password : newpassword},function (err,res) {
+          if (err) {
+            console.log("error"+err);
+          }else {
+            console.log("result"+res);
+          }
+        })
+      }
+      
+    } catch (error) {
+      next(e);
     }
   }

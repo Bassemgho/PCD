@@ -20,10 +20,48 @@ export const addbonparam = async (req,res,next) => {
       next(e)
     }
 }
+
 export const getbonparams = async (req,res,next) => {
   const user = req.user;
+  const id_entreprise = user.id_entreprise;
   try {
-    const listparams = await bonparams.find({id_entreprise:user.id_entreprise})
+    const listparams = await bonparams.find({id_entreprise});
+
+    if (!listparams) {
+      return next(new errorResponse("pas de parametres de bon",404));
+    }
+    return res.status(201).json(listparams)
+
+  } catch (error) {
+    next(e);
+  }
+}
+// delete
+/*
+export const deletebon = async (req,res,next) => {
+  const user = req.user;
+  const id_entreprise = user.id_entreprise;
+  try {
+    const listparams = await bonparams.find({id_entreprise}).populate('_id').exec();
+
+    if (!listparams) {
+      return next(new errorResponse("pas de parametres de bon",404));
+    }
+    else {
+      await bonparams.deleteOne({})
+    }
+  } catch (error) {
+    
+  }
+}
+*/
+/*
+export const getbonparams = async (req,res,next) => {
+  const user = req.user;
+  const id_entreprise = user.id_entreprise;
+  try {
+    const listparams = await bonparams.find({id_entreprise});
+
     if (!listparams) {
       return res.status(201).json({sucess:false,message:"pas des parametre pour le moment"})
     }
@@ -33,3 +71,4 @@ export const getbonparams = async (req,res,next) => {
     next(e)
   }
 }
+*/

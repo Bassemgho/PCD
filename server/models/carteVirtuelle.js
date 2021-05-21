@@ -4,7 +4,7 @@ import userApp from './userApp.js'
 const carteVirtuelleSch = mongoose.Schema({
   id_client:{
     type:mongoose.Schema.Types.ObjectId,
-    ref:'appuser'
+    ref:'Appuser'
   },
   id_entreprise:{
     type:mongoose.Schema.Types.ObjectId,

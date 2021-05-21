@@ -1,4 +1,5 @@
-import redparam from '../models/reductionparam.js'
+import reductionparam from '../models/reductionparam.js'
+
 import errorResponse from '../utils/ErrorResponse.js'
 
 export const addredparam = async (req,res,next) => {
@@ -9,7 +10,7 @@ export const addredparam = async (req,res,next) => {
     }
     try {
 
-      const param = await redparam.create({ptsred,delaired,percent,id_entreprise:user.id_entreprise})
+      const param = await reductionparam.create({ptsred,delaired,percent,id_entreprise:user.id_entreprise})
       if (!param) {
         next( new errorResponse("smthing went wrong",400))
       }
@@ -18,7 +19,25 @@ export const addredparam = async (req,res,next) => {
       next(e)
     }
 }
-export const getbonparams = async (req,res,next) => {
+
+export const getredparams = async (req,res,next) => {
+  const user = req.user;
+  const id_entreprise = user.id_entreprise;
+  try {
+    const listparams = await reductionparam.find({id_entreprise})
+    
+    if (!listparams) {
+      return next(new errorResponse("pas de parametres de bon",404));
+    }
+    return res.status(201).json(listparams)
+
+  } catch (error) {
+    next(error);
+  }
+}
+
+/*
+export const getredparams = async (req,res,next) => {
   const user = req.user;
   try {
     const listparams = await redparams.find({id_entreprise:user.id_entreprise})
@@ -30,4 +49,4 @@ export const getbonparams = async (req,res,next) => {
   } catch (e) {
     next(e)
   }
-}
+}*/

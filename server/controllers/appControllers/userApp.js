@@ -1,6 +1,6 @@
 import appuser from '../../models/userApp.js'
 import errorResponse from '../../utils/ErrorResponse.js'
-// import carte
+import carteVirtuelle from '../../models/carteVirtuelle.js'
 
 export const viewcards = async (req,res,ne) => {
  const id = req.user._id;
@@ -50,4 +50,27 @@ const sendtoken = (user,code,res) => {
     success:true,
     token:token
   })
+}
+
+//
+
+export const getclient = async (req,res,next) => {
+  const user = req.user;
+  const id_entreprise = user.id_entreprise;
+  try {
+      const cart = await carteVirtuelle.find({id_entreprise }).populate('id_client').exec();
+      console.log(cart);
+
+      //const id = cart.id_client;
+      //const client = await appuser.find({id_client : id})
+
+      //if (!client) {
+        //  return next(new errorResponse("pas de clients",404));
+      //}
+       return res.status(201).json(cart)
+
+  } catch (error) {
+      next(error);
+  }
+
 }

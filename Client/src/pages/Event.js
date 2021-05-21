@@ -5,7 +5,7 @@ import Title from 'antd/lib/typography/Title';
 import SubMenu from 'antd/lib/menu/SubMenu';
 
 import {Link, Route, Redirect} from 'react-router-dom';
-import {ContactsOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
+import {GiftOutlined,ContactsOutlined,UserAddOutlined,AppstoreAddOutlined,SettingOutlined,BarChartOutlined,UserOutlined,CustomerServiceOutlined,TableOutlined,ShopOutlined,ShoppingOutlined,GlobalOutlined} from '@ant-design/icons';
 
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -15,6 +15,13 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
+
+import * as api from '../api/index.js';
+
+import Eventg from '../components/Eventg';
+import Affevent from '../components/Affevent';
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -27,7 +34,92 @@ const useStyles = makeStyles((theme) => ({
 
 const { Header, Footer, Sider, Content } = Layout;
 
-function Event(props) {
+const Event = (props) => {
+
+  const ls= [];
+  for ( let i=1;i<32;i++){
+    ls.push(i);
+  }
+  const lss= [];
+  for ( let j=2021;j<2032;j++){
+    lss.push(j);
+  }
+  const lsss= [];
+  for ( let k=0;k<24;k++){
+    lsss.push(k);
+  }
+  const lssss= [];
+  for ( let u=0;u<60;u++){
+    lssss.push(u);
+  }
+
+  const [nom,setNom] = useState('');
+  const [lieu,setLieu] = useState('');
+  const [jourdebut,setJourdebut] = useState('Lundi');
+  const [moisdebut,setMoisdebut] = useState('Janvier');
+  const [andebut,setAndebut] = useState('2021');
+  const [jourfin,setJourfin] = useState('Lundi');
+  const [moisfin,setMoisfin] = useState('Janvier');
+  const [anfin,setAnfin] = useState('2021');
+  const [heuredebut,setHeuredebut] = useState('0');
+  const [mindebut,setMindebut] = useState('0');
+  const [heurefin,setHeurefin] = useState('0');
+  const [minfin,setMinfin] = useState('0');
+  
+  
+
+  const handleChange = (e) => {
+    if (e.target.name==="nom") {
+      setNom(e.target.value)
+    }
+    if (e.target.name==="lieu") {
+      setLieu(e.target.value)
+    }
+    if (e.target.name==="jourdebut") {
+      setJourdebut(e.target.value)
+    }
+    if (e.target.name==="moisdebut") {
+      setMoisdebut(e.target.value)
+    }
+    if (e.target.name==="andebut") {
+      setAndebut(e.target.value)
+    }
+    if (e.target.name==="jourfin") {
+      setJourfin(e.target.value)
+    }
+    if (e.target.name==="moisfin") {
+      setMoisfin(e.target.value)
+    }
+    if (e.target.name==="anfin") {
+      setAnfin(e.target.value)
+    }
+    if (e.target.name==="heuredebut") {
+      setHeuredebut(e.target.value)
+    }
+    if (e.target.name==="mindebut") {
+      setMindebut(e.target.value)
+    }
+    if (e.target.name==="heurefin") {
+      setHeurefin(e.target.value)
+    }
+    if (e.target.name==="minfin") {
+      setMinfin(e.target.value)
+    }
+
+
+  }
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+    try {
+      const rep = await api.addevent(nom , lieu , jourdebut, moisdebut,andebut,jourfin, moisfin,anfin, heuredebut,mindebut,heurefin,minfin, props.token);
+      console.log("evenement ajoutée");
+    } catch (e) {
+      console.log(e.error);
+    }finally {
+
+    }
+  }
 
   const logout = () => {
     props.setAuthorized(false);
@@ -80,7 +172,7 @@ function handleListKeyDown(event) {
   
   const onClose = () => setVisible(false);
   if (!(props.authorized)) {
-    return (<Route exact path="/dashboard"><Redirect to="/signin" /></Route>);
+    return (<Route exact path="/event"><Redirect to="/signin" /></Route>);
   }
   else 
   return (
@@ -137,12 +229,16 @@ function handleListKeyDown(event) {
             <Menu.Item key='paramcarte'>
                 <Link to ='/paramcarte'><SettingOutlined />Paramètres de la carte de fidelité</Link>
             </Menu.Item>
+            <Menu.Item key='bons'>
+                <Link to ='/bons'><GiftOutlined />Liste des bons d'achats</Link>
+            </Menu.Item>
+            <Menu.Item key='reduction'>
+                <Link to ='/reduction'><GiftOutlined />Liste des réductions</Link>
+            </Menu.Item>
             <Menu.Item key='gestioncaissier'>
                 <Link to ='/gestioncaissier'><UserAddOutlined />Gestion des caissiers</Link>
             </Menu.Item>
-            <Menu.Item key='Caissier'>
-                <Link to ='/caissier'><ContactsOutlined />Liste des caissiers</Link>
-            </Menu.Item>
+            
             <Menu.Item key='Clients'>
                 <Link to ='/clients'><TableOutlined />Table des clients</Link>
             </Menu.Item>
@@ -160,14 +256,12 @@ function handleListKeyDown(event) {
               >
                 <Menu.ItemGroup key='AboutUS'>
                   <Menu.Item key='location1'> <Link to='/pointsvente'><ShopOutlined />Points de vente</Link></Menu.Item>
-                  <Menu.Item key='location2'> <Link to='/categories'> <ShoppingOutlined />Catégories</Link></Menu.Item>
+                  
                   <Menu.Item key='location3'> <Link to='/event'> <AppstoreAddOutlined />Evenements</Link></Menu.Item>
 
                 </Menu.ItemGroup>
               </SubMenu>
-              <Menu.Item key='Maps'>
-              <span><Link to='/maps'><GlobalOutlined />Maps</Link></span>
-            </Menu.Item>
+             
             </Menu>
           </Sider>
           
@@ -181,11 +275,12 @@ function handleListKeyDown(event) {
                     <h4 style ={{fontWeight :'bold'}}>Ajouter un événement</h4>
                  </div>   
                  <br/><br/>
+                 <form onSubmit = {handleSubmit}>
                  <label class="bmd-label-floating">Nom <span className="text-danger">*</span></label>
-                  <input type="text" class="form-control"></input>
+                  <input type="text" name="nom" onChange={handleChange} class="form-control"></input>
                   <br/>
                   <label class="bmd-label-floating">Lieu <span className="text-danger">*</span></label>
-                <input type="text" class="form-control"></input>  
+                <input type="text" name="lieu" onChange={handleChange} class="form-control"></input>  
                 <br/>
                 <label class="bmd-label-floating">Date <span className="text-danger">*</span></label>
                 <table>
@@ -193,66 +288,36 @@ function handleListKeyDown(event) {
               <td style={{width : 85 , height : 50}}>
               A partir de  :
             </td>
-            <td style={{width : 40 , height : 50}}>  
-            <select name="day" size="1">
-             
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
-              <option>13</option>
-              <option>14</option>
-              <option>15</option>
-              <option>16</option>
-              <option>17</option>
-              <option>18</option>
-              <option>19</option>
-              <option>20</option>
-              <option>21</option>
-              <option>22</option>
-              <option>23</option>
-              <option>24</option>
-              <option>25</option>
-              <option>26</option>
-              <option>27</option>
-              <option>28</option>
-              <option>29</option>
-              <option>30</option>
-              <option>31</option>
+            <td style={{width : 40 , height : 50}}> 
+            <select name="jourdebut" onChange={handleChange} size="1">
+              {ls.map((i) => (
+                <option value={i}>{i}</option>
+              ))}
+            </select> 
+            
+              </td>
+              <td style={{width : 85 , height : 50}}>
+            <select name="moisdebut" onChange={handleChange} size="1">
+              <option value="Janvier">Janvier</option>
+              <option value="Février">Février</option>
+              <option value ="Mars">Mars</option>
+              <option value="Avril">Avril</option>
+              <option value ="Mai">Mai</option>
+              <option value="Juin">Juin</option>
+              <option value ="Juillet">Juillet</option>
+              <option value ="Août">Août</option>
+              <option value="Septembre">Septembre</option>
+              <option value="Octobre">Octobre</option>
+              <option value="Novembre">Novembre</option>
+              <option value="Décembre">Décembre</option>
               </select>
               </td>
               <td style={{width : 85 , height : 50}}>
-            <select name="month" size="1">
-              <option>Janvier</option>
-              <option>Février</option>
-              <option>Mars</option>
-              <option>Avril</option>
-              <option>Mai</option>
-              <option>Juin</option>
-              <option>Juillet</option>
-              <option>Août</option>
-              <option>Septembre</option>
-              <option>Octobre</option>
-              <option>Novembre</option>
-              <option>Décembre</option>
-              </select>
-              </td>
-              <td style={{width : 85 , height : 50}}>
-              <select name="year" size="1">
-              <option>2021</option>
-              <option>2022</option>
-              <option>2023</option>
-              <option>2024</option>
-              <option>2025</option>
-              </select>
+              <select name="andebut" onChange={handleChange} size="1">
+              {lss.map((j) => (
+                <option value={j}>{j}</option>
+              ))}
+            </select>
               </td>
               </tr>
               </table>
@@ -262,65 +327,34 @@ function handleListKeyDown(event) {
               Jusqu'à :
             </td>
             <td style={{width : 40 , height : 50}}>  
-            <select name="day" size="1">
-             
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
-              <option>13</option>
-              <option>14</option>
-              <option>15</option>
-              <option>16</option>
-              <option>17</option>
-              <option>18</option>
-              <option>19</option>
-              <option>20</option>
-              <option>21</option>
-              <option>22</option>
-              <option>23</option>
-              <option>24</option>
-              <option>25</option>
-              <option>26</option>
-              <option>27</option>
-              <option>28</option>
-              <option>29</option>
-              <option>30</option>
-              <option>31</option>
-              </select>
+            <select name="jourfin" onChange={handleChange} size="1">
+              {ls.map((i) => (
+                <option value={i}>{i}</option>
+              ))}
+            </select>
               </td>
               <td style={{width : 85 , height : 50}}>
-            <select name="month" size="1">
-              <option>Janvier</option>
-              <option>Février</option>
-              <option>Mars</option>
-              <option>Avril</option>
-              <option>Mai</option>
-              <option>Juin</option>
-              <option>Juillet</option>
-              <option>Août</option>
-              <option>Septembre</option>
-              <option>Octobre</option>
-              <option>Novembre</option>
-              <option>Décembre</option>
-              </select>
+            <select name="moisfin" onChange={handleChange} size="1">
+              <option value="Janvier">Janvier</option>
+              <option value="Février">Février</option>
+              <option value ="Mars">Mars</option>
+              <option value="Avril">Avril</option>
+              <option value ="Mai">Mai</option>
+              <option value="Juin">Juin</option>
+              <option value ="Juillet">Juillet</option>
+              <option value ="Août">Août</option>
+              <option value="Septembre">Septembre</option>
+              <option value="Octobre">Octobre</option>
+              <option value="Novembre">Novembre</option>
+              <option value="Décembre">Décembre</option>
+            </select>
               </td>
               <td style={{width : 85 , height : 50}}>
-              <select name="year" size="1">
-              <option>2021</option>
-              <option>2022</option>
-              <option>2023</option>
-              <option>2024</option>
-              <option>2025</option>
-              </select>
+              <select name="anfin" onChange={handleChange} size="1">
+              {lss.map((j) => (
+                <option value={j}>{j}</option>
+              ))}
+            </select>
               </td>
               </tr>
               </table>     
@@ -331,42 +365,18 @@ function handleListKeyDown(event) {
               Heure de début:
             </td>
             <td style={{width : 40 , height : 50}}>  
-            <select name="heure" size="1">
-              <option>00</option>
-              <option>01</option>
-              <option>02</option>
-              <option>03</option>
-              <option>04</option>
-              <option>05</option>
-              <option>06</option>
-              <option>07</option>
-              <option>08</option>
-              <option>09</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
-              <option>13</option>
-              <option>14</option>
-              <option>15</option>
-              <option>16</option>
-              <option>17</option>
-              <option>18</option>
-              <option>19</option>
-              <option>20</option>
-              <option>21</option>
-              <option>22</option>
-              <option>23</option>
+              <select name="heuredebut" onChange={handleChange} size="1">
+                {lsss.map((k) => (
+                  <option value={k}>{k}</option>
+                ))}
               </select>
               </td>
               <td>h</td>
               <td>
-              <select name="minute" size="1">
-              <option>00</option>
-              <option>10</option>
-              <option>20</option>
-              <option>30</option>
-              <option>40</option>
-              <option>50</option>
+              <select name="mindebut" onChange={handleChange} size="1">
+                {lssss.map((u) => (
+                  <option value={u}>{u}</option>
+                ))}
               </select>
               </td>
               <td>min</td>
@@ -378,50 +388,38 @@ function handleListKeyDown(event) {
               Heure de fin :
             </td>
             <td style={{width : 40 , height : 50}}>  
-            <select name="heure" size="1">
-              <option>00</option>
-              <option>01</option>
-              <option>02</option>
-              <option>03</option>
-              <option>04</option>
-              <option>05</option>
-              <option>06</option>
-              <option>07</option>
-              <option>08</option>
-              <option>09</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
-              <option>13</option>
-              <option>14</option>
-              <option>15</option>
-              <option>16</option>
-              <option>17</option>
-              <option>18</option>
-              <option>19</option>
-              <option>20</option>
-              <option>21</option>
-              <option>22</option>
-              <option>23</option>
+            <select name="heurefin" onChange={handleChange} size="1">
+                {lsss.map((k) => (
+                  <option value={k}>{k}</option>
+                ))}
               </select>
               </td>
               <td>h</td>
               <td>
-              <select name="minute" size="1">
-              <option>00</option>
-              <option>10</option>
-              <option>20</option>
-              <option>30</option>
-              <option>40</option>
-              <option>50</option>
+              <select name="minfin" onChange={handleChange} size="1">
+                {lssss.map((u) => (
+                  <option value={u}>{u}</option>
+                ))}
               </select>
               </td>
               <td>min</td>
               </tr>
               </table>  
                      <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 30, marginRight : 50}}>Ajouter</button>  
+                     </form>  
+                     <br/>
+                     <div style={{marginTop: 120}}>
                       
+                          <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
+                              <h4 style ={{fontWeight :'bold'}}>Liste des événements</h4>
+                          </div>
+                          <br/>
+                            <Affevent />
+                      </div>
               </div>
+              <br/><br/>
+              
+              
             </Content>
             <Footer style={{ textAlign: 'center' }}><h5 style={{fontWeight :'bold'}}>UNIFID:</h5> <h6 style={{ color: '#5b8db6'}}>meilleur programme de fidélisation</h6></Footer>
           </Layout>

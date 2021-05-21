@@ -7,9 +7,9 @@ const redparamsh = mongoose.Schema({
     ref:"entreprise",
     select:false
   },
-  ptsred:Number,
-  delaired:Number,
-  percent:Number,
+  ptsred:String,
+  delaired:String,
+  percent:String,
 })
 redparamsh.pre('save',async function (next) {
   let sh = await shop.findOne({id_entreprise:this.id_entreprise})

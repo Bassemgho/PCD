@@ -21,19 +21,21 @@ const Affichage =() => {
     },[])
 
 
-const delete1 = (index)=> {
+const delete1 = async (index,id_ptvent)=> {
     let listee = Array.from(get);
    // console.log(listee);
     listee.splice(index,1);
     //console.log(listee);
     setGet(listee);
-    console.log(listee);}
+    console.log(listee);
+    await api.deleteptvente(id_ptvent,localStorage.getItem('token'));
+}
 
     return(
         <div style={{textAlign : 'center'}}>
                        {get.map((item, index)=>{
                          return(
-                          <Ptvente key={index} nom={item.nom} address={item.address} heuredebut={item.heuredebut} mindebut={item.mindebut} heurefin={item.heurefin} minfin={item.minfin} jourdebut={item.jourdebut} jourfin={item.jourfin} delete={delete1} index={index} />
+                          <Ptvente key={index} {...item} delete={delete1} index={index} />
                          )
                        })}
                     </div>

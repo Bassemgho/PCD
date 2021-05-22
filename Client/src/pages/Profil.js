@@ -33,7 +33,7 @@ const { Header, Footer, Sider, Content } = Layout;
 const Profil = (props) => {
 
   //
-  /*
+  
   const [newusername,setNewusername] = useState('');
   const [newemail, setNewemail] = useState ('');
   const [newpassword, setNewpassword] = useState ('');
@@ -54,7 +54,7 @@ const Profil = (props) => {
 
     e.preventDefault();
     try {
-      const rep = await api.updateEntreprise(newusername, newemail, newpassword, props.token);
+      const rep = await api.updateEntreprise(newusername, newemail,newpassword, props.token);
       console.log("updated");
     } catch (e) {
       console.log(e.error);
@@ -62,7 +62,7 @@ const Profil = (props) => {
 
     }
   }
-*/
+
 
 
   //
@@ -216,19 +216,16 @@ function handleListKeyDown(event) {
                     <h4 style ={{fontWeight :'bold'}}>Modifier Profil</h4>
                  </div>   
                  <br/><br/>
-                 <form >
+                 <form onSubmit={handleSubmit}>
                  <label class="bmd-label-floating">Nom d'utilisateur</label>
-                  <input type="text" name="username" class="form-control"></input>
+                  <input type="text" name="username" onChange={handleChange} class="form-control"></input>
                   <br/>
                  <label class="bmd-label-floating">Adresse Email</label>
-                  <input type="text" name="email" class="form-control"></input>
+                  <input type="text" name="email" onChange={handleChange} class="form-control"></input>
                   <br/>
                   <label class="bmd-label-floating">Nouveau mot de passe</label>
-                <input type="text" name="password" class="form-control"></input>  
-                <br/>
-                <label class="bmd-label-floating">Nouveau logo</label>
-                 <input type="file" class="form-control"></input>    
-                 
+                <input type="text" name="password" onChange={handleChange} class="form-control"></input>  
+                
                  <br/><br/>
                  <br/>
                      <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000'}}>Enregistrer</button>  

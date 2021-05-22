@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import FileBase from 'react-file-base64';
-
+import {WarningOutlined} from '@ant-design/icons';
 const Signup = () => {
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
@@ -35,8 +35,10 @@ const Signup = () => {
     try {
       const res = await api.signup(username,password,email,name,logo);
       console.log("done");
+      alert('Vous êtes bien inscrits');
     } catch (e) {
       console.log(e.error);
+      alert('Il faut entrer tous les champs');
     } finally {
 
     }
@@ -89,6 +91,9 @@ const Signup = () => {
                                           <div className="col-sm-6">
                                               <label>Mot de passe <span className="text-danger">*</span></label>
                                               <input type="text" onChange={handleChange} name="password" className="form-control"/>
+                                              <p  style={{color : 'red',fontSize: 12}}><WarningOutlined style={{fontSize : 12}} /> 
+                                              Il faut entrer au moins 6 caractères.
+                                                    </p>
                                           </div>
                                           <div className="col-sm-6">
                                               <label>Confirmer mot de passe <span className="text-danger">*</span></label>

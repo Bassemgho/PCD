@@ -470,7 +470,7 @@ function handleListKeyDown(event) {
                               <h4 style ={{fontWeight :'bold'}}>Liste des points de vente</h4>
                           </div>
                           <br/>
-                            <Affichage />
+                            <Affichage  />
                       </div>
                     
                  

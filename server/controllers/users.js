@@ -49,16 +49,18 @@ export const signin = async (req,res) => {
     const user = req.user;
     const id_entreprise = user.id_entreprise;
     const {newusername,newemail,newpassword} = req.body;
+
     try {
       const up = await users.find({id_entreprise });
 
-      
+
 
       if (!up) {
         return next(new errorResponse("entreprise n'existe pas",404));
       }else {
-        //if username == null 
+        //if username == null
         //users.updateOne(username)
+        if (newusername) {
         users.updateOne({username:user.username},{username : newusername},function (err,res) {
           if (err) {
             console.log("error"+err);
@@ -66,6 +68,12 @@ export const signin = async (req,res) => {
             console.log("result"+res);
           }
         })
+        // const ch
+        res.status(201).json({success:true,message:"operation successfull"})
+
+        }
+        if (newemail) {
+
         users.updateOne({email:user.email},{email : newemail},function (err,res) {
           if (err) {
             console.log("error"+err);
@@ -73,16 +81,31 @@ export const signin = async (req,res) => {
             console.log("result"+res);
           }
         })
-        users.updateOne({password:user.password},{password : newpassword},function (err,res) {
-          if (err) {
-            console.log("error"+err);
-          }else {
-            console.log("result"+res);
-          }
-        })
+        res.status(201).json({success:true,message:"operation successfull"})
+
       }
-      
+      if (newpassword) {
+        try {
+          if (newpassword.length) {
+
+          user.password = newpassword;
+          user.save();
+          res.status(201).json({success:true,message:"operation successfull"})
+        }
+        } catch (e) {
+          next(e)
+        }
+        // users.updateOne({password:user.password},{password : newpassword},function (err,res) {
+        //   if (err) {
+        //     console.log("error"+err);
+        //   }else {
+        //     console.log("result"+res);
+        //   }
+        // })
+      }
+      }
+
     } catch (error) {
-      next(e);
+      next(error);
     }
   }

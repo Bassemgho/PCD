@@ -1,8 +1,17 @@
 import mongoose from 'mongoose';
 import shop from './shop.js'
 const entreprise_schema = mongoose.Schema({
-  name:String,
-  logo:String,
+  name:{
+    type:'String',
+    required:[true,'please provide a username'],
+    unique: true
+  },
+  logo:{
+    type:'String',
+    required:[true,'please provide a username'],
+  },
+  //name:String,
+  //logo:String,
   montant:{
     type:String,
     default:"0"

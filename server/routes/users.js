@@ -3,7 +3,7 @@ import express from 'express'
 //import {} from '../controllers/users.js'
 import {signup,signin} from '../controllers/auth.js'
 import protect from '../middlewares/protect.js'
-import {addptvente} from '../controllers/ptvente.js'
+import {addptvente,deleteptvente} from '../controllers/ptvente.js'
 import {addCaissier} from '../controllers/caissier.js'
 import {getptvente} from '../controllers/getptvente.js'
 import {addevent} from '../controllers/event.js'
@@ -13,7 +13,6 @@ import {updateEntreprise} from '../controllers/users.js'
 import {getclient} from '../controllers/appControllers/userApp.js'
 import {addparam} from '../controllers/auth.js'
 import {getevent} from '../controllers/event.js'
-
 const router = express.Router();
 router.post('/signin',signin);
 router.post('/signup',signup);
@@ -35,5 +34,6 @@ router.route('/update').post(protect,updateEntreprise);
 router.route('/getclient').get(protect,getclient);
 // à modifier w nhotha fel params.js 
 router.route('/addparam').post(protect,addparam);
+router.route('/deleteptvente').delete(protect,deleteptvente)
 
 export default router

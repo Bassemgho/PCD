@@ -21,6 +21,7 @@ const urlgetevent = "http://localhost:5000/user/getevent";
 
 const urlgetbon ="http://localhost:5000/params/getbonparams";
 const urlgetred ="http://localhost:5000/params/getredparams";
+const urldelete ="http://localhost:5000/user/deleteptvente";
 
 export const sendcreds = async (username,password) => {
   const creds = {username:username,password:password};
@@ -32,6 +33,12 @@ export const signup = async (username,password,email,name,logo) => {
 }
 
 //sawsen
+
+export const deleteptvente = async (id_ptvent,token) => {
+  const inf={id_ptvent};
+  const config = {headers : { Authorization : `Bearer ${token}`}};
+  return await axios.delete(urldelete,inf,config);
+}
 
 
 export const addptvente = async (nom, address, lat,lang, heuredebut,mindebut,heurefin,minfin,jourdebut,jourfin, token) => {
@@ -103,8 +110,8 @@ export const getcaissier = async (token) => {
   return rep;
 }
 
-export const updateEntreprise = async (newusername, newemail, newpassword, token) => {
-  const inf = {newusername,newemail,newpassword};
+export const updateEntreprise = async (newusername, newemail,newpassword, token) => {
+  const inf = {newusername,newemail, newpassword};
   const config = {headers : { Authorization : `Bearer ${token}`}};
   const rep = await axios.post(urlupdate,inf,config);
   console.log('data up to date');

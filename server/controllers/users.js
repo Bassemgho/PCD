@@ -59,6 +59,40 @@ export const signin = async (req,res) => {
       }else {
         //if username == null 
         //users.updateOne(username)
+        //
+        if (newusername) {
+          try {
+            user.username = newusername;
+            user.save();
+            res.status(201).json({success:true,message:"username updated"})
+          } catch (e) {
+            next(e)
+          }
+            
+          }
+          if (newemail) {
+            
+            try {
+              user.email = newemail;
+              user.save();
+              res.status(201).json({success:true,message:"email updated"})
+            } catch (e) {
+              next(e)
+            }            
+        }
+
+        if (newpassword) {
+          try {
+            user.password = newpassword;
+            user.save();
+            res.status(201).json({success:true,message:"password updated"})
+          } catch (e) {
+            next(e)
+          }
+        }
+        
+        //
+        /*
         users.updateOne({username:user.username},{username : newusername},function (err,res) {
           if (err) {
             console.log("error"+err);
@@ -79,10 +113,10 @@ export const signin = async (req,res) => {
           }else {
             console.log("result"+res);
           }
-        })
+        })*/
       }
       
     } catch (error) {
-      next(e);
+      next(error);
     }
   }

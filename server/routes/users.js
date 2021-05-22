@@ -34,6 +34,6 @@ router.route('/update').post(protect,updateEntreprise);
 router.route('/getclient').get(protect,getclient);
 // à modifier w nhotha fel params.js 
 router.route('/addparam').post(protect,addparam);
-router.route('/deleteptvente').delete(protect,deleteptvente)
+router.route('/deleteptvente').delete(protect,deleteptvente);
 
 export default router

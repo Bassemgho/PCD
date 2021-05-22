@@ -18,7 +18,7 @@ router.post('/signin',signin);
 router.post('/signup',signup);
 //router.post('/addptsventes',addptvente);
 router.route('/addptsventes').post(protect,addptvente);
-router.route('/deleteptvente').delete(protect,deleteptvente)
+router.route('/deleteptvente').post(protect,deleteptvente)
 router.route('/addcaissier').post(protect,addCaissier);
 router.route('/addevent').post(protect,addevent);
 // router.route('/shop/get').get(protect,getshop)

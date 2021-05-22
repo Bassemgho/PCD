@@ -16,7 +16,7 @@ import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 
 import * as api from '../api/index.js';
-import {useSelector } from 'react-redux';
+// import {useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +33,7 @@ const { Header, Footer, Sider, Content } = Layout;
 const Profil = (props) => {
 
   //
-  
+
   const [newusername,setNewusername] = useState('');
   const [newemail, setNewemail] = useState ('');
   const [newpassword, setNewpassword] = useState ('');
@@ -117,14 +117,14 @@ function handleListKeyDown(event) {
   if (!(props.authorized)) {
     return (<Route exact path="/profil"><Redirect to="/signin" /></Route>);
   }
-  else 
+  else
   return (
     <div className="App">
       <Layout>
         <Header style={{ padding: 10 }}>
-          
+
         <div className={classes.root} style={{float:'right' , marginRight : 40 , marginTop : -10}}>
-        
+
         <div>
           <Button
             ref={anchorRef}
@@ -180,14 +180,14 @@ function handleListKeyDown(event) {
             <Menu.Item key='gestioncaissier'>
                 <Link to ='/gestioncaissier'><UserAddOutlined />Gestion des caissiers</Link>
             </Menu.Item>
-            
+
             <Menu.Item key='Clients'>
                 <Link to ='/clients'><TableOutlined />Table des clients</Link>
             </Menu.Item>
             <Menu.Item key='Profil'>
               <span><Link to='/profil'><UserOutlined />Profil</Link></span>
             </Menu.Item>
-  
+
               <SubMenu
                 title={
                   <span>
@@ -198,12 +198,12 @@ function handleListKeyDown(event) {
               >
                 <Menu.ItemGroup key='AboutUS'>
                   <Menu.Item key='location1'> <Link to='/pointsvente'><ShopOutlined />Points de vente</Link></Menu.Item>
-                  
+
                   <Menu.Item key='location3'> <Link to='/event'> <AppstoreAddOutlined />Evenements</Link></Menu.Item>
 
                 </Menu.ItemGroup>
               </SubMenu>
-              
+
             </Menu>
           </Sider>
           <Layout>
@@ -214,7 +214,7 @@ function handleListKeyDown(event) {
               <div style={{ background: '#fff', padding: 24, minHeight: 670 }}>
                  <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
                     <h4 style ={{fontWeight :'bold'}}>Modifier Profil</h4>
-                 </div>   
+                 </div>
                  <br/><br/>
                  <form onSubmit={handleSubmit}>
                  <label class="bmd-label-floating">Nom d'utilisateur</label>
@@ -224,11 +224,11 @@ function handleListKeyDown(event) {
                   <input type="text" name="email" onChange={handleChange} class="form-control"></input>
                   <br/>
                   <label class="bmd-label-floating">Nouveau mot de passe</label>
-                <input type="text" name="password" onChange={handleChange} class="form-control"></input>  
-                
+                <input type="text" name="password" onChange={handleChange} class="form-control"></input>
+
                  <br/><br/>
                  <br/>
-                     <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000'}}>Enregistrer</button>  
+                     <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000'}}>Enregistrer</button>
                       </form>
               </div>
             </Content>

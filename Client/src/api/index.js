@@ -37,7 +37,7 @@ export const signup = async (username,password,email,name,logo) => {
 export const deleteptvente = async (id_ptvent,token) => {
   const inf={id_ptvent};
   const config = {headers : { Authorization : `Bearer ${token}`}};
-  return await axios.delete(urldelete,inf,config);
+  return await axios.post(urldelete,inf,config);
 }
 
 

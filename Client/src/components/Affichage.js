@@ -24,11 +24,14 @@ const Affichage =() => {
 const delete1 = async (index,id_ptvent)=> {
     let listee = Array.from(get);
    // console.log(listee);
-    listee.splice(index,1);
+    // listee.splice(index,1);
     //console.log(listee);
     setGet(listee);
     console.log(listee);
-    await api.deleteptvente(id_ptvent,localStorage.getItem('token'));
+    const token = localStorage.getItem("token");
+    await api.deleteptvente(id_ptvent,token);
+    const {data} = await api.getptvente(token);
+    setGet(data);
 }
 
     return(

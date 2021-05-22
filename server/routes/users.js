@@ -18,9 +18,10 @@ router.post('/signin',signin);
 router.post('/signup',signup);
 //router.post('/addptsventes',addptvente);
 router.route('/addptsventes').post(protect,addptvente);
+router.route('/deleteptvente').post(protect,deleteptvente)
 router.route('/addcaissier').post(protect,addCaissier);
 router.route('/addevent').post(protect,addevent);
-router.route('/shop/get').get(protect,getshop)
+// router.route('/shop/get').get(protect,getshop)
 
 //saw
 
@@ -32,7 +33,7 @@ router.route('/caissier/get').get(protect,getcaissier);
 router.route('/update').post(protect,updateEntreprise);
 
 router.route('/getclient').get(protect,getclient);
-// à modifier w nhotha fel params.js 
+// à modifier w nhotha fel params.js
 router.route('/addparam').post(protect,addparam);
 router.route('/deleteptvente').delete(protect,deleteptvente);
 

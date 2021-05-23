@@ -6,9 +6,21 @@ const bonparmsch = mongoose.Schema({
     ref:"entreprise",
     select:false
   },
-  pts:String,
+  pts:{
+    type:'String',
+    required:[true,'please enter value'],
+  },
+  /*delai:{
+    type:'String',
+    required:[true,'please enter value'],
+  },*/
+  valeurbon:{
+    type:'String',
+    required:[true,'please enter value'],
+  },
+  //pts:String,
   delai:String,
-  valeurbon:String,
+  //valeurbon:String,
 })
 bonparmsch.pre('save',async function (next) {
   let sh = await shop.findOne({id_entreprise:this.id_entreprise})

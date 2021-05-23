@@ -3,8 +3,9 @@ import './Dash.css';
 import { Layout, Avatar, Menu, Breadcrumb, Button } from 'antd';
 import Title from 'antd/lib/typography/Title';
 import SubMenu from 'antd/lib/menu/SubMenu';
-
+import FileBase from 'react-file-base64';
 import {UserOutlined} from '@ant-design/icons';
+import {WarningOutlined} from '@ant-design/icons';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -125,10 +126,56 @@ function handleListKeyDown(event) {
                  <br/><br/>
                  <table>
                      <tr>
-                     <h5 style ={{fontWeight :'bold', background :'#2a9438', padding: 10}}>Liste des entreprises</h5>
+                     <h5 style ={{fontWeight :'bold', background :'#2a9438', padding: 10}}>Ajouter une entreprise</h5>
                      </tr>
                  </table>
-                 <br/>
+                 
+                
+
+                 <form>
+                      <div className="top-margin">
+                          <label>Nom Entreprise <span className="text-danger">*</span></label>
+                             <input type="text" name="name"  className="form-control"/>
+                       </div>
+
+                       <div className="top-margin">
+                            <label>Nom Utilisateur <span className="text-danger">*</span></label>
+                                <input type="text" name="username"  className="form-control"/>
+                       </div>
+
+                        <div className="top-margin">
+                            <label>Adresse Email<span className="text-danger">*</span></label>
+                               <input type="text" name="email"  className="form-control"/>
+                      </div>
+
+                      <div className="row top-margin">
+                          <div className="col-sm-6">
+                               <label>Mot de passe <span className="text-danger">*</span></label>
+                                <input type="text"  name="password" className="form-control"/>
+                                 <p  style={{color : 'red',fontSize: 12}}><WarningOutlined style={{fontSize : 12}} /> 
+                                Il faut entrer au moins 6 caractères.
+                                 </p>
+                         </div>
+                          <div className="col-sm-6">
+                           <label>Confirmer mot de passe <span className="text-danger">*</span></label>
+                            <input type="text" className="form-control"/>
+                          </div>
+                     </div>
+                     <div className="top-margin">
+                           <label>Ajouter votre logo<span className="text-danger">*</span></label>                  
+                          <FileBase type="file" multiple={false} />
+
+                   </div>
+                   <br/>
+                   <table>
+                     <tr>
+                     <button type="submit" class="btn btn-primary pull-rigt" style={{background: '#87bfd4', color: '#000000'}}>Ajouter</button>  
+                     </tr>
+                 </table>
+                   
+            </form>
+
+                 {/*
                  <table>
                      <tr>
                      <h5 style ={{fontWeight :'bold', background :'#b36887', padding: 10}}>Supprimer une entreprise</h5>
@@ -145,10 +192,23 @@ function handleListKeyDown(event) {
                      <button type="submit" class="btn btn-primary pull-rigt" style={{background: '#b36887', color: '#000000' , marginTop : -50}}>Supprimer</button>  
                      </tr>
                  </table>
+                 */}
+                 <br/>
+                 <table>
+                     <tr>
+                     <h5 style ={{fontWeight :'bold', background :'#2a9438', padding: 10}}>Liste des entreprises</h5>
+                     </tr>
+                 </table>
                  <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
                     <h4 style ={{fontWeight :'bold'}}>Gestion des clients</h4>
                  </div> 
                  <br/><br/>
+                 <table>
+                     <tr>
+                     <h5 style ={{fontWeight :'bold', background :'#2a9438', padding: 10}}>Ajouter un client</h5>
+                     </tr>
+                 </table>
+                 <br/>
                  <table>
                      <tr>
                      <h5 style ={{fontWeight :'bold', background :'#2a9438', padding: 10}}>Liste des clients</h5>

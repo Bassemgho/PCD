@@ -21,19 +21,23 @@ const Affred =() => {
     },[])
 
 
-const delete1 = (index)=> {
+const delete1 = async (index, id_red)=> {
     let listee = Array.from(get);
    // console.log(listee);
     listee.splice(index,1);
     //console.log(listee);
     setGet(listee);
-    console.log(listee);}
+    console.log(listee);
+    const token = localStorage.getItem("token");
+    await api.deletered(id_red,token);
+    const {data} = await api.getredparams(token);
+    setGet(data);}
 
     return(
         <div style={{textAlign : 'center'}}>
                        {get.map((item, index)=>{
                          return(
-                          <Redget key={index} ptsred={item.ptsred} percent={item.percent} delaired={item.delaired} delete={delete1} index={index} />
+                          <Redget key={index} {...item} delete={delete1} index={index} />
                          )
                        })}
                     </div>

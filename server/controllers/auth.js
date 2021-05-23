@@ -55,7 +55,7 @@ const sendtoken = (user,code,res) => {
 // paramcarte
 // ça marche pas bel shyh
 // à revoir 
-
+/*
 export const addparam = async (req,res,next) => {
   const user = req.user;
   const id_entreprise = user.id_entreprise;
@@ -83,6 +83,79 @@ export const addparam = async (req,res,next) => {
       })
      
     }
+  } catch (error) {
+    next(error);
+  }
+}*/
+
+export const addparam = async (req,res,next) => {
+  const user = req.user;
+  const id_entreprise1 = user.id_entreprise;
+  const {newmontant,newequiv_mont_pts} = req.body;
+  //const {newusername,newemail,newpassword} = req.body;
+  try {
+    const up = await users.find({id_entreprise1 });
+
+    if (!up) {
+      return next(new errorResponse("entreprise n'existe pas",404));
+    }else {
+
+      if (newmontant) {
+        try {
+          entreprise.updateOne({id_entreprise: id_entreprise1},{montant: newmontant},function (err,res) {
+            if (err) {
+              console.log("error"+err);
+            }else {
+              console.log("result"+res);
+              res.status(201).json({success:true,message:"montant updated"});
+            }
+          })
+          
+          
+        } catch (e) {
+          next(e)
+        }
+          
+        }
+        /*
+        users.updateOne({username:user.username},{username : newusername},function (err,res) {
+          if (err) {
+            console.log("error"+err);
+          }else {
+            console.log("result"+res);
+          }
+        })
+        users.updateOne({email:user.email},{email : newemail},function (err,res) {
+          if (err) {
+            console.log("error"+err);
+          }else {
+            console.log("result"+res);
+          }
+        })
+        users.updateOne({password:user.password},{password : newpassword},function (err,res) {
+          if (err) {
+            console.log("error"+err);
+          }else {
+            console.log("result"+res);
+          }
+        })*/
+        if (newequiv_mont_pts) {
+          
+          try {
+            entreprise.updateOne({id_entreprise: id_entreprise1}, {equiv_mont_pts: newequiv_mont_pts},function (err,res) {
+              if (err) {
+                console.log("error"+err);
+              }else {
+                console.log("result"+res);
+                res.status(201).json({success:true,message:"equipts updated"});
+              }
+            })  
+          } catch (e) {
+            next(e)
+          }            
+      }
+    }
+    
   } catch (error) {
     next(error);
   }

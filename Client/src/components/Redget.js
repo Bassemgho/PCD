@@ -10,7 +10,7 @@ import {DeleteOutlined} from '@ant-design/icons';
 const Redget = (props) => {
     
     const handleClick = ()=>{
-            props.delete(props.index)
+            props.delete(props.index,props._id)
     }
     return(
         <div>

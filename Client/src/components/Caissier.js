@@ -1,7 +1,6 @@
 import react from 'react';
 
 import { Card} from 'antd';
-import Title from 'antd/lib/typography/Title';
 
 import * as api from '../api/index.js';
 
@@ -10,7 +9,7 @@ import {DeleteOutlined} from '@ant-design/icons';
 const Caissier = (props) => {
     
     const handleClick = ()=>{
-            props.delete(props.index)
+            props.delete(props.index,props._id)
     }
     return(
         <div>

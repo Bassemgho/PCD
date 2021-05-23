@@ -41,6 +41,19 @@ export const getcaissier = async (req,res,next) => {
 
 }
 
+export const deletecaissier = async (req,res,next) => {
+  const user = req.user;
+  
+  const {id_caiss} = req.body;
+  try {
+    await caissier.deleteOne({_id:id_caiss});
+    res.status(201).json({sucess:true,message:"operation success"});
+  } catch (error) {
+    next(error)
+  } 
+}
+
+
 ///moush wadhha
 
 /*
@@ -67,7 +80,7 @@ export const addCaissier = async (req,res,next) => {
     next(e)
   }
 }*/
-
+/*
 export const removeCaiiser = (req,res,next) => {
   const {id} = req.body
   try {
@@ -75,4 +88,4 @@ export const removeCaiiser = (req,res,next) => {
   } catch (e) {
     next(e)
   }
-}
+}*/

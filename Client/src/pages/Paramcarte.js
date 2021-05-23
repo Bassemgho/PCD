@@ -47,10 +47,10 @@ const Paramcarte = (props) => {
   const [ptsred,setPtsred] = useState('');
   const [delaired,setDelaired] = useState('');
   const [percent,setPercent] = useState('');
-
- //const [newmontant,setNewmontant] = useState ('');
-  //const [newequiv_mont_pts,setNewequiv_mont_pts] = useState ('');
-
+//
+// const [newmontant,setNewmontant] = useState ('');
+ // const [newequiv_mont_pts,setNewequiv_mont_pts] = useState ('');
+//
   const handleChange = (e) => {
     if (e.target.name==="pts") {
       setPts(e.target.value)
@@ -86,6 +86,7 @@ const Paramcarte = (props) => {
       const rep = await api.addbonparam(pts,delai,valeurbon, props.token);
       console.log("parametres de bon ajoutés");
     } catch (e) {
+      alert("entrer tous les champs");
       console.log(e.error);
     }finally {
 
@@ -98,6 +99,7 @@ const Paramcarte = (props) => {
       const rep = await api.addredparam(ptsred,delaired,percent, props.token);
       console.log("parametres de reduction ajoutés");
     } catch (e) {
+      alert("entrer tous les champs");
       console.log(e.error);
     }finally {
 
@@ -273,7 +275,7 @@ function handleListKeyDown(event) {
                 <form>
                 <div style={{padding: 24, minHeight: 100 , width : 200}}>
                  <label class="bmd-label-floating">Montant d'argent <span className="text-danger">*</span></label>
-                  <input type="text" name="montant"  class="form-control"></input>
+                  <input type="text" name="montant" class="form-control"></input>
                   </div>
                   <div style={{padding: 24, minHeight: 100 , width : 5, marginLeft : 168, marginTop : -108}}><br/><SwapOutlined /></div>
                   <div style={{padding: 24, minHeight: 100 , width : 200, marginLeft : 200, marginTop : -100}}>
@@ -295,12 +297,12 @@ function handleListKeyDown(event) {
             
             <div style={{padding: 15, minHeight: 100 , width : 300}}>
             <form onSubmit = {handleSubmit}>
-            Nombre de points nécessaires <input type="text" name="pts" onChange={handleChange} class="form-control" ></input>
-            Valeur <input type="text" name="valbon" onChange={handleChange} class="form-control" ></input>
+            Nombre de points nécessaires <span className="text-danger">*</span> <input type="text" name="pts" onChange={handleChange} class="form-control" ></input>
+            Valeur <span className="text-danger">*</span> <input type="text" name="valbon" onChange={handleChange} class="form-control" ></input>
             <table>
               <tr>
               <td style={{width : 240 , height : 50}}>
-            Validité (en mois):
+            Validité (en mois): <span className="text-danger">*</span>
             </td>
             <td style={{width : 90 , height : 50}}> 
             <select name="delai" onChange={handleChange} size="1">
@@ -327,11 +329,11 @@ function handleListKeyDown(event) {
         <hr></hr>
             <div style={{padding: 15, minHeight: 100 , width : 300}}>
               <form onSubmit = {handleSubmit1}>
-            Nombre de points nécessaires <input type="text" name="ptsred" onChange={handleChange} class="form-control" ></input>
+            Nombre de points nécessaires <span className="text-danger">*</span><input type="text" name="ptsred" onChange={handleChange} class="form-control" ></input>
             <table>
               <tr>
               <td style={{width : 240 , height : 50}}>
-            Pourcentage :
+            Pourcentage : <span className="text-danger">*</span>
             </td>
             <td style={{width : 90 , height : 50}}> 
             <select name="percent" onChange={handleChange} size="1">
@@ -347,7 +349,7 @@ function handleListKeyDown(event) {
               <table>
               <tr>
               <td style={{width : 240 , height : 50}}>
-            Validité (en mois):
+            Validité (en mois): <span className="text-danger">*</span>
             </td>
             <td style={{width : 90 , height : 50}}> 
             <select name="delaired" onChange={handleChange} size="1">

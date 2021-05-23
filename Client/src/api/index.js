@@ -22,7 +22,12 @@ const urlgetevent = "http://localhost:5000/user/getevent";
 const urlgetbon ="http://localhost:5000/params/getbonparams";
 const urlgetred ="http://localhost:5000/params/getredparams";
 const urldelete ="http://localhost:5000/user/deleteptvente";
+//
+const urldelevent="http://localhost:5000/user/delev";
 
+const urldeletec ="http://localhost:5000/user/deletecaissier";
+const urldelbon ="http://localhost:5000/params/deletebon";
+const urldelred ="http://localhost:5000/params/deletered";
 export const sendcreds = async (username,password) => {
   const creds = {username:username,password:password};
   return await axios.post(urlSignin,creds);
@@ -34,10 +39,38 @@ export const signup = async (username,password,email,name,logo) => {
 
 //sawsen
 
+export const deletebon = async (id_bon,token) => {
+  const inf={id_bon};
+  const config = {headers : { Authorization : `Bearer ${token}`}};
+  return await axios.post(urldelbon,inf,config);
+}
+
+
+export const deletered = async (id_red,token) => {
+  const inf={id_red};
+  const config = {headers : { Authorization : `Bearer ${token}`}};
+  return await axios.post(urldelred,inf,config);
+}
+
 export const deleteptvente = async (id_ptvent,token) => {
   const inf={id_ptvent};
   const config = {headers : { Authorization : `Bearer ${token}`}};
   return await axios.post(urldelete,inf,config);
+}
+
+export const deletecaissier = async (id_caiss,token) => {
+  const inf={id_caiss};
+  const config = {headers : { Authorization : `Bearer ${token}`}};
+  return await axios.post(urldeletec,inf,config);
+}
+
+
+///khra
+
+export const delevent = async (id_ev,token) => {
+  const inf={id_ev};
+  const config = {headers : { Authorization : `Bearer ${token}`}};
+  return await axios.post(urldelevent,inf,config);
 }
 
 

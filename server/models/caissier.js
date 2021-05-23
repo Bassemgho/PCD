@@ -7,9 +7,21 @@ const caissierSch = mongoose.Schema({
     required:[true,'problem getting your entreprise id'],
 
   },
-  name:String,
-  nomentreprise:String,
-  nomptvente:String,
+  name:{
+    type:'String',
+    required:[true,'please enter value'],
+  },
+  nomentreprise:{
+    type:'String',
+    required:[true,'please enter value'],
+  },
+  nomptvente:{
+    type:'String',
+    required:[true,'please enter value'],
+  },
+  //name:String,
+  //nomentreprise:String,
+  //nomptvente:String,
   id_user:{
     type:mongoose.Schema.Types.ObjectId,
     ref:'Appuser'

@@ -21,19 +21,24 @@ const Affevent =() => {
     },[])
 
 
-const delete1 = (index)=> {
+const delete1 = async (index,id_ev)=> {
     let listee = Array.from(get);
    // console.log(listee);
-    listee.splice(index,1);
+    //listee.splice(index,1);
     //console.log(listee);
     setGet(listee);
-    console.log(listee);}
+    console.log(listee);
+    const token = localStorage.getItem("token");
+    await api.delevent(id_ev,token);
+    const {data} = await api.getevent(token);
+    setGet(data);
+}
 
     return(
         <div style={{textAlign : 'center'}}>
                        {get.map((item, index)=>{
                          return(
-                          <Eventg key={index} nom={item.nom} lieu={item.lieu} jourdebut={item.jourdebut} moisdebut={item.moisdebut} andebut={item.andebut} jourfin={item.jourfin} moisfin={item.moisfin} anfin={item.anfin} heuredebut={item.heuredebut} mindebut={item.mindebut} heurefin={item.heurefin} minfin={item.minfin} delete={delete1} index={index} />
+                          <Eventg key={index} {...item} delete={delete1} index={index} />
                          )
                        })}
                     </div>

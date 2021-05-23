@@ -28,15 +28,10 @@ const delete1 = async (index,id_ptvent)=> {
     //console.log(listee);
     setGet(listee);
     console.log(listee);
-<<<<<<< HEAD
-    await api.deleteptvente(id_ptvent,localStorage.getItem('token'));
-    
-=======
     const token = localStorage.getItem("token");
     await api.deleteptvente(id_ptvent,token);
     const {data} = await api.getptvente(token);
     setGet(data);
->>>>>>> d20eca11dd274505fd4b42660b584c60319b3c17
 }
 
     return(

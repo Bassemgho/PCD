@@ -5,7 +5,17 @@ import errorResponse from '../utils/ErrorResponse.js';
 
 
 //hedhy tekhdem ki entreprise bch tzid caissier mayhemhech fih client wala le
+export const deletecaissier = async (req,res,next) => {
+  const user = req.user;
 
+  const {id_caiss} = req.body;
+  try {
+    await caissier.deleteOne({_id:id_caiss});
+    res.status(201).json({sucess:true,message:"operation success"});
+  } catch (error) {
+    next(error)
+  }
+}
 export const addCaissier = async (req,res,next) => {
   const {name,id_ptvente,username,password} = req.body;
   const user = req.user;

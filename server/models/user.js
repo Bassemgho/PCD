@@ -33,7 +33,14 @@ const userschema = mongoose.Schema({
 
 })
 userschema.index({ email: 1}, { unique: true })
-
+// userschema.pre("update",async function (next) {
+//   if (!this.isModified("password")) {
+//     next();
+//   }
+//   const salt = await bcrypt.genSalt(10)
+//   this.password = await bcrypt.hash(this.password,salt)
+//   next();
+// })
 userschema.pre("save",async function(next){
   if (!this.isModified("password")) {
     next();
@@ -46,7 +53,7 @@ userschema.methods.matchPasswords =async function(password) {
   return await bcrypt.compare(password,this.password)
 }
 userschema.methods.getsignedtoken = function () {
-  return jwt.sign({id:this._id},"testsecret",{expiresIn:"1h"})
+  return jwt.sign({id:this._id},"testsecret",{expiresIn:"10min"})
 }
 const users = mongoose.model('users',userschema);
 users.createIndexes()

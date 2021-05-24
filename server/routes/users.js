@@ -29,6 +29,7 @@ router.route('/getevent').get(protect,getevent);
 
 router.route('/ptvente/get').get(protect,getptvente);
 router.route('/caissier/get').get(protect,getcaissier);
+router.route('/shop/get').get(protect,getshop);
 //
 router.route('/update').post(protect,updateEntreprise);
 

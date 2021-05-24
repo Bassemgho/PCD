@@ -23,8 +23,11 @@ const entreprise_schema = mongoose.Schema({
 
 })
 entreprise_schema.pre('save',async function(next){
+  if (this.isNew) {
+
     const sh =await shop.create({id_entreprise:this._id})
     next();
+  }
 
 })
 const entreprise = mongoose.model('entreprise',entreprise_schema);

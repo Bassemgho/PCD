@@ -22,7 +22,7 @@ const achatsch = mongoose.Schema({
     ref:"ptvente",
   },
 
-})
+},{timestamps:true})
 
 const achat = mongoose.model("achat",achatsch)
 export default achat;

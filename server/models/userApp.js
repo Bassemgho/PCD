@@ -56,8 +56,10 @@ userApp.methods.initializecards = async function () {
       list.push(carte._id)
       this.cartes.push(carte._id);
       console.log(this.cartes);
+
   })
-  this.cartes = list;
+  // this.cartes = list;
+  this.save();
   console.log(this.cartes);
 }
 catch (e) {

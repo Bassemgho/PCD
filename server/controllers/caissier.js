@@ -7,13 +7,13 @@ import errorResponse from '../utils/ErrorResponse.js';
 //hedhy tekhdem ki entreprise bch tzid caissier mayhemhech fih client wala le
 
 export const addCaissier = async (req,res,next) => {
-  const {name,nomentreprise,nomptvente} = req.body;
+  const {name,id_ptvente,username,password} = req.body;
   const user = req.user;
   try {
     const caiss = await caissier.create({
       name,
-      nomentreprise,
-      nomptvente,
+      username,
+      password,
       id_entreprise:user.id_entreprise,
 
     })

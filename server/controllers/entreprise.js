@@ -2,7 +2,18 @@ import entreprise from '../models/entreprise.js'
 import errorResponse from '../utils/ErrorResponse.js'
 
 
-export const ajoutermagasin = async () => {
+export const changemontant = async (req,res,next) => {
+  const user = req.user ;
+  const {newmontant,newequiv_mont_pts} = req.body;
+  try {
+    const ent = await entreprise.findOne({_id:user.id_entreprise});
+    ent.montant = newmontant;
+    ent.equiv_mont_pts = newequiv_mont_pts;
+    ent.save();
+    res.status(201).json({success:true,message:"operation success"+ent._id})
+  } catch (e) {
+    next(e)
+  }
 
 }
 export const createentreprise = async (req,res,next) => {
@@ -33,4 +44,3 @@ export const createentreprise = async (req,res) => {
 }*/
 
 //sawsen
-

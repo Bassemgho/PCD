@@ -17,8 +17,12 @@ const carteVirtuelleSch = mongoose.Schema({
 })
 
 carteVirtuelleSch.pre('save',async function (next) {
-  await userApp.update({_id:this.id_client},{$push:{cartes:this._id}})
-  next();
+  // if (!this.isNew ) {
+    // await userApp.update({_id:this.id_client},{$push:{cartes:this._id}})
+    // next();
+  // }
+
+
 
 })
 const carteVirtuelle = mongoose.model('carteVirtuelle',carteVirtuelleSch);

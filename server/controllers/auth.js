@@ -38,6 +38,7 @@ export const  signin = async (req,res,next) => {
   }
 
 }
+
 export const  forgotpassword = (req,res,next) => {
   res.json({message: "forgot password route "})
 }
@@ -54,7 +55,7 @@ const sendtoken = (user,code,res) => {
 
 // paramcarte
 // ça marche pas bel shyh
-// à revoir 
+// à revoir
 
 export const addparam = async (req,res,next) => {
   const user = req.user;
@@ -66,7 +67,7 @@ export const addparam = async (req,res,next) => {
     if (!up) {
       return next(new errorResponse("entreprise n'existe pas",404));
     }else {
-      
+
       entreprise.updateOne({montant : user.id_entreprise.montant},{montant: newmontant},function (err,res) {
         if (err) {
           console.log("error"+err);
@@ -81,7 +82,7 @@ export const addparam = async (req,res,next) => {
           console.log("result"+res);
         }
       })
-     
+
     }
   } catch (error) {
     next(error);

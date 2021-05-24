@@ -35,6 +35,18 @@ export const getredparams = async (req,res,next) => {
     next(error);
   }
 }
+// delete
+export const deletered = async (req,res,next) => {
+  const user = req.user;
+  
+  const {id_red} = req.body;
+  try {
+    await reductionparam.deleteOne({_id:id_red});
+    res.status(201).json({sucess:true,message:"operation success"});
+  } catch (error) {
+    next(error);
+  }
+}
 
 /*
 export const getredparams = async (req,res,next) => {

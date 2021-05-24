@@ -32,3 +32,15 @@ export const getevent = async (req,res,next) => {
   }
 
 }
+
+export const delevent = async (req,res,next) => {
+  const user = req.user;
+  
+  const {id_ev} = req.body;
+  try {
+    await events.deleteOne({_id:id_ev});
+    res.status(201).json({sucess:true,message:"operation success"});
+  } catch (error) {
+    next(error);
+  }
+}

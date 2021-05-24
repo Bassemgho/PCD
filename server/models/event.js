@@ -5,8 +5,16 @@ const eventsch = mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:"entreprise",
   },
-  nom:String,
-  lieu:String,
+  nom:{
+    type:'String',
+    required:[true,'please enter value'],
+  },
+  lieu:{
+    type:'String',
+    required:[true,'please enter value'],
+  },
+  //nom:String,
+  //lieu:String,
   jourdebut:String,
   moisdebut:String,
   andebut:String,

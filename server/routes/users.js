@@ -8,11 +8,11 @@ import {addCaissier} from '../controllers/caissier.js'
 import {getptvente} from '../controllers/getptvente.js'
 import {addevent} from '../controllers/event.js'
 import {getshop} from '../controllers/shop.js'
-import {getcaissier} from '../controllers/caissier.js'
+import {getcaissier,deletecaissier} from '../controllers/caissier.js'
 import {updateEntreprise} from '../controllers/users.js'
 import {getclient} from '../controllers/appControllers/userApp.js'
 import {addparam} from '../controllers/auth.js'
-import {getevent} from '../controllers/event.js'
+import {getevent,delevent} from '../controllers/event.js'
 const router = express.Router();
 router.post('/signin',signin);
 router.post('/signup',signup);
@@ -36,6 +36,9 @@ router.route('/update').post(protect,updateEntreprise);
 router.route('/getclient').get(protect,getclient);
 // à modifier w nhotha fel params.js
 router.route('/addparam').post(protect,addparam);
-router.route('/deleteptvente').delete(protect,deleteptvente)
+//router.route('/deleteptvente').delete(protect,deleteptvente);
+router.route('/delev').post(protect,delevent);
+
+router.route('/deletecaissier').post(protect,deletecaissier);
 
 export default router

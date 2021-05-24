@@ -3,21 +3,21 @@ import shop from './shop.js'
 const entreprise_schema = mongoose.Schema({
   name:{
     type:'String',
-    required:[true,'please provide a username'],
+    required:[true,'please provide a name'],
     unique: true
   },
   logo:{
     type:'String',
-    required:[true,'please provide a username'],
+    required:[true,'please provide a logo'],
   },
   //name:String,
   //logo:String,
   montant:{
-    type:String,
+    type:'String',
     default:"0"
   },
   equiv_mont_pts:{
-    type:String,
+    type:'String',
     default:"0"
   }
 

@@ -13,10 +13,11 @@ export const addptvente = async (req,res,next) => {
     next(e);
   }
 }
+
 export const deleteptvente = async (req,res,next) => {
   const user = req.user;
   
-  const {id_ptvent} = req.body
+  const {id_ptvent} = req.body;
   try {
     await ptvente.deleteOne({_id:id_ptvent})
     res.status(201).json({sucess:true,message:"operation success"})

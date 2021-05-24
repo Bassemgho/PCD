@@ -7,7 +7,19 @@ const redparamsh = mongoose.Schema({
     ref:"entreprise",
     select:false
   },
-  ptsred:String,
+  ptsred:{
+    type:'String',
+    required:[true,'please enter value'],
+  },
+  /*delaired:{
+    type:'String',
+    required:[true,'please enter value'],
+  },
+  percent:{
+    type:'String',
+    required:[true,'please enter value'],
+  },*/
+  //ptsred:String,
   delaired:String,
   percent:String,
 })

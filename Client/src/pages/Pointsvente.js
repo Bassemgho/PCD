@@ -45,92 +45,6 @@ const Pointsvente = (props) => {
   
   const id = {headers : { Authorization : `Bearer ${props.token}`}};
   
-  /*const urlaff = "http://localhost:5000/user"
-
-  const stateinit = {
-		nom: '',
-		address: '',
-    lat: '',
-    lang: '',
-    heuredebut: '',
-    mindebut: '',
-    heurefin: '',
-    minfin: '',
-    jourdebut: '',
-    jourfin: '',
-		get: []
-	  };
-    const [state,setState] = useState(stateinit);
-    const useEffect=(async()=> {
-      try {
-        const rep = await api.getptvente(props.token);
-        setState({...state,get:rep})
-        console.log(rep.data);
-      } catch (e) {
-        console.log(e.message);
-      }
-
-    },[])
-    // const componentDidMount = () => {
-    //   this.getBlogPost();
-    //   };
-
-
-          const displayBlogPost = (posts) => {
-
-            if (!posts.length) return null;
-
-
-            return posts.map((post, index) => (
-              return(
-
-              <div key={index} >
-                <p>{post.nom}</p>
-                <p>{post.address}</p>
-                <p>{post.lat}</p>
-                <p>{post.lang}</p>
-                <p>{post.heuredebut}</p>
-                <p>{post.mindebut}</p>
-                <p>{post.heurefin}</p>
-                <p>{post.minfin}</p>
-                <p>{post.jourdebut}</p>
-                <p>{post.jourfin}</p>
-              </div>
-            )
-            ));
-            };
-*/
-/*
-const [get,setGet] = useState([]);
-
- useEffect (async () => {
-
-  const token = localStorage.getItem("token");
-  try {
-    const {data} = await api.getptvente(token);
-    console.log(data);
-    setGet(data);
-  } catch (e) {
-    console.log(e.error);
-  }
-},[])
-
-
-const delete1 = (index)=> {
-  let listee = get;
- // console.log(listee);
-  listee.splice(index,1);
-  //console.log(listee);
-  setGet(listee);
-  console.log(get);
-   
-}*/
-/*
-  const useEffect=(async()=> {
-    const rep = await api.getptvente(props.token);
-    console.log(rep);
-  },[])
-*/
   const ls= [];
   for ( let i=0;i<24;i++){
     ls.push(i);
@@ -189,13 +103,16 @@ const delete1 = (index)=> {
     }
 
   }
+  
   const handleSubmit = async (e) => {
 
     e.preventDefault();
     try {
       const rep = await api.addptvente(nom, address, lat, lang, heuredebut, mindebut, heurefin, minfin, jourdebut, jourfin, props.token);
       console.log("pt vente ajoutée");
+      alert('point de vente ajouté');
     } catch (e) {
+      alert('Il faut entrer tous les champs');
       console.log(e.error);
     }finally {
 
@@ -470,7 +387,7 @@ function handleListKeyDown(event) {
                               <h4 style ={{fontWeight :'bold'}}>Liste des points de vente</h4>
                           </div>
                           <br/>
-                            <Affichage  />
+                            <Affichage/>
                       </div>
                     
                  

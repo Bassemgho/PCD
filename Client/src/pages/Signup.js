@@ -1,10 +1,12 @@
 import React , {useState} from 'react';
 import * as api from '../api/index.js'
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
+import {Link,Route,Redirect} from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import FileBase from 'react-file-base64';
 import {WarningOutlined} from '@ant-design/icons';
+
 const Signup = () => {
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
@@ -73,12 +75,12 @@ const Signup = () => {
 
                                   <form onSubmit = {handleSubmit}>
                                       <div className="top-margin">
-                                          <label>Nom Entreprise</label>
+                                          <label>Nom Entreprise <span className="text-danger">*</span></label>
                                           <input type="text" name="name" onChange={handleChange} className="form-control"/>
                                       </div>
 
                                       <div className="top-margin">
-                                          <label>Nom Utilisateur</label>
+                                          <label>Nom Utilisateur <span className="text-danger">*</span></label>
                                           <input type="text" name="username" onChange={handleChange} className="form-control"/>
                                           </div>
 

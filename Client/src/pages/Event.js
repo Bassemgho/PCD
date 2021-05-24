@@ -114,7 +114,9 @@ const Event = (props) => {
     try {
       const rep = await api.addevent(nom , lieu , jourdebut, moisdebut,andebut,jourfin, moisfin,anfin, heuredebut,mindebut,heurefin,minfin, props.token);
       console.log("evenement ajoutée");
+      alert('événement ajouté');
     } catch (e) {
+      alert('Il faut entrer tous les champs');
       console.log(e.error);
     }finally {
 
@@ -270,7 +272,7 @@ function handleListKeyDown(event) {
               <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item><h1 style ={{fontWeight :'bold'}}>Evénements</h1></Breadcrumb.Item>
               </Breadcrumb>
-              <div style={{ background: '#fff', padding: 24, minHeight: 650 }}>
+              <div style={{ background: '#fff', padding: 24, minHeight: 1500 }}>
               <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
                     <h4 style ={{fontWeight :'bold'}}>Ajouter un événement</h4>
                  </div>   

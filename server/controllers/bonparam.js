@@ -37,24 +37,17 @@ export const getbonparams = async (req,res,next) => {
   }
 }
 // delete
-/*
 export const deletebon = async (req,res,next) => {
   const user = req.user;
-  const id_entreprise = user.id_entreprise;
+  
+  const {id_bon} = req.body;
   try {
-    const listparams = await bonparams.find({id_entreprise}).populate('_id').exec();
-
-    if (!listparams) {
-      return next(new errorResponse("pas de parametres de bon",404));
-    }
-    else {
-      await bonparams.deleteOne({})
-    }
+    await bonparams.deleteOne({_id:id_bon});
+    res.status(201).json({sucess:true,message:"operation success"});
   } catch (error) {
-    
+    next(error);
   }
 }
-*/
 /*
 export const getbonparams = async (req,res,next) => {
   const user = req.user;

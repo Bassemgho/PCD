@@ -21,19 +21,24 @@ const Affcaissier =() => {
     },[])
 
 
-const delete1 = (index)=> {
+const delete1 = async(index,id_caiss)=> {
     let listee = Array.from(get);
    // console.log(listee);
-    listee.splice(index,1);
+    //listee.splice(index,1);
     //console.log(listee);
     setGet(listee);
-    console.log(listee);}
+    console.log(listee);
+    const token = localStorage.getItem("token");
+    await api.deletecaissier(id_caiss,token);
+    const {data} = await api.getcaissier(token);
+    setGet(data);
+}
 
     return(
         <div style={{textAlign : 'center'}}>
                        {get.map((item, index)=>{
                          return(
-                          <Caissier key={index} name={item.name} nomptvente={item.nomptvente} delete={delete1} index={index} />
+                          <Caissier key={index} {...item} delete={delete1} index={index} />
                          )
                        })}
                     </div>

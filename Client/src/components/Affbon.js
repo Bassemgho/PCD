@@ -21,19 +21,24 @@ const Affbon =() => {
     },[])
 
 
-const delete1 = (index)=> {
+const delete1 = async (index, id_bon)=> {
     let listee = Array.from(get);
    // console.log(listee);
-    listee.splice(index,1);
+    //listee.splice(index,1);
     //console.log(listee);
     setGet(listee);
-    console.log(listee);}
+    console.log(listee);
+    const token = localStorage.getItem("token");
+    await api.deletebon(id_bon,token);
+    const {data} = await api.getbonparams(token);
+    setGet(data);
+}
 
     return(
         <div style={{textAlign : 'center'}}>
                        {get.map((item, index)=>{
                          return(
-                          <Bonget key={index} pts={item.pts} valeurbon={item.valeurbon} delai={item.delai} delete={delete1} index={index} />
+                          <Bonget key={index} {...item} delete={delete1} index={index} />
                          )
                        })}
                     </div>

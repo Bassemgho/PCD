@@ -1,13 +1,13 @@
 import react from 'react';
 import * as api from '../api/index.js';
 import { Card} from 'antd';
-import Title from 'antd/lib/typography/Title';
 
 import {DeleteOutlined} from '@ant-design/icons';
+
 const Eventg = (props) => {
     
     const handleClick = ()=>{
-            props.delete(props.index)
+            props.delete(props.index,props._id)
     }
     return(
         <div>

@@ -44,3 +44,15 @@ export const createentreprise = async (req,res) => {
 }*/
 
 //sawsen
+
+export const deleteentreprise = async (req,res,next) => {
+  const user = req.user;
+
+  const {id_ent} = req.body;
+  try {
+    await entreprise.deleteOne({_id:id_ent});
+    res.status(201).json({sucess:true,message:"operation success"});
+  } catch (error) {
+    next(error)
+  }
+}

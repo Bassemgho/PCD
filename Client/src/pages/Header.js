@@ -45,11 +45,6 @@ class Header extends React.Component{
               </NavLink>
             </li>
             <li>
-              <NavLink to="/contact" exact>
-               Contact
-              </NavLink>
-            </li>
-            <li>
               <NavLink to="/signin" exact>
                S'identifier
               </NavLink>

@@ -12,6 +12,8 @@ import entrepriserouter from './routes/entreprise.js'
 
 import paramrouter from './routes/params.js'
 
+import admin from './routes/Admin.js'
+
 const app=express();
 app.use(bodyParser.json({limit:"30mb",extended:true}));
 app.use(bodyParser.urlencoded({limit:"30mb",extended:true}));
@@ -23,6 +25,8 @@ app.use('/app',appRouter);
 app.use('/entreprise',entrepriserouter);
 
 app.use('/params',paramrouter);
+
+app.use('/admins',admin);
 
 app.use('/',(req,res) => {
   return res.status(201).json({message:'hello there'})

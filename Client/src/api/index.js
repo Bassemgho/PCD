@@ -28,6 +28,17 @@ const urldelevent="http://localhost:5000/user/delev";
 const urldeletec ="http://localhost:5000/user/deletecaissier";
 const urldelbon ="http://localhost:5000/params/deletebon";
 const urldelred ="http://localhost:5000/params/deletered";
+const urldeletent ="http://localhost:5000/entreprise/deleteentreprise";
+
+
+const urlsignadm="http://localhost:5000/admins/signin";
+
+export const signadmin = async (username,password) => {
+  const creds = {username:username,password:password};
+  return await axios.post(urlsignadm,creds);
+}
+ 
+
 export const sendcreds = async (username,password) => {
   const creds = {username:username,password:password};
   return await axios.post(urlSignin,creds);
@@ -185,3 +196,15 @@ export const getentreprise = async () => {
 
 };
 */
+export const getentreprise = async (token) => {
+  const config = {headers : { Authorization : `Bearer ${token}`}};
+  const rep = await axios.get(url,config);
+  return rep;
+}
+
+
+export const deleteentreprise = async (id_ent,token) => {
+  const inf={id_ent};
+  const config = {headers : { Authorization : `Bearer ${token}`}};
+  return await axios.post(urldeletent,inf,config);
+}

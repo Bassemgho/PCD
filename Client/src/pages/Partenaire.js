@@ -77,6 +77,7 @@ class Partenaire extends React.Component{
 					<li className="active">Nos partenaires</li>
 			</ol>
 			<br/>
+			
 			<br/><br/>
 			<div>
           		{this.displayBlogPost(this.state.posts)}

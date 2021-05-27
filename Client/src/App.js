@@ -1,7 +1,6 @@
 import './App.css';
 import Home from './pages/Home';
 import About from './pages/About';
-import Contact from './pages/Contact';
 import Partenaire from './pages/Partenaire';
 import Team from './pages/Team';
 import Signin from './pages/Signin';
@@ -14,6 +13,7 @@ import Pointsvente from './pages/Pointsvente';
 import Event from './pages/Event';
 import GestionCaissier from './pages/GestionCaissier';
 import Admin from './pages/Admin';
+import Cnxadmin from './pages/Cnxadmin';
 import Bons from './pages/Bons';
 import Reduction from './pages/Reduction';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
@@ -34,7 +34,6 @@ function App() {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/about' component={About} />
-            <Route path='/contact' component={Contact} />
             <Route path='/partenaire' component={Partenaire} />
             <Route path='/team' component={Team} />
             {/*<Route path='/signin' component={Signin} />*/}
@@ -58,8 +57,12 @@ function App() {
             <Route path='/gestioncaissier' render={(props) => (<GestionCaissier {...props} authorized={authorized} setAuthorized={setAuthorized} token={token} />) } />
             <Route path='/bons' render={(props) => (<Bons {...props} authorized={authorized} setAuthorized={setAuthorized} token={token} />) } />
             <Route path='/reduction' render={(props) => (<Reduction {...props} authorized={authorized} setAuthorized={setAuthorized} token={token} />) } />
+           
+            {/*<Route path='/admin' component={Admin} />*/}
+            <Route path='/admin' render={(props) => (<Admin {...props} authorized={authorized} setAuthorized={setAuthorized} token={token} />) } />
 
-            <Route path='/admin' component={Admin} />
+            
+            <Route path='/cnxadmin' render={(props) => (<Cnxadmin {...props} authorized={authorized} setAuthorized={setAuthorized} token={token} setToken={setToken}  />)          } />
           </Switch>        
 
 

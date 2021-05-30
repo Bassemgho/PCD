@@ -22,6 +22,8 @@ class Team extends React.Component{
 					            <h1 className="page-title">Notre équipe</h1>
 				            </header>
 				            <p>Nous vous remercions d'avoir choisi notre application pour fidéliser vos clients.</p>
+                           
+
 				             </article>
 			
 			
@@ -30,21 +32,21 @@ class Team extends React.Component{
 
                             <div className="row widget">
                                 <div className="col-xs-12">
-                                    <h4>Sarah Gharbi</h4>
-                                    <p><img src="assets/images/1.jpg" alt=""/></p>
+                                    <h4>Saoussen Khalladi</h4>
+                                    <p><img src="assets/images/sawsen.jpg" alt=""/></p>
                                 </div>
                             </div>
                             <div className="row widget">
                                 <div className="col-xs-12">
                                     <h4>Bassem Elghoul</h4>
-                                    <p><img src="assets/images/2.jpg" alt=""/></p>
+                                    <p><img src="assets/images/bassem.jpg" alt=""/></p>
                                     
                                 </div>
                             </div>
                             <div className="row widget">
                                 <div className="col-xs-12">
-                                    <h4>Saoussen Khalladi</h4>
-                                    <p><img src="assets/images/2.jpg" alt=""/></p>
+                                    <h4>Sarah Gharbi</h4>
+                                    <p><img src="assets/images/sarah.jpg" alt=""/></p>
                                     
                                 </div>
                             </div>

@@ -208,3 +208,4 @@ export const deleteentreprise = async (id_ent,token) => {
   const config = {headers : { Authorization : `Bearer ${token}`}};
   return await axios.post(urldeletent,inf,config);
 }
+

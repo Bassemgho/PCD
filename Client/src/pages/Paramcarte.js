@@ -48,8 +48,8 @@ const Paramcarte = (props) => {
   const [delaired,setDelaired] = useState('');
   const [percent,setPercent] = useState('');
 //
-// const [newmontant,setNewmontant] = useState ('');
- // const [newequiv_mont_pts,setNewequiv_mont_pts] = useState ('');
+const [newmontant,setNewmontant] = useState ('');
+const [newequiv_mont_pts,setNewequiv_mont_pts] = useState ('');
 //
   const handleChange = (e) => {
     if (e.target.name==="pts") {
@@ -70,12 +70,12 @@ const Paramcarte = (props) => {
     if (e.target.name==="percent") {
       setPercent(e.target.value)
     }
-    /*if (e.target.name==="montant") {
+    if (e.target.name==="montant") {
       setNewmontant(e.target.value)
     }
     if (e.target.name==="points") {
       setNewequiv_mont_pts(e.target.value)
-    }*/
+    }
 
   }
   
@@ -105,7 +105,6 @@ const Paramcarte = (props) => {
 
     }
   }
-  /*
   const handleSubmit2 = async (e) => {
 
     e.preventDefault();
@@ -118,7 +117,6 @@ const Paramcarte = (props) => {
 
     }
   }
-*/
 
   const logout = () => {
     props.setAuthorized(false);
@@ -272,15 +270,15 @@ function handleListKeyDown(event) {
                 <label class="bmd-label-floating">Paramètres de fidelisation</label>
                 <hr></hr>
                 <br/>
-                <form>
+                <form onSubmit = {handleSubmit2}>
                 <div style={{padding: 24, minHeight: 100 , width : 200}}>
                  <label class="bmd-label-floating">Montant d'argent <span className="text-danger">*</span></label>
-                  <input type="text" name="montant" class="form-control"></input>
+                  <input type="text" name="montant" onChange={handleChange} class="form-control"></input>
                   </div>
                   <div style={{padding: 24, minHeight: 100 , width : 5, marginLeft : 168, marginTop : -108}}><br/><SwapOutlined /></div>
                   <div style={{padding: 24, minHeight: 100 , width : 200, marginLeft : 200, marginTop : -100}}>
                   <label>Nombre de points <span className="text-danger">*</span></label>
-                <input type="text" name="points"  class="form-control" ></input>
+                <input type="text" name="points" onChange={handleChange} class="form-control" ></input>
                 <br/>
                 <button type="submit" class="btn btn-primary pull-right" style={{background: '#87bfd4', color: '#000000', marginTop : 10, marginRight: 243}}>Enregistrer</button>   
                 </div>

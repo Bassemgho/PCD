@@ -313,16 +313,7 @@ function handleListKeyDown(event) {
                  <label class="bmd-label-floating">Nom Client</label>
                   <input type="text" class="form-control"></input>
                  */}
-                     
-                 <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
-                    <h4 style ={{fontWeight :'bold'}}>Gestion des commentaires</h4>
-                 </div> 
-                 <br/><br/>
-                 <table>
-                     <tr>
-                     <h5 style ={{fontWeight :'bold', background :'#2a9438', padding: 10}}>Liste des commentaires</h5>
-                     </tr>
-                 </table>
+              
                  <br/>
                  
               </div>

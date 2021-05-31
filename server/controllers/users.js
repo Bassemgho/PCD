@@ -1,6 +1,7 @@
 import users from '../models/user.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
+import entreprise from '../models/entreprise.js'
 import errorResponse from '../utils/ErrorResponse.js'
 
 
@@ -120,3 +121,19 @@ export const signin = async (req,res) => {
       next(error);
     }
   }
+
+/////
+export const getnom = async (req,res,next) => {
+  const user = req.user;
+  const id_entreprise = user.id_entreprise;
+  try {
+      const ent = await (await users.findOne({id_entreprise }).populate('id_entreprise')).execPopulate();
+      console.log(ent.id_entreprise.name);
+
+       return res.status(201).json({name:ent.id_entreprise.name});
+
+  } catch (error) {
+      next(error);
+  }
+
+}

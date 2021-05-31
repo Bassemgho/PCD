@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Dash.css';
 import { Layout, Avatar, Menu, Breadcrumb, Button } from 'antd';
 import Title from 'antd/lib/typography/Title';
@@ -30,6 +30,24 @@ const useStyles = makeStyles((theme) => ({
 const { Header, Footer, Sider, Content } = Layout;
 
 const Paramcarte = (props) => {
+
+  const id = {headers : { Authorization : `Bearer ${props.token}`}};
+
+  const [get,setGet] = useState("");
+    useEffect (async () => {
+
+    const token = localStorage.getItem("token");
+    try {
+    const {data} = await api.getnom(props.token);
+    console.log(data);
+    setGet(data);
+    console.log(get.name);
+    } catch (e) {
+    console.log(e.error);
+    }
+    },[])
+
+
 
   const ls= [];
   for ( let i=5;i<100;i=i+5){
@@ -85,6 +103,7 @@ const [newequiv_mont_pts,setNewequiv_mont_pts] = useState ('');
     try {
       const rep = await api.addbonparam(pts,delai,valeurbon, props.token);
       console.log("parametres de bon ajoutés");
+      alert("bon d'achat ajouté");
     } catch (e) {
       alert("entrer tous les champs");
       console.log(e.error);
@@ -98,6 +117,7 @@ const [newequiv_mont_pts,setNewequiv_mont_pts] = useState ('');
     try {
       const rep = await api.addredparam(ptsred,delaired,percent, props.token);
       console.log("parametres de reduction ajoutés");
+      alert("offre de réduction ajoutée");
     } catch (e) {
       alert("entrer tous les champs");
       console.log(e.error);
@@ -109,10 +129,12 @@ const [newequiv_mont_pts,setNewequiv_mont_pts] = useState ('');
 
     e.preventDefault();
     try {
-      const rep = await api.addparam(newmontant, newequiv_mont_pts , props.token);
+      const rep = await api.changeequiv(newmontant, newequiv_mont_pts , props.token);
       console.log("parametres carte ajoutés");
+      alert("paramètres de conversion ajoutés");
     } catch (e) {
       console.log(e.error);
+      alert("verifier les champs");
     }finally {
 
     }
@@ -120,6 +142,9 @@ const [newequiv_mont_pts,setNewequiv_mont_pts] = useState ('');
 
   const logout = () => {
     props.setAuthorized(false);
+    localStorage.setItem("authorized",false);
+    setGet("");
+    localStorage.removeItem("token");
   }
 
   const classes = useStyles();
@@ -197,8 +222,9 @@ function handleListKeyDown(event) {
                 <Paper>
                   <ClickAwayListener onClickAway={handleClose}>
                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                    <MenuItem ><h5> {get.name} </h5></MenuItem>
+
                       <MenuItem onClick={handleClose}><h5><Link to ='/profil'>Profil</Link></h5></MenuItem>
-                      <MenuItem onClick={handleClose}><h5>Carte</h5></MenuItem>
                       <MenuItem onClick={logout}><h5>Déconnexion</h5></MenuItem>
                     </MenuList>
                   </ClickAwayListener>

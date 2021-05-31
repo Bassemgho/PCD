@@ -18,6 +18,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import { Collapse } from '@material-ui/core';
+
+import * as api from '../api/index.js';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -30,7 +33,25 @@ const useStyles = makeStyles((theme) => ({
 
 const { Header, Footer, Sider, Content } = Layout;
 
-function Dashboard(props) {
+const Dashboard = (props) =>{
+
+  const id = {headers : { Authorization : `Bearer ${props.token}`}};
+
+  const [get,setGet] = useState("");
+    useEffect (async () => {
+
+    const token = localStorage.getItem("token");
+    try {
+    const {data} = await api.getnom(props.token);
+    console.log(data);
+    setGet(data);
+    console.log(get.name);
+    } catch (e) {
+    console.log(e.error);
+    }
+    },[])
+
+
 
   useEffect(() => {
     const auth = localStorage.getItem("authorized")
@@ -39,7 +60,9 @@ function Dashboard(props) {
   },[])
   const logout = () => {
     props.setAuthorized(false);
-    localStorage.setItem("authorized",false)
+    localStorage.setItem("authorized",false);
+    setGet("");
+    localStorage.removeItem("token");
   }
 
   const classes = useStyles();
@@ -122,8 +145,13 @@ function handleListKeyDown(event) {
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                  <MenuItem><h5>
+                   
+               {get.name}
+              
+                    </h5></MenuItem>
                     <MenuItem onClick={handleClose}><h5><Link to ='/profil'>Profil</Link></h5></MenuItem>
-                    <MenuItem onClick={handleClose}><h5>Carte</h5></MenuItem>
+                    
                     <MenuItem onClick={logout}><h5>Déconnexion</h5></MenuItem>
                   </MenuList>
                 </ClickAwayListener>
@@ -193,6 +221,7 @@ function handleListKeyDown(event) {
               <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
               <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
                     <h4 style ={{fontWeight :'bold'}}>Points cumulés des clients</h4>
+                    
                  </div>
                   <br/>
 

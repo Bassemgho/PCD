@@ -32,6 +32,21 @@ const { Header, Footer, Sider, Content } = Layout;
 
 const Profil = (props) => {
 
+  const [get,setGet] = useState("");
+    useEffect (async () => {
+
+    const token = localStorage.getItem("token");
+    try {
+    const {data} = await api.getnom(props.token);
+    console.log(data);
+    setGet(data);
+    console.log(get.name);
+    } catch (e) {
+    console.log(e.error);
+    }
+    },[])
+
+
   //
 
   const [newusername,setNewusername] = useState('');
@@ -68,6 +83,9 @@ const Profil = (props) => {
   //
   const logout = () => {
     props.setAuthorized(false);
+    localStorage.setItem("authorized",false);
+    setGet("");
+    localStorage.removeItem("token");
   }
 
   const classes = useStyles();
@@ -144,8 +162,9 @@ function handleListKeyDown(event) {
                 <Paper>
                   <ClickAwayListener onClickAway={handleClose}>
                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                    <MenuItem><h5>{get.name}</h5></MenuItem>
                       <MenuItem onClick={handleClose}><h5><Link to ='/profil'>Profil</Link></h5></MenuItem>
-                      <MenuItem onClick={handleClose}><h5>Carte</h5></MenuItem>
+                      
                       <MenuItem onClick={logout}><h5>Déconnexion</h5></MenuItem>
                     </MenuList>
                   </ClickAwayListener>

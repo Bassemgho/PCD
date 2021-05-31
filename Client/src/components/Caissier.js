@@ -21,7 +21,7 @@ const Caissier = (props) => {
                     <p >Nom du point de vente : </p>
                     </td>
                     <td style={{width : 90}}>
-                       <p style={{fontWeight :'bold'}}>{props.nomptvente}</p> 
+                       <p style={{fontWeight :'bold'}}>{props.id_ptvente.nom}</p> 
                     </td>
                 </tr>
                 <tr>

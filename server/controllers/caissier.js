@@ -24,6 +24,7 @@ export const addCaissier = async (req,res,next) => {
       name,
       username,
       password,
+      id_ptvente,
       id_entreprise:user.id_entreprise,
 
     })
@@ -38,7 +39,7 @@ export const getcaissier = async (req,res,next) => {
   const user = req.user;
   const id_entreprise = user.id_entreprise;
   try {
-      const caiss = await caissier.find({id_entreprise });
+      const caiss = await caissier.find({id_entreprise }).populate('id_ptvente').exec();
 
       if (!caiss) {
           return next(new errorResponse("pas de caissiers",404));

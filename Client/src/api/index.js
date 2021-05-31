@@ -33,6 +33,16 @@ const urldeletent ="http://localhost:5000/entreprise/deleteentreprise";
 
 const urlsignadm="http://localhost:5000/admins/signin";
 
+const urlnom="http://localhost:5000/user/getnom";
+
+const urlchange="http://localhost:5000/params/changeequiv";
+
+export const changeequiv = async (newmontant,newequiv_mont_pts,token) => {
+  const inf={newmontant,newequiv_mont_pts};
+  const config = {headers : { Authorization : `Bearer ${token}`}};
+  return await axios.post(urlchange,inf,config);
+}
+
 export const signadmin = async (username,password) => {
   const creds = {username:username,password:password};
   return await axios.post(urlsignadm,creds);
@@ -97,8 +107,8 @@ export const addevent = async (nom , lieu , jourdebut, moisdebut,andebut,jourfin
 }
 
 
-export const addcaissier = async (name,nomentreprise,nomptvente,token) => {
-  const inf = {name,nomentreprise,nomptvente}
+export const addcaissier = async (name,username,password,id_ptvente,token) => {
+  const inf = {name,username,password,id_ptvente}
   return await axios.post(urlcaissier,inf,{headers : { Authorization : `Bearer ${token}`}})
 }
 
@@ -209,3 +219,9 @@ export const deleteentreprise = async (id_ent,token) => {
   return await axios.post(urldeletent,inf,config);
 }
 
+export const getnom = async (token) => {
+  const config = {headers : { Authorization : `Bearer ${token}`}};
+  const rep = await axios.get(urlnom,config);
+  console.log('nom get');
+  return rep;
+}

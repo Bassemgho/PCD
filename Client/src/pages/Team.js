@@ -21,13 +21,25 @@ class Team extends React.Component{
 				            <header className="page-header">
 					            <h1 className="page-title">Notre équipe</h1>
 				            </header>
-				            <p>Nous vous remercions d'avoir choisi notre application pour fidéliser vos clients.</p>
-                           
+				            <p style={{fontFamily:'bold', fontSize :25}}>Nous vous remercions d'avoir choisi notre application pour fidéliser vos clients.</p>
+                            <br/><br/><br/><br/>
+                            <p style={{color :'Red', fontFamily:'bold', fontSize :25}}>Vous pouvez nous contacter sur les addresses emails suivantes :</p> <br/>
+                           <table>
+                               <tr style={{fontFamily:'bold', fontSize :25}}>
+                                   Saoussen.Khalladi@ensi-uma.tn
+                               </tr>
+                               <tr style={{fontFamily:'bold', fontSize :25}}>
+                               bassem.elghoul@ensi-uma.tn
+                               </tr>
+                               <tr style={{fontFamily:'bold', fontSize :25}}>
+                                sarah.gharbi@ensi-uma.tn
+                               </tr>
+                           </table>
 
 				             </article>
+
 			
-			
-		
+	
 			            <aside className="col-md-4 sidebar sidebar-right">
 
                             <div className="row widget">
@@ -52,7 +64,7 @@ class Team extends React.Component{
                             </div>
 
 			            </aside>
-	
+       
 
 		            </div>
 	            </div>

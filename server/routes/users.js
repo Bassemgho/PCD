@@ -13,12 +13,18 @@ import {updateEntreprise} from '../controllers/users.js'
 import {getclient} from '../controllers/appControllers/userApp.js'
 import {addparam} from '../controllers/auth.js'
 import {getevent,delevent} from '../controllers/event.js'
+
+import {getnom} from '../controllers/users.js'
+
+
 const router = express.Router();
 router.post('/signin',signin);
 router.post('/signup',signup);
 //router.post('/addptsventes',addptvente);
 router.route('/addptsventes').post(protect,addptvente);
-router.route('/deleteptvente').post(protect,deleteptvente)
+router.route('/deleteptvente').post(protect,deleteptvente);
+
+
 router.route('/addcaissier').post(protect,addCaissier);
 router.route('/addevent').post(protect,addevent);
 // router.route('/shop/get').get(protect,getshop)
@@ -40,5 +46,7 @@ router.route('/addparam').post(protect,addparam);
 router.route('/delev').post(protect,delevent);
 
 router.route('/deletecaissier').post(protect,deletecaissier);
+
+router.route('/getnom').get(protect,getnom);
 
 export default router

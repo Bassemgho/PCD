@@ -74,7 +74,7 @@ import * as api from '../api/index.js';
       useEffect(async () => {
         const token = localStorage.getItem("token");
         try {
-          const {data} = await api.getcaissier(token);
+          const {data} = await api.getdatac(token);
           console.log(data);
           setchartData({
             labels: Object.keys(data),

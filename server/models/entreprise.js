@@ -13,11 +13,11 @@ const entreprise_schema = mongoose.Schema({
   //name:String,
   //logo:String,
   montant:{
-    type:'String',
+    type:'Number',
     default:"0"
   },
   equiv_mont_pts:{
-    type:'String',
+    type:'Number',
     default:"0"
   }
 

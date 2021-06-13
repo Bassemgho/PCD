@@ -9,7 +9,7 @@ export const viewcards = async (req,res,ne) => {
  const id = req.user._id;
 
  try {
-   const user = await appuser.find({_id:id}).populate('cartes').exec();
+   const user = await appuser.find({_id:id}).populate({path:'cartes',populate:{path:'id_entreprise'}}).exec();
    res.status(201).json({user});
  } catch (e) {
    next(e);

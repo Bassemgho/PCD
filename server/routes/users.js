@@ -15,6 +15,7 @@ import {addparam} from '../controllers/auth.js'
 import {getevent,delevent} from '../controllers/event.js'
 
 import {getnom} from '../controllers/users.js'
+import {getdataC} from '../controllers/stat.js'
 
 
 const router = express.Router();
@@ -48,5 +49,6 @@ router.route('/delev').post(protect,delevent);
 router.route('/deletecaissier').post(protect,deletecaissier);
 
 router.route('/getnom').get(protect,getnom);
+router.route('/getvalc').get(protect,getdataC)
 
 export default router

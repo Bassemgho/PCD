@@ -230,7 +230,7 @@ function handleListKeyDown(event) {
                       <tr>
 
                         <td>
-                        <Chart1/>
+                        <Chart1 token={props.token}/>
                         </td>
 
                       </tr>

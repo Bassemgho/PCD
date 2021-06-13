@@ -21,7 +21,7 @@ export const addachat = async (req,res,next) => {
     // const client = await appuser.findOne({_id:id_client   })
     const carte = await carteVirtuelle.findOne({id_client:id_client,id_entreprise:caissier.id_entreprise}).populate('id_entreprise').exec();
     console.log(carte);
-    if (montant>carte.id_entreprise.montant) {
+    if (montant>caissier.id_entreprise.montant) {
       const q = Math.floor(montant/(carte.id_entreprise.montant))
 
       carte.solde = carte.solde + q*carte.id_entreprise.equiv_mont_pts;

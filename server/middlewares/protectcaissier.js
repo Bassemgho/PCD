@@ -13,7 +13,7 @@ const protectcaissier = async (req,res,next) => {
   try {
     const decoded = jwt.verify(token,"testsecret")
     console.log("trying to find caissier"+decoded.id);
-    const caiss = await caissier.findOne({ _id:decoded.id });
+    const caiss = await caissier.findOne({ _id:decoded.id }).populate("id_entreprise");
     if (!caiss) {
       console.log("we didnt find");
       return next(new errorResponse("no user found ",404))

@@ -29,13 +29,21 @@ const urldeletec ="http://localhost:5000/user/deletecaissier";
 const urldelbon ="http://localhost:5000/params/deletebon";
 const urldelred ="http://localhost:5000/params/deletered";
 const urldeletent ="http://localhost:5000/entreprise/deleteentreprise";
+const urlstat = "http://localhost:5000/user/getvalc";
 
+export const getdatac = async (token) => {
+  const config = {headers : { Authorization : `Bearer ${token}`}};
+  const rep = await axios.get(urlstat,config);
+  console.log('valc get');
+  return rep;
+}
 
 const urlsignadm="http://localhost:5000/admins/signin";
 
 const urlnom="http://localhost:5000/user/getnom";
 
 const urlchange="http://localhost:5000/params/changeequiv";
+
 
 export const changeequiv = async (newmontant,newequiv_mont_pts,token) => {
   const inf={newmontant,newequiv_mont_pts};
@@ -47,7 +55,7 @@ export const signadmin = async (username,password) => {
   const creds = {username:username,password:password};
   return await axios.post(urlsignadm,creds);
 }
- 
+
 
 export const sendcreds = async (username,password) => {
   const creds = {username:username,password:password};

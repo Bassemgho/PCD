@@ -49,7 +49,8 @@ class Footer extends React.Component{
                                             <Link to="/partenaire">Entreprises partenaires</Link> |
 								            <Link to="/team">Notre équipe</Link> |
                                             <b><Link to="/signin">S'identifier </Link></b> |
-                                            <b><Link to="/signup">S'inscrire</Link></b>
+                                            <b><Link to="/signup">S'inscrire</Link></b>|
+                                            <b><Link to="/cnxadmin">Administrateur</Link></b>
                                         </p>
                                     </div>
                                 </div>

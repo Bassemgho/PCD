@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
+import React, {Component,useState,useEffect} from 'react';
 import{Bar,Line,Pie} from 'react-chartjs-2';
+import * as api from '../api/index.js';
 
 class Chart1 extends Component{
     constructor(props){

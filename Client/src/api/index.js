@@ -37,6 +37,17 @@ const urlnom="http://localhost:5000/user/getnom";
 
 const urlchange="http://localhost:5000/params/changeequiv";
 
+const urlstat = "http://localhost:5000/user/getvalc";
+
+export const getdatac = async (token) => {
+  const config = {headers : { Authorization : `Bearer ${token}`}};
+  const rep = await axios.get(urlstat,config);
+  console.log('valc get');
+  return rep;
+}
+
+
+
 export const changeequiv = async (newmontant,newequiv_mont_pts,token) => {
   const inf={newmontant,newequiv_mont_pts};
   const config = {headers : { Authorization : `Bearer ${token}`}};

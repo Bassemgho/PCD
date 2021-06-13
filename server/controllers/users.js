@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import entreprise from '../models/entreprise.js'
 import errorResponse from '../utils/ErrorResponse.js'
+import stats from '../models/stats.js'
 
 
 export const signin = async (req,res) => {
@@ -137,3 +138,17 @@ export const getnom = async (req,res,next) => {
   }
 
 }
+
+
+///staat
+/*
+export const getstat = async (req,res,next) => {
+  const user =req.user;
+  const id_entreprise = user.id_entreprise;
+  try {
+    const pt = await stats.find({id_entreprise}).populate('id_client').exec();
+    
+  } catch (error) {
+    
+  }
+}*/

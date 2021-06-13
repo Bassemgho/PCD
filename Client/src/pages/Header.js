@@ -54,6 +54,11 @@ class Header extends React.Component{
                S'inscrire
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/cnxadmin" exact>
+               Administrateur
+              </NavLink>
+            </li>
         </ul>
       </div>
 		            </div>

@@ -48,9 +48,9 @@ export const getbonsclient = async (req,res,next) => {
 
 export const getbonsclient = async (req,res,next) => {
     const caissier = req.caissier;
-    const id_client= req.body;
+    const {id}= req.params;
     try {
-        const bclient = await bon.find({id_client});
+        const bclient = await bon.find({id_client:id});
         console.log(bclient)
         if (!bclient) {
             return next(new errorResponse("pas de bons pour ce client",404));

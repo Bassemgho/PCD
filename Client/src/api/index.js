@@ -1,7 +1,7 @@
 import axios from 'axios'
 const urlSignin = "http://localhost:5000/user/signin"
 const urlSignup = "http://localhost:5000/user/signup"
-//sawsen
+
 const urlptvente = "http://localhost:5000/user/addptsventes"
 const urlcaissier = "http://localhost:5000/user/addcaissier"
 const url = "http://localhost:5000/entreprise/display";
@@ -22,7 +22,7 @@ const urlgetevent = "http://localhost:5000/user/getevent";
 const urlgetbon ="http://localhost:5000/params/getbonparams";
 const urlgetred ="http://localhost:5000/params/getredparams";
 const urldelete ="http://localhost:5000/user/deleteptvente";
-//
+
 const urldelevent="http://localhost:5000/user/delev";
 
 const urldeletec ="http://localhost:5000/user/deletecaissier";
@@ -72,7 +72,6 @@ export const signup = async (username,password,email,name,logo) => {
   return await axios.post(urlSignup,infos);
 }
 
-//sawsen
 
 export const deletebon = async (id_bon,token) => {
   const inf={id_bon};
@@ -100,7 +99,6 @@ export const deletecaissier = async (id_caiss,token) => {
 }
 
 
-///khra
 
 export const delevent = async (id_ev,token) => {
   const inf={id_ev};
@@ -137,7 +135,6 @@ export const addredparam = async (ptsred,delaired,percent, token) => {
   return await axios.post(urlred,inf,{headers : { Authorization : `Bearer ${token}`}});
 }
 
-//bassem à vérifier
 
 export const getptvente = async (token) => {
   const config = {headers : { Authorization : `Bearer ${token}`}};
@@ -204,7 +201,7 @@ export const getclient = async (token) => {
   return rep;
 }
 
-// il ya un prob
+
 
 export const addparam = async (newmontant, newequiv_mont_pts ,token) => {
   const inf = {newmontant, newequiv_mont_pts};

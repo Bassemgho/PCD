@@ -28,7 +28,7 @@ export const acheterbon = async (req,res,next) => {
         next(error)
     }
 }
-
+/*
 export const getbonsclient = async (req,res,next) => {
     const user = req.user;
     const id_client= user._id;
@@ -44,8 +44,24 @@ export const getbonsclient = async (req,res,next) => {
     } catch (error) {
         next(error)
     }
-}
+}*/
 
+export const getbonsclient = async (req,res,next) => {
+    const caissier = req.caissier;
+    const id_client= req.body;
+    try {
+        const bclient = await bon.find({id_client});
+        console.log(bclient)
+        if (!bclient) {
+            return next(new errorResponse("pas de bons pour ce client",404));
+        }
+       return res.status(201).json(bclient)
+        
+
+    } catch (error) {
+        next(error)
+    }
+}
 export const removebonach = async (req,res,next) => {
     const caissier = req.caissier;
     const {_id} = req.body;

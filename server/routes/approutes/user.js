@@ -18,7 +18,7 @@ router.route('/shop/get').get(protectapp,getshop)
 router.route('/addachat').post(protectcaissier,addachat)
 
 router.route('/acheterbon').post(protectapp,acheterbon);
-router.route('/getbons').get(protectapp,getbonsclient);
+router.route('/getbons').get(protectcaissier,getbonsclient);
 router.route('/removebonach').post(protectcaissier,removebonach);
 
 

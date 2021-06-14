@@ -3,6 +3,8 @@ import {signin,signup,viewcards,signincaissier} from '../../controllers/appContr
 import {getshop} from '../../controllers/shop.js'
 import {addachat} from '../../controllers/achat.js'
 
+import {acheterbon,getbonsclient,removebonach} from '../../controllers/Bon.js'
+
 import protectcaissier from '../../middlewares/protectcaissier.js'
 import protectapp from '../../middlewares/protectapp.js'
 
@@ -14,6 +16,11 @@ router.route('/signincaissier').post(signincaissier)
 router.route('/cards').get(protectapp,viewcards);
 router.route('/shop/get').get(protectapp,getshop)
 router.route('/addachat').post(protectcaissier,addachat)
+
+router.route('/acheterbon').post(protectapp,acheterbon);
+router.route('/getbons').get(protectapp,getbonsclient);
+router.route('/removebonach').post(protectcaissier,removebonach);
+
 
 export default router;
 

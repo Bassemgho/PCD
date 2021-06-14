@@ -10,7 +10,7 @@ const bonsch = mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:"entreprise",
   },
-  dateexpiration:Date,
+  //dateexpiration:Date,
 
 },{timestamps:true})
 

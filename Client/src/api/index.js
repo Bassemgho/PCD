@@ -30,6 +30,14 @@ const urldelbon ="http://localhost:5000/params/deletebon";
 const urldelred ="http://localhost:5000/params/deletered";
 const urldeletent ="http://localhost:5000/entreprise/deleteentreprise";
 const urlstat = "http://localhost:5000/user/getvalc";
+const urlmonth = "http://localhost:5000/user/getmonths";
+
+export const getmonths = async (token) => {
+  const config = {headers : { Authorization : `Bearer ${token}`}};
+  const rep = await axios.get(urlmonth,config);
+  console.log('month get');
+  return rep;
+}
 
 export const getdatac = async (token) => {
   const config = {headers : { Authorization : `Bearer ${token}`}};

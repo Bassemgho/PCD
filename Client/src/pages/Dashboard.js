@@ -20,6 +20,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Collapse } from '@material-ui/core';
 
 import * as api from '../api/index.js';
+import TableChart from "../components/TableChart";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +39,19 @@ const Dashboard = (props) =>{
   const id = {headers : { Authorization : `Bearer ${props.token}`}};
 
   const [get,setGet] = useState("");
+  const [months,setmonth] = useState({});
+  useEffect (async () => {
+
+  const token = localStorage.getItem("token");
+  try {
+  const {data} = await api.getmonths(props.token);
+  setmonth(data.data)
+  console.log(data);
+ 
+  } catch (e) {
+  console.log(e.error);
+  }
+  },[])
     useEffect (async () => {
 
     const token = localStorage.getItem("token");
@@ -146,12 +160,12 @@ function handleListKeyDown(event) {
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                   <MenuItem><h5>
-                   
+
                {get.name}
-              
+
                     </h5></MenuItem>
                     <MenuItem onClick={handleClose}><h5><Link to ='/profil'>Profil</Link></h5></MenuItem>
-                    
+
                     <MenuItem onClick={logout}><h5>Déconnexion</h5></MenuItem>
                   </MenuList>
                 </ClickAwayListener>
@@ -186,7 +200,7 @@ function handleListKeyDown(event) {
             <Menu.Item key='gestioncaissier'>
                 <Link to ='/gestioncaissier'><UserAddOutlined />Gestion des caissiers</Link>
             </Menu.Item>
-          
+
             <Menu.Item key='Clients'>
                 <Link to ='/clients'><TableOutlined />Table des clients</Link>
             </Menu.Item>
@@ -204,12 +218,12 @@ function handleListKeyDown(event) {
               >
                 <Menu.ItemGroup key='AboutUS'>
                   <Menu.Item key='location1'> <Link to='/pointsvente'><ShopOutlined />Points de vente</Link></Menu.Item>
-                 
+
                   <Menu.Item key='location3'> <Link to='/event'> <AppstoreAddOutlined />Evenements</Link></Menu.Item>
 
                 </Menu.ItemGroup>
               </SubMenu>
-              
+
             </Menu>
           </Sider>
 
@@ -221,7 +235,7 @@ function handleListKeyDown(event) {
               <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
               <div style={{ background: '#87bfd4', padding: 20, minHeight: 50 }}>
                     <h4 style ={{fontWeight :'bold'}}>Points cumulés des clients</h4>
-                    
+
                  </div>
                   <br/>
 
@@ -242,272 +256,278 @@ function handleListKeyDown(event) {
                     <h4 style ={{fontWeight :'bold'}}>Rentabilité par Point de vente</h4>
                  </div>
                  <br/>
-                 {/* */}
-                  <table style={{marginRight :'auto', marginLeft :'auto' }}>
-                      <tr>
-                        <td style={{width : 300}}>
-                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Janvier
-                          </div>
+                 
+                 {Object.keys(months).map((item) => {
+                   return (<TableChart month={item} data = {months[item]} / >)
+                 })}
 
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart/>
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart2/>
-                        </td>
-                      </tr>
+                 {/*
 
-                  </table>
-                  <br/>
-                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
-                      <tr>
-                        <td style={{width : 300}}>
-                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Février
-                          </div>
-
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart/>
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart2/>
-                        </td>
-                      </tr>
-
-                  </table>
-                  <br/>
-                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
-                      <tr>
-                        <td style={{width : 300}}>
-                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Mars
-                          </div>
-
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart/>
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart2/>
-                        </td>
-                      </tr>
-
-                  </table>
-                  <br/>
-                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
-                      <tr>
-                        <td style={{width : 300}}>
-                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Avril
-                          </div>
-
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart/>
-                        </td>
-                      </tr >
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart2/>
-                        </td>
-                      </tr>
-
-                  </table>
-                  <br/>
-                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
-                      <tr>
-                        <td style={{width : 300}}>
-                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Mai
-                          </div>
-
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart/>
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart2/>
-                        </td>
-                      </tr>
-
-                  </table>
-                  <br/>
-                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
-                      <tr>
-                        <td style={{width : 300}}>
-                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Juin
-                          </div>
-
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart/>
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart2/>
-                        </td>
-                      </tr>
-
-                  </table>
-                  <br/>
-                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
-                      <tr>
-                        <td style={{width : 300}}>
-                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Juillet
-                          </div>
-
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart/>
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart2/>
-                        </td>
-                      </tr>
-
-                  </table>
-                  <br/>
-                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
-                      <tr>
-                        <td style={{width : 300}}>
-                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Août
-                          </div>
-
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart/>
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart2/>
-                        </td>
-                      </tr>
-
-                  </table>
-                  <br/>
-                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
-                      <tr>
-                        <td style={{width : 300}}>
-                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Septembre
-                          </div>
-
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart/>
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart2/>
-                        </td>
-                      </tr>
-
-                  </table>
-                  <br/>
-                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
-                      <tr>
-                        <td style={{width : 300}}>
-                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Octobre
-                          </div>
-
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart/>
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart2/>
-                        </td>
-                      </tr>
-
-                  </table>
-                  <br/>
-                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
-                      <tr>
-                        <td style={{width : 300}}>
-                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Novembre
-                          </div>
-
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart/>
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart2/>
-                        </td>
-                      </tr>
-
-                  </table>
-                  <br/>
-                  <table style={{marginRight :'auto', marginLeft :'auto'}}>
-                      <tr>
-                        <td style={{width : 300}}>
-                          <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
-                           Décembre
-                          </div>
-
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart/>
-                        </td>
-                      </tr>
-                      <tr style={{border : 'solid'}}>
-                        <td style={{width : 300}}>
-                        <Chart2/>
-                        </td>
-                      </tr>
-
-                  </table>
-
-
+                  // <table style={{marginRight :'auto', marginLeft :'auto' }}>
+                  //     <tr>
+                  //       <td style={{width : 300}}>
+                  //         <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                  //          Janvier
+                  //         </div>
+                  //
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart/>
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart2/>
+                  //       </td>
+                  //     </tr>
+                  //
+                  // </table>
+                  // <br/>
+                  // <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                  //     <tr>
+                  //       <td style={{width : 300}}>
+                  //         <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                  //          Février
+                  //         </div>
+                  //
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart/>
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart2/>
+                  //       </td>
+                  //     </tr>
+                  //
+                  // </table>
+                  // <br/>
+                  // <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                  //     <tr>
+                  //       <td style={{width : 300}}>
+                  //         <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                  //          Mars
+                  //         </div>
+                  //
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart/>
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart2/>
+                  //       </td>
+                  //     </tr>
+                  //
+                  // </table>
+                  // <br/>
+                  // <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                  //     <tr>
+                  //       <td style={{width : 300}}>
+                  //         <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                  //          Avril
+                  //         </div>
+                  //
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart/>
+                  //       </td>
+                  //     </tr >
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart2/>
+                  //       </td>
+                  //     </tr>
+                  //
+                  // </table>
+                  // <br/>
+                  // <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                  //     <tr>
+                  //       <td style={{width : 300}}>
+                  //         <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                  //          Mai
+                  //         </div>
+                  //
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart/>
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart2/>
+                  //       </td>
+                  //     </tr>
+                  //
+                  // </table>
+                  // <br/>
+                  // <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                  //     <tr>
+                  //       <td style={{width : 300}}>
+                  //         <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                  //          Juin
+                  //         </div>
+                  //
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart/>
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart2/>
+                  //       </td>
+                  //     </tr>
+                  //
+                  // </table>
+                  // <br/>
+                  // <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                  //     <tr>
+                  //       <td style={{width : 300}}>
+                  //         <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                  //          Juillet
+                  //         </div>
+                  //
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart/>
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart2/>
+                  //       </td>
+                  //     </tr>
+                  //
+                  // </table>
+                  // <br/>
+                  // <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                  //     <tr>
+                  //       <td style={{width : 300}}>
+                  //         <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                  //          Août
+                  //         </div>
+                  //
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart/>
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart2/>
+                  //       </td>
+                  //     </tr>
+                  //
+                  // </table>
+                  // <br/>
+                  // <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                  //     <tr>
+                  //       <td style={{width : 300}}>
+                  //         <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                  //          Septembre
+                  //         </div>
+                  //
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart/>
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart2/>
+                  //       </td>
+                  //     </tr>
+                  //
+                  // </table>
+                  // <br/>
+                  // <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                  //     <tr>
+                  //       <td style={{width : 300}}>
+                  //         <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                  //          Octobre
+                  //         </div>
+                  //
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart/>
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart2/>
+                  //       </td>
+                  //     </tr>
+                  //
+                  // </table>
+                  // <br/>
+                  // <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                  //     <tr>
+                  //       <td style={{width : 300}}>
+                  //         <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                  //          Novembre
+                  //         </div>
+                  //
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart/>
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart2/>
+                  //       </td>
+                  //     </tr>
+                  //
+                  // </table>
+                  // <br/>
+                  // <table style={{marginRight :'auto', marginLeft :'auto'}}>
+                  //     <tr>
+                  //       <td style={{width : 300}}>
+                  //         <div style={{ background: '#5ac268', padding: 20, minHeight: 50 ,textAlign : 'center' , fontWeight :'bold'}}>
+                  //          Décembre
+                  //         </div>
+                  //
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart/>
+                  //       </td>
+                  //     </tr>
+                  //     <tr style={{border : 'solid'}}>
+                  //       <td style={{width : 300}}>
+                  //       <Chart2/>
+                  //       </td>
+                  //     </tr>
+                  //
+                  // </table>
+                  //
+                  */}
 
 
                   {/* */}

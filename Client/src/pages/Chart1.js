@@ -69,22 +69,12 @@ import * as api from '../api/index.js';
 //       }
 //     }
     const Chart1 = (props) => {
-      const [dat,setDat] = useState(false);
+      const [dat,setDat] = useState({})
       const [chartData,setchartData] = useState({});
       useEffect(async () => {
         const token = localStorage.getItem("token");
         try {
           const {data} = await api.getdatac(props.token);
-          setDat(true);
-        } catch (error) {
-          console.log(error.error);
-        }
-      },[])
-      useEffect(async () => {
-        const token = localStorage.getItem("token");
-        try {
-          const {data} = await api.getdatac(props.token);
-          
           console.log(data);
           setchartData({
             labels: Object.keys(data.data),
@@ -94,16 +84,17 @@ import * as api from '../api/index.js';
                 data:Object.values(data.data),
                 backgroundColor:[
                   'rgba(255, 99, 132, 0.6)',
+                 
                 ]
               }
             ]
           })
-          console.log(chartData);
+
         } catch (e) {
           console.log(e.error);
         }
 
-      },[dat])
+      },[])
       return (
         <div className="chart">
 

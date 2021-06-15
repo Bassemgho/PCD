@@ -50,7 +50,7 @@ export const getbonsclient = async (req,res,next) => {
     const caissier = req.caissier;
     const {id}= req.params;
     try {
-        const bclient = await bon.find({id_client:id});
+        const bclient = await bon.find({id_client:id}).populate('id_entreprise').exec();
         console.log(bclient)
         if (!bclient) {
             return next(new errorResponse("pas de bons pour ce client",404));

@@ -55,7 +55,7 @@ export const getbonsclient = async (req,res,next) => {
         if (!bclient) {
             return next(new errorResponse("pas de bons pour ce client",404));
         }
-       return res.status(201).json(bclient)
+       return res.status(201).json({sucess:true,data:bclient})
         
 
     } catch (error) {
@@ -70,7 +70,7 @@ export const removebonach = async (req,res,next) => {
       console.log(dcl)
     await bon.deleteOne({_id:_id})
     const bclient = await bon.find({id_client:dcl[0].id_client});
-    res.status(201).json({sucess:true,message:"operation success",bclient});
+    res.status(201).json({sucess:true,data:bclient});
   } catch (error) {
     next(error);
   }
